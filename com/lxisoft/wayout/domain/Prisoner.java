@@ -7,23 +7,38 @@ import java.util.*;
 public class Prisoner
 {
 	private ArrayList<Superkey> superKeys=new ArrayList<Superkey>();
-	private Hall currentlocation=new Hall();
+	private Hall currentLocation=new Hall();
 	/**
 	*@param keys
 	*Setting the superKeys
 	*/
 	public void setSuperKey(ArrayList<String> keys)
-	{
+	{  
 		this.superKeys=keys;
 	}
 	/**
 	*return superkeys
 	*Returning the value of superKeys
 	*/
-		public ArrayList<String> getSuperKey()
+	public ArrayList<String> getSuperKey()
 	{
 		return superKeys;
 	}
+	/**
+	*@param location
+	*Setting the current location of prisoner
+	*/
+	public void setCurrenLocation(Hall location)	
+	{
+	    this .currentLocation=location;
 
+	}
+	/**
+	*return currentLocation
+	*Returning the current location of the prisoner
+	*/
+	public Hall getCurrentLocation()
+	{
+         return  	currentLocation;
+	}
 }
-		
