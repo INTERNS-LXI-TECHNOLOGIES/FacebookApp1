@@ -1,0 +1,20 @@
+
+#top{
+	background-color:lightgreen;
+}
+#add{
+	background-color:pink;
+}
+#contact{
+	margin: 4px;
+	text-align: left;
+	padding: 2px 10px 2px 10px;
+	font-size: 15px;
+	color: black;
+	margin-right: 20%;
+	margin-left: 20%;
+}
+#mid{
+	background-color:lightyellow;
+}
+	
