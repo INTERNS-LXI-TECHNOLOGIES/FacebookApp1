@@ -148,6 +148,8 @@ public class SecurityQuestion
 	*This is a equals method to override
 	*
 	*@return bool - the boolean value for equals
+	*
+	*@param obj - takes a parameter of type Object and compares it for equals
 	*/
 	public boolean equals(Object obj) 
 	{

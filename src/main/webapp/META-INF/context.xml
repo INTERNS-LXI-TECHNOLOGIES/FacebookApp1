@@ -1,0 +1,12 @@
+<Context>
+    <Resource
+        name="jdbc/datasource" type="javax.sql.DataSource"
+        maxActive="100" maxIdle="30" maxWait="10000" 
+        url="jdbc:mysql://localhost:3306/way_out"
+        driverClassName="com.mysql.jdbc.Driver"
+        username="root" password="root"
+    />
+	 <!-- <ResourceLink name="jdbc/datasource"
+         global="jdbc/datasource"
+          type="javax.sql.DataSource" /> -->
+</Context> 	
