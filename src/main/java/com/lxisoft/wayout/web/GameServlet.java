@@ -7,6 +7,7 @@ import javax.servlet.http.*;
 import java.util.*;
 import java.util.logging.*;
 import com.lxisoft.wayout.domain.*;
+import com.lxisoft.wayout.model.*;
 
 /**
  * Servlet class for working as a controller for managing games
@@ -21,6 +22,11 @@ import com.lxisoft.wayout.domain.*;
 // Extend HttpServlet class
 public class GameServlet extends HttpServlet 
 {
+
+ /**
+  * Reference to Game class
+  */
+ private Game game;
 
 /**
  * Reference to Logger class to get log messages
@@ -56,17 +62,35 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 
    {
       log.info("********************GameServlet**********************doGet---------> start");
-        
-     
-         
-     
 
-       // forward to jsp page with request parameters 
-        request.getRequestDispatcher("game.jsp").forward(request,response);     
+      HttpSession session=request.getSession();  
+
+      Object object=session.getAttribute("model");
+
+      if((object==null) || !(object instanceof Game))
+        game=loadGame();
+      else
+        game=playGame();
+        
+      session.setAttribute("model",game);
+
+      // forward to jsp page with request parameters 
+      request.getRequestDispatcher("game.jsp").forward(request,response);     
              
          
       log.info("********************GameServlet**********************doGet---------> end");
 
+   }
+
+
+   public Game playGame()
+   {
+      return game;
+   }
+   
+   public Game loadGame()
+   {
+     return game;
    }
 
 }

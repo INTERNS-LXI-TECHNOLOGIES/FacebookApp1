@@ -33,7 +33,13 @@ public class Door
      * The Boolean value corresponding to the door current status
      */
 
-    private boolean isPermanentlyBlocked;
+    private boolean isAccessDenied;
+
+    /**
+     * The Boolean value corresponding to the door open/close status
+     */
+
+    private boolean isOpen;
 
     /**
      * Reference to Logger class to get log messages
@@ -138,35 +144,66 @@ public class Door
     /**
 	 * setter for status of door
 	 * 
-	 * @param isPermanentlyBlocked
+	 * @param isAccessDenied
 	 *            block status of a door
 	 */
 
-	public void setIsPermanentlyBlocked(boolean isPermanentlyBlocked)
+	public void setIsAccessDenied(boolean isAccessDenied)
 	{
-		log.info("Door class...........setIsPermanentlyBlocked................starts");
+		log.info("Door class...........setIsAccessDenied................starts");
 
-		this.isPermanentlyBlocked=isPermanentlyBlocked;
+		this.isAccessDenied=isAccessDenied;
 
-		log.info("Door class...........setIsPermanentlyBlocked..................ends");
+		log.info("Door class...........setIsAccessDenied..................ends");
 		
 	}
 
 	/**
 	 * getter for status of door
 	 * 
-	 * @return isPermanentlyBlocked
+	 * @return isAccessDenied
 	 *            block status of a door
 	 *
 	 */
 	
-	public boolean IsPermanentlyBlocked()
+	public boolean isAccessDenied()
 	{
-		log.info("Door class.............IsPermanentlyBlocked................starts/ends");
+		log.info("Door class.............isAccessDenied...................starts/ends");
 
-		return this.isPermanentlyBlocked;
+		return this.isAccessDenied;
 	}
 
+    /**
+	 * setter for status of door
+	 * 
+	 * @param isOpen
+	 *            open status of a door
+	 */
+
+	public void setIsOpen(boolean isOpen)
+	{
+		log.info("Door class...........setIsOpen................starts");
+
+		this.isOpen=isOpen;
+
+		log.info("Door class...........setIsOpen..................ends");
+		
+	}
+
+	/**
+	 * getter for status of door
+	 * 
+	 * @return isOpen
+	 *            open status of a door
+	 *
+	 */
+	
+	public boolean isOpen()
+	{
+		log.info("Door class.............isOpen...................starts/ends");
+
+		return this.isOpen;
+	}
 	
 	/**
 	 * implementation of equals method 
