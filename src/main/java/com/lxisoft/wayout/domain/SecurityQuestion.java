@@ -1,6 +1,7 @@
 package com.lxisoft.wayout.domain;
 import java.util.*;
 import java.util.logging.*;
+
 /** 
 * This class is for control security question
 *
@@ -11,6 +12,11 @@ import java.util.logging.*;
 */
 public class SecurityQuestion
 {
+	/**
+	*This is a image url for security question
+	*/
+	private String imageUrl;
+	
 	/**
 	*This is a unique id for security question
 	*/
@@ -35,6 +41,26 @@ public class SecurityQuestion
     * Reference to Logger class to get log messages
     */  
     private static final Logger log=Logger.getLogger(SecurityQuestion.class.getName());
+   
+    /**
+	*This ia setter which set the image url
+	*
+	*@param imageUrl - the image url to set
+	*/
+	public void setImageUrl(String imageUrl)
+	{
+		this.imageUrl = imageUrl;
+	}
+	
+	/**
+	*This is a getter which returns the image url
+	*
+	*@return imageUrl - the image url to get
+	*/
+	public String getImageUrl()
+	{
+		return imageUrl;
+	}
    
 	/**
 	*This is a setter which sets the question id
