@@ -74,7 +74,7 @@ public class SecurityQuestionRepository{
 
 			}
 			List<String>options=new ArrayList(securityQuestion.getOptions());
-			statement.execute("insert into contacts values("+id+",'"+securityQuestion.getQuestion()+"','"+options.get(0)+"','"+options.get(1)+"','"+options.get(2)+"','"+securityQuestion.getAnswer()+")");
+			statement.execute("insert into securityQuestion values("+id+",'"+securityQuestion.getQuestion()+"','"+options.get(0)+"','"+options.get(1)+"','"+options.get(2)+"','"+securityQuestion.getAnswer()+")");
 			
 			connection.close();
 		}
@@ -100,7 +100,7 @@ public class SecurityQuestionRepository{
 			connection=dataSource.getConnection();
 			statement=connection.createStatement();
 			
-			statement.execute("delete from answerkey where id="+securityQuestion.getQuestionId()+"");
+			statement.execute("delete from securityQuestion where id="+securityQuestion.getQuestionId()+"");
 			
 			connection.close();
 		}
@@ -127,7 +127,7 @@ public class SecurityQuestionRepository{
 				connection=dataSource.getConnection();
 				statement=connection.createStatement();
 				List<String>options=new ArrayList(securityQuestion.getOptions());
-				statement.execute("update answerkey set Question='"+securityQuestion.getQuestion()+"',Option1='"+options.get(0)+"',Option2='"+options.get(1)+"',Option3='"+options.get(2)+"',Option4='"+options.get(3)+"',Answer='"+securityQuestion.getAnswer()+"' where id="+securityQuestion.getQuestionId()+");");
+				statement.execute("update securityQuestion set Question='"+securityQuestion.getQuestion()+"',Option1='"+options.get(0)+"',Option2='"+options.get(1)+"',Option3='"+options.get(2)+"',Answer='"+securityQuestion.getAnswer()+"' where id="+securityQuestion.getQuestionId()+");");
 				connection.close();	
 		}
 		catch(Exception e)
@@ -164,9 +164,8 @@ public SecurityQuestion findSecurityQuestion(Long id){
 					options.add(resultSet.getString(3));
 					options.add(resultSet.getString(4));
 					options.add(resultSet.getString(5));
-					options.add(resultSet.getString(6));
 					securityQuestion.setOptions(options);
-					securityQuestion.setAnswer(resultSet.getString(7));
+					securityQuestion.setAnswer(resultSet.getString(6));
 
 			}
 			connection.close();	
@@ -196,7 +195,7 @@ public Set<SecurityQuestion> findAllSecurityQuestion(){
 			dataSource=(DataSource)context.lookup("java:comp/env/jdbc/datasource");
 			connection=dataSource.getConnection();
 			statement=connection.createStatement();
-			ResultSet resultSet=statement.executeQuery("select * from answerkey;" );
+			ResultSet resultSet=statement.executeQuery("select * from securityQuestion;" );
 			while(resultSet.next())
 			{
 
@@ -208,9 +207,8 @@ public Set<SecurityQuestion> findAllSecurityQuestion(){
 				options.add(resultSet.getString(3));
 				options.add(resultSet.getString(4));
 				options.add(resultSet.getString(5));
-				options.add(resultSet.getString(6));
 				securityQuestion.setOptions(options);
-				securityQuestion.setAnswer(resultSet.getString(7));
+				securityQuestion.setAnswer(resultSet.getString(6));
 				logger.info("============"+securityQuestion+"===========");
 				securityQuestions.add(securityQuestion);
 			}
