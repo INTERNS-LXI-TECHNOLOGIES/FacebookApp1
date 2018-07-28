@@ -9,8 +9,11 @@ import java.util.logging.*;
 */
 
 public class Door{
+/**
+* creating a reference for Logger.
+*/
+	private final static Logger logger = Logger.getLogger(Door.class.getName());
 	
-  private final static Logger logger = Logger.getLogger(Door.class.getName());
 /**
 * variable is used to hold the value of the opening hall.
 */
