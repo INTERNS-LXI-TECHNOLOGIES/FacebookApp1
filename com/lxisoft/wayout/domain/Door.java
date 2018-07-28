@@ -3,6 +3,7 @@ package com.lxisoft.wayout.domain;
 /**
 * This class is mainly used to set and get the instance variable.
 * @author Balagopal v
+* @author Prabinraj t.p
 */
 
 public class Door{
@@ -38,7 +39,7 @@ public class Door{
 */
 	
 	public void setSecurityQuestions(Security securityQuestion){
-		this.securityQuestions = securityQuestions;
+		this.securityQuestion = securityQuestion;
 	}
 	
 /**
@@ -54,22 +55,40 @@ public class Door{
 	
 /**
 * set the boolean varibale doorStatus.
-* @param doorId location that holds the value of passed arguments.
+* @param doorStatus location that holds the value of passed arguments.
 */
 	
-	public void setIsDoorOpen(boolean doorstatus){
+	public void setIsDoorOpen(boolean doorStatus){
 		this.doorStatus = doorStatus;
 	}
 	
 	
 /**
 * get the value of boolean varible doorStatus
-*@return doorStatus.
+*@return doorStatus
 */
 	
 	public boolean isDoorOpen(){
 		return this.doorStatus;
 	}
 	
-	
+/** 
+* set the value of long variable doorid.
+* @param doorId
+*/
+	public void setDoorId(long doorId )
+	{
+		this.doorId=doorId;
+    }
+
+/**
+* get the value of long variable doorid.
+*@return doorId
+*/ 
+   
+   public long getDoorId()
+   {
+   	return this.doorId;
+   }   
+
 }
