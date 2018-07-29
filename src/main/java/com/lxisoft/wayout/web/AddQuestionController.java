@@ -8,6 +8,8 @@ import java.sql.*;
 import java.util.logging.*;
 import org.apache.log4j.Logger;
 import javax.naming.*;
+import java.util.*;
+import com.lxisoft.wayout.service.impl.*;
 /**
 *@author Neeraja
 *servlet class to add questions
@@ -17,6 +19,22 @@ import javax.naming.*;
 */
 
 public class AddQuestionController extends HttpServlet{
+
+	/**
+     *  creating the object of security Question to set the questions and answer 
+     *
+     */
+
+    SecurityQuestion securityQuestion=new SecurityQuestion();
+
+    /**
+     *  creating the object of security Question implementation 
+     *
+     */
+
+    SecurityQuestionServiceImpl securityQuestionServiceImpl= new SecurityQuestionServiceImpl();
+
+
 
 	/**
      *  setting logger 
@@ -41,22 +59,50 @@ public class AddQuestionController extends HttpServlet{
  		try{
 
  			logger.info("Hello this is an info message");
-			DataSource ds=null;	
-			Connection connection = null;
-			Statement stmt = null;
-			response.setContentType("text/html");
+			
 
 			String question=request.getParameter("question");
 			String option1=request.getParameter("option1");
 			String option2=request.getParameter("option2");
 			String option3=request.getParameter("option3");
-			String option4=request.getParameter("option4");
+			
+			String answer=request.getParameter("answer");
+
+			
+
+			securityQuestion.setQuestion(question);
+			Set<String> options= new TreeSet<String>();
+			options.add(option1);
+			options.add(option2);
+			options.add(option3);
+			
+			securityQuestion.setOptions(options);
+			securityQuestion.setAnswer(answer);
+
+			securityQuestionServiceImpl.addSecurityQuestion(securityQuestion);
+			response.sendRedirect("RedirectingPage.jsp");
 
 
 
+ 		}
+ 		catch(Exception e){
+ 			e.printStackTrace();
+
+ 		}
 
 
 
+ 	}
+
+ 	public void doGet(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException{
+ 		try{
+
+ 			
+
+			Set<SecurityQuestion> questions=securityQuestionServiceImpl.findAllSecurityQuestion();
+
+			request.getSession().setAttribute("question",questions);
+			response.sendRedirect("DisplayAll.jsp");
 
 
  		}

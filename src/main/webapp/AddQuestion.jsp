@@ -30,10 +30,10 @@ input[type=text] {
 </p>
 </div>
 
-<%@ page import= "com.lxisoft.fbapp.model.*"%>
+<%@ page import= "com.lxisoft.wayout.domain.*"%>
 <% SecurityQuestion securityQuestion=new SecurityQuestion();%>
 
-<form action="QuestionController.java" method="post">
+<form action="addQuestion" method="post">
 	
 <div>
 	<label for="question"><b>Question</b></label>
@@ -48,9 +48,7 @@ input[type=text] {
     <label for="option 3"><b>option 3</b></label>
     <input type="text" placeholder="option 3" name="option3" required></br></br>
 
-    <label for="option 4"><b>option 4</b></label>
-    <input type="text" placeholder="option 4" name="option4" required></br></br>
-
+   
     <label for="answer"><b>answer</b></label>
     <input type="text" placeholder="answer" name="answer" required></br></br>
 

@@ -4,7 +4,7 @@
 
 <html>
 <head>
-<title>Home</title>
+<title>Redirecting page</title>
 </head>
 
 <style>
@@ -23,15 +23,16 @@
 <body>
 <div>
 <h1>Operations</h1></br></br>
+</div>
 
-<a href="AddQuestion.jsp"><img src="/fbtest/images/addQuestion.jpg" width="50" height="50" title=addQuestion><%out.println("add a question");%></a></br></br>
 
+<form action="redirect" method="post">
+	<% out.println("do you want to add new question?");%>
+<input type="submit" value="submit" name="first"/>
+<input type="submit" value="cancel" name="second"/>
+	
 
-<form action="addQuestion" method="get"> 
-	<input type="submit" value="showAllQuestions">
 </form>
-
-
 
 </body>
 </html>

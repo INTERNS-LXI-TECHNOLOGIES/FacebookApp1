@@ -69,5 +69,37 @@
 		</form-login-config>
 </login-config>
 
+
+<servlet>
+	<servlet-name>AddQuestionController</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.AddQuestionController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>AddQuestionController</servlet-name>
+	<url-pattern>/addQuestion</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>SearchController</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.SearchController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>SearchController</servlet-name>
+	<url-pattern>/search</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>MainServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.MainServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>MainServlet</servlet-name>
+	<url-pattern>/redirect</url-pattern>
+</servlet-mapping>
+
+
 </web-app>
 
