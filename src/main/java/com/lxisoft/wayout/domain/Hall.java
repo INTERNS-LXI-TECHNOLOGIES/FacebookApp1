@@ -28,6 +28,11 @@ public class Hall
 	private long hallId;
 
 	/**
+	*This is a backdoor of a door
+	*/
+    private Door backDoor;
+
+	/**
 	*Reference to Logger class to get log messages
 	*/
 	private static final Logger log = Logger.getLogger(Hall.class.getName());
@@ -109,11 +114,40 @@ public class Hall
 		
 		return hallId;
 	}
+
+
+	/**
+	* This is a setter which sets the backDoor
+	*
+	* @param backDoor - the backDoor to set
+	*/
+	public void setBackDoor(Door backDoor)
+	{
+		log.info("Hall class..........................setBackDoor................starts");
+		
+		this.backDoor = backDoor;
+		
+		log.info("Hall class..........................setBackDoor..................ends");
+	}
+	
+	/**
+	* This is a getter which returns the Door
+	*
+	* @return Door - the Door to get
+	*/
+	public Door getBackDoor()
+	{
+		log.info("Hall class..........................backDoor................starts/ends");
+		
+		return this.backDoor;
+	}
 	
 	/**
 	*This is a equals method to override
 	*
 	*@return bool - the boolean value for equals
+	*
+	*@param obj - takes a parameter of type Object and compares it for equals
 	*/
 	public boolean equals(Object obj) 
 	{
