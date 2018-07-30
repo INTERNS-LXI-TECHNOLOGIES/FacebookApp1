@@ -14,13 +14,13 @@ public class SuperKey{
 	/**
 	*variable to check whether super keys are used
 	*/
-	private boolean isUsed;
+	private Boolean isUsed;
 	
 	/**
 	*@param isUsed
 	*method to set super keys from prisoner
 	*/
-	public void setIsUsed(boolean isUsed){
+	public void setIsUsed(Boolean isUsed){
 		
 		this.isUsed=isUsed;
 		
@@ -30,9 +30,9 @@ public class SuperKey{
 	*@return isUsed
 	*method to get super keys from prisoner
 	*/
-	public boolean isUsed(){
+	public Boolean isUsed(){
 		
-		return isUsed;
+		return this.isUsed;
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class SuperKey{
 	 *            unique id of a superKey
 	 */
     
-	public void setSuperKeyId(long superKeyId)
+	public void setSuperKeyId(Long superKeyId)
 	{
 		//log.info("SuperKey class..........................setSuperKeyId................starts");
 
@@ -65,5 +65,24 @@ public class SuperKey{
 		//log.info("SuperKey class..........................getSuperKeyId...............starts/ends");
 
 		return this.superKeyId;
+	}
+	
+	/**
+	*Overriding equals method to check equality of super keys.
+	*
+	*@return boolean value.
+	*
+	*@param obj of Object time.
+	*/
+	public boolean equals(Object obj)
+	{
+		if(obj instanceof SuperKey)
+		{
+			return this.getSuperKeyId().equals(((SuperKey)obj).getSuperKeyId());
+		}
+		else
+		{
+			return false;
+		}
 	}
 }
