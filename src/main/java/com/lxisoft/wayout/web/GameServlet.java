@@ -212,7 +212,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		
 		game = new Game();//creating game model object to pass to playGame() method. 
 		game.setPrisoner(prison.getPrisoner());
-		game.setNumberOfKeysInHand(3);
+		game.setNumberOfKeys(3);
 		log.info("-----------GameServlet-----------loadGame()---------ends");
 		return game;
 	}

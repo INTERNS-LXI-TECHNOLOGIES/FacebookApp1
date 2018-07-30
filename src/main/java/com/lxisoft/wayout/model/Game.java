@@ -47,24 +47,24 @@ public class Game
 		
 	}
 	/**
-	 * setter for numberOfKeysInHand.
+	 * setter for numberOfKeys.
 	 * @param numberOfKeys no of keys in hand of prison .
 	 */
-	public void setNumberOfKeysInHand(int numberOfKeys)
+	public void setNumberOfKeys(int numberOfKeys)
 	{
-		log.info("Game class..........................setNumberOfKeysInHand................starts");
+		log.info("Game class..........................setNumberOfKeys................starts");
 
 		this.numberOfKeys=numberOfKeys;
 
-		log.info("Game class..........................setNumberOfKeysInHand................ends");
+		log.info("Game class..........................setNumberOfKeys................ends");
 	}
 	/**
-	 * getter for numberOfKeysInHand.
+	 * getter for numberOfKeys.
 	 * @return  numberOfKeys get no of keys.
 	 */
 	public int getNumberOfKeys()
 	{
-		log.info("Game class..........................getNumberOfKeysInHand................starts");
+		log.info("Game class..........................getNumberOfKeys................starts");
 
 		return this.numberOfKeys;
 		
