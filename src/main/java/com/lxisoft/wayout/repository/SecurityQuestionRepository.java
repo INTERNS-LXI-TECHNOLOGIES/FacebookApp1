@@ -246,7 +246,7 @@ public SecurityQuestion findOne(Long id){
 			{
 				
 				SecurityQuestion securityQuestion=new SecurityQuestion();
-				securityQuestion.setQuestionId(resultSet.getInt(1));
+				securityQuestion.setQuestionId((long)resultSet.getInt(1));
 				securityQuestion.setImageUrl(resultSet.getString(2));
 				securityQuestion.setQuestion(resultSet.getString(3));
 				Set<String>options=new TreeSet<String>();
