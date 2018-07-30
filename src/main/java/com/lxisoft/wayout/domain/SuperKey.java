@@ -5,6 +5,11 @@ package com.lxisoft.wayout.domain;
 *
 */
 public class SuperKey{
+    
+    /**
+     * Unique id of superKeyId
+     */
+	private Long superKeyId;
 	
 	/**
 	*variable to check whether super keys are used
@@ -28,5 +33,37 @@ public class SuperKey{
 	public boolean isUsed(){
 		
 		return isUsed;
+	}
+
+	/**
+	 * setter for superKeyId
+	 * 
+	 * @param superKeyId
+	 *            unique id of a superKey
+	 */
+    
+	public void setSuperKeyId(long superKeyId)
+	{
+		log.info("SuperKey class..........................setSuperKeyId................starts");
+
+		this.superKeyId = superKeyId;
+
+		log.info("SuperKey class..........................setSuperKeyId..................ends");
+
+	}
+	
+	/**
+	 * getter for superKeyId
+	 * 
+	 * @return superKeyId
+	 *            unique id of a superKey
+	 *
+	 */
+
+	public Long getSuperKeyId()
+	{
+		log.info("SuperKey class..........................getSuperKeyId...............starts/ends");
+
+		return this.superKeyId;
 	}
 }
