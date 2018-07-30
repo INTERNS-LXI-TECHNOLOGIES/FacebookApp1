@@ -44,11 +44,11 @@ public class SuperKey{
     
 	public void setSuperKeyId(long superKeyId)
 	{
-		log.info("SuperKey class..........................setSuperKeyId................starts");
+		//log.info("SuperKey class..........................setSuperKeyId................starts");
 
 		this.superKeyId = superKeyId;
 
-		log.info("SuperKey class..........................setSuperKeyId..................ends");
+		//log.info("SuperKey class..........................setSuperKeyId..................ends");
 
 	}
 	
@@ -62,7 +62,7 @@ public class SuperKey{
 
 	public Long getSuperKeyId()
 	{
-		log.info("SuperKey class..........................getSuperKeyId...............starts/ends");
+		//log.info("SuperKey class..........................getSuperKeyId...............starts/ends");
 
 		return this.superKeyId;
 	}
