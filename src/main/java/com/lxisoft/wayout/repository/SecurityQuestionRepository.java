@@ -275,12 +275,6 @@ public SecurityQuestion findOne(Long id){
 				securityQuestions.add(securityQuestion);
 			//}
 			
-				for(SecurityQuestion securityquestion:securityQuestions){
-				System.out.println("*************"+securityquestion.getQuestionId());
-				System.out.println("*************"+securityquestion.getQuestion());
-				System.out.println("*************"+securityquestion.getAnswer());
-				System.out.println("*************"+securityquestion.getImageUrl());
-				System.out.println("*************"+securityquestion.getOptions());
 				
 				
 			}
