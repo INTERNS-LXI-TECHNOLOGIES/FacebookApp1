@@ -36,6 +36,9 @@ input[type=text] {
 <form action="addQuestion" method="post">
 	
 <div>
+    <label for="imageUrl"><b>imageUrl</b></label>
+    <input type="text" placeholder="imageUrl" name="imageUrl"  required></br></br>
+
 	<label for="question"><b>Question</b></label>
     <input type="text" placeholder="Enter Question" name="Question"  required></br></br>
 
