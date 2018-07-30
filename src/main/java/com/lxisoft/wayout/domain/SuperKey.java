@@ -76,13 +76,10 @@ public class SuperKey{
 	*/
 	public boolean equals(Object obj)
 	{
-		if(obj instanceof SuperKey)
-		{
-			return this.getSuperKeyId().equals(((SuperKey)obj).getSuperKeyId());
-		}
-		else
-		{
-			return false;
-		}
+	
+	//log.info("SuperKey class...........equals()...................................starts/ends");
+
+	return ((obj != null) && (obj instanceof SuperKey) && this.getSuperKeyId()==((SuperKey)obj).getSuperKeyId());
+		
 	}
 }

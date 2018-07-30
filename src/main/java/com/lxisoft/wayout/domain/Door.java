@@ -218,15 +218,8 @@ public class Door
 	public boolean equals(Object obj)
 	{
 		log.info("Door class...........equals()...................................starts/ends");
-		if(obj instanceof Door)
-		{
-			return this.doorId==((Door)obj).doorId;
-		}
-		else
-		{
-			return false;
-		}
-		
+
+	    return ((obj != null) && (obj instanceof Door) && this.doorId==((Door)obj).doorId);		
 			 
 	}	
 
