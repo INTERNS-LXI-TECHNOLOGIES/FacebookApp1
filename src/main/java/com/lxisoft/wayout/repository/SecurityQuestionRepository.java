@@ -233,7 +233,9 @@ public SecurityQuestion findOne(Long id){
 	
 	public Set<SecurityQuestion> findAll(){
 
-		Set<SecurityQuestion>securityQuestions=new TreeSet<SecurityQuestion>();
+	SecurityQuestion securityQuestion=new SecurityQuestion();
+	
+		Set<SecurityQuestion> securityQuestions=new TreeSet<SecurityQuestion>();
 		logger.info("============Entered into SecurityQuestionRepository/findAllSecurityQuestion() with no id==========");
 		try
 		{
@@ -242,29 +244,45 @@ public SecurityQuestion findOne(Long id){
 			connection=dataSource.getConnection();
 			statement=connection.createStatement();
 			ResultSet resultSet=statement.executeQuery("select sq.question_id,sq.image_path,sq.question,qo.opt,sq.answer from question_option qo inner join security_question_options sqo on qo.option_id = sqo.option_id inner join security_question sq on sqo.question_id = sq.question_id" );
+			int i =0,oldQuestionId=0;
+
+			Set<String> options=new TreeSet<String>();
 			while(resultSet.next())
 			{
-				
-				SecurityQuestion securityQuestion=new SecurityQuestion();
-				securityQuestion.setQuestionId((long)resultSet.getInt(1));
-				securityQuestion.setImageUrl(resultSet.getString(2));
-				securityQuestion.setQuestion(resultSet.getString(3));
-				Set<String>options=new TreeSet<String>();
-				
-				while(resultSet.next()){
-					options.add(resultSet.getString(4));
+				i=i+1;
+				int currentQuestionId = resultSet.getInt("question_id");
+				if(oldQuestionId != currentQuestionId ) {
+				    if ( i != 1){
+					    securityQuestion.setOptions(options);
+					    securityQuestions.add(securityQuestion);
+                       i=0;					
+				    }
+					securityQuestion.setQuestionId((long)resultSet.getInt("question_id"));
+					securityQuestion.setImageUrl(resultSet.getString("image_path"));
+					securityQuestion.setQuestion(resultSet.getString("question"));
+					securityQuestion.setAnswer(resultSet.getString("answer"));
+					
 				}
 				
-				for(String option:options){
+				options.add(resultSet.getString("opt"));	
+				oldQuestionId = currentQuestionId;
+	
+			//	logger.info("============"+securityQuestion+"===========");
+			}
+			//if (i > 0) {
+				securityQuestion.setOptions(options);
+				securityQuestions.add(securityQuestion);
+			//}
+			
+		
+			for(String option:options){
 				System.out.println("*************"+option);
 				}
 				
-				securityQuestion.setOptions(options);
-				securityQuestion.setAnswer(resultSet.getString(6));
-				logger.info("============"+securityQuestion+"===========");
-				securityQuestions.add(securityQuestion);
-			}
+
+
 			connection.close();
+			
 		}
 		catch(Exception e)
 		{
