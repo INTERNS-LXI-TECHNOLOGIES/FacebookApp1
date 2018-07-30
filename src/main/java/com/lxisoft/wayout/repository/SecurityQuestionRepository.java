@@ -235,7 +235,7 @@ public SecurityQuestion findOne(Long id){
 
 	SecurityQuestion securityQuestion=new SecurityQuestion();
 	
-		Set<SecurityQuestion> securityQuestions=new TreeSet<SecurityQuestion>();
+		Set<SecurityQuestion> securityQuestions=new HashSet<SecurityQuestion>();
 		logger.info("============Entered into SecurityQuestionRepository/findAllSecurityQuestion() with no id==========");
 		try
 		{
@@ -246,7 +246,8 @@ public SecurityQuestion findOne(Long id){
 			ResultSet resultSet=statement.executeQuery("select sq.question_id,sq.image_path,sq.question,qo.opt,sq.answer from question_option qo inner join security_question_options sqo on qo.option_id = sqo.option_id inner join security_question sq on sqo.question_id = sq.question_id" );
 			int i =0,oldQuestionId=0;
 
-			Set<String> options=new TreeSet<String>();
+			Set<String> options=new HashSet<String>();
+			
 			while(resultSet.next())
 			{
 				i=i+1;
@@ -274,13 +275,17 @@ public SecurityQuestion findOne(Long id){
 				securityQuestions.add(securityQuestion);
 			//}
 			
-		
-			for(String option:options){
-				System.out.println("*************"+option);
-				}
+				for(SecurityQuestion securityquestion:securityQuestions){
+				System.out.println("*************"+securityquestion.getQuestionId());
+				System.out.println("*************"+securityquestion.getQuestion());
+				System.out.println("*************"+securityquestion.getAnswer());
+				System.out.println("*************"+securityquestion.getImageUrl());
+				System.out.println("*************"+securityquestion.getOptions());
 				
-
-
+				
+			}
+		
+					
 			connection.close();
 			
 		}
