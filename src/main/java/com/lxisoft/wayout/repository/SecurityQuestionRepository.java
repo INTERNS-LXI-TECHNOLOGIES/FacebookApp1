@@ -51,27 +51,50 @@ public class SecurityQuestionRepository{
 	private Logger logger=Logger.getLogger(SecurityQuestionRepository.class.getName());
 
 	/**
+	*an intial block that give basic database connection
+	**/
+	{
+		logger.info("]]]]]]]]]]]]]]]]]]]SecurityQuestionRepository/initial block starting[[[[[[[[[[[[[[[[[[");
+		try
+		{
+			context=new InitialContext();
+			dataSource=(DataSource)context.lookup("java:comp/env/jdbc/datasource");
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		logger.info("]]]]]]]]]]]]]]]]]]]SecurityQuestionRepository/initial block ending[[[[[[[[[[[[[[[[[[");
+
+	}
+
+
+	/**
 	*to add a SecurityQuestion 
-	*@param securityQuestion save to database
+	*@param securityQuestion to an security question to database
 	**/
 
-	public void addSecurityQuestion(SecurityQuestion securityQuestion){
+
+	public void save(SecurityQuestion securityQuestion){
 
 		try
 		{
  
 			logger.info("============Entered into SecurityQuestionRepository/addSecurityQuestion()===========");
-			context=new InitialContext();
-			dataSource=(DataSource)context.lookup("java:comp/env/jdbc/datasource");
+			
 			connection=dataSource.getConnection();
 			statement=connection.createStatement();
-			ResultSet resultSet=statement.executeQuery("select * from securityQuestion;");
-			Long id=1l;
-			while(resultSet.next())
+			ResultSet resultSet=statement.executeQuery("select * from securityQuestion;"); 
+			Long id=securityQuestion.getQuestionId();
+			if(id==0)
 			{
+				id=1l;
+				while(resultSet.next())
+				{
 
-				id=(resultSet.getInt(1)+1l);	
+					id=(resultSet.getInt(1)+1l);	
 
+				}
 			}
 			List<String>options=new ArrayList(securityQuestion.getOptions());
 			statement.execute("insert into securityQuestion values("+id+",'"+securityQuestion.getQuestion()+"','"+options.get(0)+"','"+options.get(1)+"','"+options.get(2)+"','"+securityQuestion.getAnswer()+")");
@@ -85,18 +108,19 @@ public class SecurityQuestionRepository{
 		logger.info("============Exited from  SecurityQuestionRepository/addSecurityQuestion()===========");
 
 	}
+
+
 	/**
 	*to dlete SecurityQuestion
-	*@param securityQuestion;
+	*@param securityQuestion the given question is deleted;
 	**/
 
-	public void deleteSecurityQuestion(SecurityQuestion securityQuestion){
+	public void delete(SecurityQuestion securityQuestion){
 
 		logger.info("============Entered into SecurityQuestionRepository/addSecurityQuestion()===========");
 		try
 		{
-			context=new InitialContext();
-			dataSource=(DataSource)context.lookup("java:comp/env/jdbc/datasource");
+			
 			connection=dataSource.getConnection();
 			statement=connection.createStatement();
 			
@@ -112,49 +136,33 @@ public class SecurityQuestionRepository{
 	}
 
 	/**
-	* to delete SecurityQuestion
 	* @param securityQuestion securityQuestion to be updated
 	**/
 
-	public void updateSecurityQuestion(SecurityQuestion securityQuestion){
+	public void update(SecurityQuestion securityQuestion){
 
 		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion()===========");
-		try
-		{
-
-				context=new InitialContext();
-				dataSource=(DataSource)context.lookup("java:comp/env/jdbc/datasource");
-				connection=dataSource.getConnection();
-				statement=connection.createStatement();
-				List<String>options=new ArrayList(securityQuestion.getOptions());
-				statement.execute("update securityQuestion set Question='"+securityQuestion.getQuestion()+"',Option1='"+options.get(0)+"',Option2='"+options.get(1)+"',Option3='"+options.get(2)+"',Answer='"+securityQuestion.getAnswer()+"' where id="+securityQuestion.getQuestionId()+");");
-				connection.close();	
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}	
-		
+ 		logger.info("OOOOOOOOsecurityQuestion"+securityQuestion+"OOOOOOOO");
+		delete(securityQuestion);
+		save(securityQuestion);		
 		logger.info("============Exited from  SecurityQuestionRepository/updateSecurityQuestion()===========");
 		
 	}
 	/**
-	* to find SecurityQuestion
+	* to find SecurityQuestion by using an unique key
 	* @param id id of securityQuestion
 	* @return securityQuestion 
 	**/
 
-public SecurityQuestion findSecurityQuestion(Long id){
+public SecurityQuestion findOne(Long id){
 		SecurityQuestion securityQuestion=new SecurityQuestion();
 		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion() with id="+id+"===========");
 		try
 		{
-			context=new InitialContext();
-			dataSource=(DataSource)context.lookup("java:comp/env/jdbc/datasource");
 			connection=dataSource.getConnection();
 			statement=connection.createStatement();
 
-			ResultSet resultSet=statement.executeQuery("select from securityQuestion where id="+id);
+			ResultSet resultSet=statement.executeQuery("select * from securityQuestion where id="+id);
 			while(resultSet.next())
 			{
 
@@ -185,17 +193,15 @@ public SecurityQuestion findSecurityQuestion(Long id){
 	*@return securityQuestions
 	**/
 
-public Set<SecurityQuestion> findAllSecurityQuestion(){
+public Set<SecurityQuestion> findAll(){
 
 		Set<SecurityQuestion>securityQuestions=new TreeSet<SecurityQuestion>();
 		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion() with no id==========");
 		try
 		{
-			context=new InitialContext();
-			dataSource=(DataSource)context.lookup("java:comp/env/jdbc/datasource");
 			connection=dataSource.getConnection();
 			statement=connection.createStatement();
-			ResultSet resultSet=statement.executeQuery("select * from securityQuestion;" );
+			ResultSet resultSet=statement.executeQuery("select * from securityquestion;" );
 			while(resultSet.next())
 			{
 
@@ -226,3 +232,4 @@ public Set<SecurityQuestion> findAllSecurityQuestion(){
 
 
 } 
+ 
