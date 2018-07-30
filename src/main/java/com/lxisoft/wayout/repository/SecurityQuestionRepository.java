@@ -193,7 +193,7 @@ public SecurityQuestion findOne(Long id){
 	*@return securityQuestions
 	**/
 
-public Set<SecurityQuestion> findAll(){
+/*public Set<SecurityQuestion> findAll(){
 
 		Set<SecurityQuestion>securityQuestions=new TreeSet<SecurityQuestion>();
 		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion() with no id==========");
@@ -226,6 +226,52 @@ public Set<SecurityQuestion> findAll(){
 				logger.info("eeeeeeeeeeeeeeeeeeeeee"+e);
 		}
 		logger.info("============Exited from  SecurityQuestionRepository/updateSecurityQuestion()===========");
+		
+		return securityQuestions;
+	}*/
+	
+	
+	public Set<SecurityQuestion> findAll(){
+
+		Set<SecurityQuestion>securityQuestions=new TreeSet<SecurityQuestion>();
+		logger.info("============Entered into SecurityQuestionRepository/findAllSecurityQuestion() with no id==========");
+		try
+		{
+			context=new InitialContext();
+			dataSource=(DataSource)context.lookup("java:comp/env/jdbc/datasource");
+			connection=dataSource.getConnection();
+			statement=connection.createStatement();
+			ResultSet resultSet=statement.executeQuery("select sq.question_id,sq.image_path,sq.question,qo.opt,sq.answer from question_option qo inner join security_question_options sqo on qo.option_id = sqo.option_id inner join security_question sq on sqo.question_id = sq.question_id" );
+			while(resultSet.next())
+			{
+				
+				SecurityQuestion securityQuestion=new SecurityQuestion();
+				securityQuestion.setQuestionId(resultSet.getInt(1));
+				securityQuestion.setImageUrl(resultSet.getString(2));
+				securityQuestion.setQuestion(resultSet.getString(3));
+				Set<String>options=new TreeSet<String>();
+				
+				while(resultSet.next()){
+					options.add(resultSet.getString(4));
+				}
+				
+				for(String option:options){
+				System.out.println("*************"+option);
+				}
+				
+				securityQuestion.setOptions(options);
+				securityQuestion.setAnswer(resultSet.getString(6));
+				logger.info("============"+securityQuestion+"===========");
+				securityQuestions.add(securityQuestion);
+			}
+			connection.close();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();			
+				logger.info("eeeeeeeeeeeeeeeeeeeeee"+e);
+		}
+		logger.info("============Exited from  SecurityQuestionRepository/findAllSecurityQuestion()===========");
 		
 		return securityQuestions;
 	}
