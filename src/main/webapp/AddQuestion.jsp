@@ -29,7 +29,7 @@ input[type=text] {
 </style>
 </p>
 </div>
-
+<body>
 <%@ page import= "com.lxisoft.wayout.domain.*"%>
 <% SecurityQuestion securityQuestion=new SecurityQuestion();%>
 
@@ -60,6 +60,6 @@ input[type=text] {
 </div>
 </form>
 
-
+</body>
 
 </html>

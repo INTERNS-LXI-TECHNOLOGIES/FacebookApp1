@@ -100,6 +100,26 @@
 	<url-pattern>/redirect</url-pattern>
 </servlet-mapping>
 
+<servlet>
+	<servlet-name>EditController</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.EditController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>EditController</servlet-name>
+	<url-pattern>/edit</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>DeleteController</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.DeleteController</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>DeleteController</servlet-name>
+	<url-pattern>/delete</url-pattern>
+</servlet-mapping>
+
 
 </web-app>
 

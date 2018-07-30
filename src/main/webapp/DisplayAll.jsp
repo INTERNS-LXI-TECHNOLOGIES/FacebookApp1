@@ -31,10 +31,20 @@ input[type=text] {
 </div>
 <% @ page import="com.lxisoft.wayout.web.*,com.lxisoft.wayout.domain.*,java.sql.*"%>
 
-<%Set<question> secQuestion=(Set<Question>)request.getSession.getAttribute("question");
+<%Set<question> secQuestion=(Set<Question>)request.getSession.getAttribute("question");%>
+<table style="width:100%">
+<caption>Questions</caption>
+    <tr>
+        <th>question</th>
+        <th>answer</th>
+    </tr>
+    <tr>
+   <% while(secQuestion.hasNext()){%>
 
-    while(secQuestion.hasNext()){%>
-        <a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%out.println(secQuestion.getQuestion());%></br></a>
+       <td> <a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%out.println(secQuestion.getQuestion());%></a></td>
+       <td><%out.println(secQuestion.getQuestion());%></td>
+   </tr>
+</table>
 <%
 }
 
@@ -42,8 +52,6 @@ input[type=text] {
 
 
 %>
-
-
 
 
 

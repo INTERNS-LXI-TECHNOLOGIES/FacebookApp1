@@ -19,6 +19,8 @@
 	
 </style>
 
+<body>
+
 <%@ page import="java.util.*,com.lxisoft.controller.*,com.lxisoft.model.*,java.sql.*"%>
 
    
@@ -26,6 +28,7 @@
 SecurityQuestion securityQuestion=(SecurityQuestion)request.getSession().getAttribute("Ques");
 Set<String> options=securityQuestion.getOptions();
 
+%>
 
 <table style="width:100%">
   <caption>Questions</caption>
@@ -44,8 +47,8 @@ Set<String> options=securityQuestion.getOptions();
     for(String option:options)
     <td><%=option%></td>
     <td><%securityQuestion.getAnswer();%></td>
-    <td><a href="edit?name=<%=contact.getName()%>"><img src="/ContactsApp/images/edit.jpg" width="50" height="50" title=editContact></a></td>
-    <td><a href="delete?name=<%=contact.getName()%>"><img src="/ContactsApp/images/delete.jpg" width="50" height="50" title=deleteContact></a></td>
+    <td><a href="Edit.jsp?questionId=<%=.securityQuestion.getQuestionId()%>"><img src="/fbtest/images/edit.jpg" width="50" height="50" title=editContact></a></td>
+    <td><a href="Delete.jsp?questionId=<%=securityQuestion.getQuestionId()%>"><img src="/fbtest/images/delete.jpg" width="50" height="50" title=deleteContact></a></td>
     
   </tr>
   
@@ -53,7 +56,7 @@ Set<String> options=securityQuestion.getOptions();
 
 
 
-			<body>
+			
 <p align="left">
 <a href="AdminOptions.jsp"><img src="/ContactsApp/images/home.jpg" width="50" height="50"></a></br></br>
 </p>
