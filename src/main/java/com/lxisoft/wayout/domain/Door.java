@@ -27,19 +27,19 @@ public class Door
      * Unique id of doorId
      */
 
-    private long doorId;
+    private Long doorId;
 
     /**
      * The Boolean value corresponding to the door current status
      */
 
-    private boolean isAccessDenied;
+    private Boolean isAccessDenied;
 
     /**
      * The Boolean value corresponding to the door open/close status
      */
 
-    private boolean isOpen;
+    private Boolean isOpen;
 
     /**
      * Reference to Logger class to get log messages
@@ -116,7 +116,7 @@ public class Door
 	 *            unique id of a door
 	 */
     
-	public void setDoorId(long doorId)
+	public void setDoorId(Long doorId)
 	{
 		log.info("Door class..........................setDoorId................starts");
 
@@ -148,7 +148,7 @@ public class Door
 	 *            block status of a door
 	 */
 
-	public void setIsAccessDenied(boolean isAccessDenied)
+	public void setIsAccessDenied(Boolean isAccessDenied)
 	{
 		log.info("Door class...........setIsAccessDenied................starts");
 
@@ -166,7 +166,7 @@ public class Door
 	 *
 	 */
 	
-	public boolean isAccessDenied()
+	public Boolean isAccessDenied()
 	{
 		log.info("Door class.............isAccessDenied...................starts/ends");
 
@@ -180,7 +180,7 @@ public class Door
 	 *            open status of a door
 	 */
 
-	public void setIsOpen(boolean isOpen)
+	public void setIsOpen(Boolean isOpen)
 	{
 		log.info("Door class...........setIsOpen................starts");
 
@@ -198,7 +198,7 @@ public class Door
 	 *
 	 */
 	
-	public boolean isOpen()
+	public Boolean isOpen()
 	{
 		log.info("Door class.............isOpen...................starts/ends");
 
@@ -208,18 +208,25 @@ public class Door
 	/**
 	 * implementation of equals method 
 	 * 
-	 * @param door
+	 * @param obj
 	 *            Indicates whether some other object is "equal to" this one
 	 *
 	 *@return bool - the boolean value for equals
 	 *
 	 */
 
-	public boolean equals(Object door)
+	public boolean equals(Object obj)
 	{
 		log.info("Door class...........equals()...................................starts/ends");
-
-		return this.doorId==((Door)door).doorId;
+		if(obj instanceof Door)
+		{
+			return this.doorId==((Door)obj).doorId;
+		}
+		else
+		{
+			return false;
+		}
+		
 			 
 	}	
 

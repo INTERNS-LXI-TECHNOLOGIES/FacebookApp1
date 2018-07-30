@@ -15,7 +15,7 @@ public class Hall
 	/**
 	*This is for checking exit hall
 	*/
-	private boolean isExitHall;
+	private Boolean isExitHall;
 	
 	/**
 	*This is a list of doors
@@ -25,7 +25,7 @@ public class Hall
 	/**
 	*This is a unique id of hall
 	*/
-	private long hallId;
+	private Long hallId;
 
 	/**
 	*This is a backdoor of a door
@@ -42,7 +42,7 @@ public class Hall
 	*
 	*@param isExitHall - the value of exit hall to set 
 	*/
-	public void setExitHall(boolean isExitHall)
+	public void setExitHall(Boolean isExitHall)
 	{
 		log.info("Hall class..........................setExitHall................starts");
 		
@@ -56,11 +56,11 @@ public class Hall
 	*
 	*@return isExitHall - the value of exit hall to get
 	*/
-	public boolean isExitHall()
+	public Boolean isExitHall()
 	{
 		log.info("Hall class..........................isExitHall................starts/ends");
 		
-		return isExitHall;
+		return this.isExitHall;
 	}
 	
 	/**
@@ -86,7 +86,7 @@ public class Hall
 	{
 		log.info("Hall class..........................getDoors................starts/ends");
 		
-		return doors;
+		return this.doors;
 	}	
 
 	/**
@@ -94,7 +94,7 @@ public class Hall
 	*
 	* @param hallId - the hallId to set
 	*/
-	public void setHallId(long hallId)
+	public void setHallId(Long hallId)
 	{
 		log.info("Hall class..........................setHallId................starts");
 		
@@ -108,11 +108,11 @@ public class Hall
 	*
 	* @return hallId - the hallId to get
 	*/
-	public long getHallId()
+	public Long getHallId()
 	{
 		log.info("Hall class..........................getHallId................starts/ends");
 		
-		return hallId;
+		return this.hallId;
 	}
 
 

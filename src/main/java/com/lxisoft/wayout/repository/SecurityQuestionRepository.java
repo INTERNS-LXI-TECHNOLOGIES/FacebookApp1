@@ -166,7 +166,7 @@ public SecurityQuestion findOne(Long id){
 			while(resultSet.next())
 			{
 
-					securityQuestion.setQuestionId(resultSet.getInt(1));
+					securityQuestion.setQuestionId((long)resultSet.getInt(1));
 					securityQuestion.setQuestion(resultSet.getString(2));
 					Set<String>options=new TreeSet<String>();
 					options.add(resultSet.getString(3));
@@ -207,7 +207,7 @@ public SecurityQuestion findOne(Long id){
 
 		
 				SecurityQuestion securityQuestion=new SecurityQuestion();
-				securityQuestion.setQuestionId(resultSet.getInt(1));
+				securityQuestion.setQuestionId((long)resultSet.getInt(1));
 				securityQuestion.setQuestion(resultSet.getString(2));
 				Set<String>options=new TreeSet<String>();
 				options.add(resultSet.getString(3));

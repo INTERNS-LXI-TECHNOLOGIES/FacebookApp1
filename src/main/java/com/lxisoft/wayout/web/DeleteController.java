@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import javax.naming.*;
 import com.lxisoft.wayout.service.impl.*;
 import com.lxisoft.wayout.service.*;
+import java.util.*;
 
 /**
 *@author Neeraja
@@ -21,13 +22,48 @@ import com.lxisoft.wayout.service.*;
 
 
 public class DeleteController extends HttpServlet{
+	/**
+     *  creating the object of security Question to set the questions and answer 
+     *
+     */
+
+    SecurityQuestion securityQuestion=new SecurityQuestion();
+
+    /**
+     *  creating the object of security Question implementation 
+     *
+     */
+
+    SecurityQuestionServiceImpl securityQuestionServiceImpl= new SecurityQuestionServiceImpl();
+    /**
+     *  setting logger 
+     *
+     */
 	
 	static Logger logger=Logger.getLogger(AddQuestionController.class.getName());
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response ){
 		
-		System.out.println(">>>>>>>>>>>>>>");
+		try{
+		String sId=request.getParameter("questionId");
+		long questionId=Long.parseLong(sId);
+
+		SecurityQuestion question=securityQuestionServiceImpl.findSecurityQuestion(questionId);
+		securityQuestionServiceImpl.deleteSecurityQuestion(question);
+
+		
+		response.sendRedirect("AdminOptions.jsp");
+
+		}
+		catch(Exception e){
+	 			e.printStackTrace();
+
+	 	}
+
+
+
+
+	}
 		
 	}
 
-}
