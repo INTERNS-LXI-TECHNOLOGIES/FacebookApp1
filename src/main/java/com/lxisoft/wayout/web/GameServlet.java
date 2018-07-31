@@ -13,7 +13,7 @@ import com.lxisoft.wayout.service.impl.*;
 /**
  * Servlet class for working as a controller for managing games
  *
- * @author Sarangi Balu
+ * @author Sarangi Balu,Ruhail
  * 
  * @version $version-stub$
  *

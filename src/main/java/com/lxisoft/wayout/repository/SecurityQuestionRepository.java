@@ -274,10 +274,6 @@ public SecurityQuestion findOne(Long id){
 				securityQuestion.setOptions(options);
 				securityQuestions.add(securityQuestion);
 			//}
-			
-				
-				
-			}
 		
 					
 			connection.close();
@@ -286,7 +282,7 @@ public SecurityQuestion findOne(Long id){
 		catch(Exception e)
 		{
 			e.printStackTrace();			
-				logger.info("eeeeeeeeeeeeeeeeeeeeee"+e);
+			logger.info("eeeeeeeeeeeeeeeeeeeeee"+e);
 		}
 		logger.info("============Exited from  SecurityQuestionRepository/findAllSecurityQuestion()===========");
 		
