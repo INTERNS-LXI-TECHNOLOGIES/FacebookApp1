@@ -44,8 +44,8 @@ table, th, td {
     <tr>
    <% for(SecurityQuestion secQuestion:secQuestions){%>
 
-       <td> <a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%out.println(secQuestion.getQuestion());%></a></td>
-       <td><%out.println(secQuestion.getAnswer());%></td>
+      <td>  <center> <a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%out.println(secQuestion.getQuestion());%></a></center></td>
+       <td><center><%out.println(secQuestion.getAnswer());%></center></td>
    </tr>
 </table>
 <%

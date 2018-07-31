@@ -43,14 +43,14 @@
 
    
 			<%
-SecurityQuestion securityQuestion=(SecurityQuestion)request.getSession().getAttribute("Ques");
+SecurityQuestion securityQuestion=(SecurityQuestion)session.getAttribute("Ques");
 Set<String> options=securityQuestion.getOptions();
 
 %>
 
 <div>
-	<a href="edit?questionId=<%=securityQuestion.getQuestionId()%>"><img src="/fbtest/images/edit.jpg" width="50" height="50" title=editContact></a>
-	<a href="delete?questionId=<%=securityQuestion.getQuestionId()%>"><img src="/fbtest/images/delete.jpg" width="50" height="50" title=deleteContact></a>
+	<a href="edit?questionId=<%=securityQuestion.getQuestionId()%>"><img src="/images/icons/edit.jpg" width="50" height="50" title=editContact></a>
+	<a href="delete?questionId=<%=securityQuestion.getQuestionId()%>"><img src="/images/icons/delete.jpg" width="50" height="50" title=deleteContact></a>
 
 	<%out.println(""+securityQuestion.getImgUrl());
 	out.println(""+securityQuestion.getQuestion());
