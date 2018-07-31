@@ -33,7 +33,7 @@ public class QuestionDeleteServlet extends HttpServlet{
     SecurityQuestion securityQuestion=new SecurityQuestion();
 
     /**
-       * Reference to Service class
+       * Reference to Service implementation class
        */
 
     SecurityQuestionServiceImpl securityQuestionServiceImpl= new SecurityQuestionServiceImpl();
@@ -42,10 +42,26 @@ public class QuestionDeleteServlet extends HttpServlet{
        */
 	
 	static Logger logger=Logger.getLogger(QuestionDeleteServlet.class.getName());
-	
-	public void doGet(HttpServletRequest request, HttpServletResponse response ){
+	/**
+	 * 
+	 * Method for deleting Questions
+	 *
+	 * @param request
+	 *        httpRequest
+	 *    
+	 * @param response
+	 *         httpResponse
+	 *
+	 * @throws IOException
+	 *          if IOException occurs
+	 *
+	 * @throws ServletException 
+	 *           if Undesired condition occurs 
+	 */
+	public void doGet(HttpServletRequest request, HttpServletResponse response )throws IOException, ServletException{
 		
 		try{
+			logger.info("entering the try block of the delete method");
 		String sId=request.getParameter("questionId");
 		long questionId=Long.parseLong(sId);
 
@@ -54,7 +70,7 @@ public class QuestionDeleteServlet extends HttpServlet{
 
 		request.getSession().setAttribute("question",question);
 		response.sendRedirect("Delete.jsp");
-
+		logger.info("exiting the try block of the delete method");
 		}
 		catch(Exception e){
 	 			e.printStackTrace();

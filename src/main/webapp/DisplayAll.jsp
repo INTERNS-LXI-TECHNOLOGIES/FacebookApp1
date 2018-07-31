@@ -32,10 +32,10 @@ table, th, td {
 </style>
 </p>
 </div>
-<%@ page import="com.lxisoft.wayout.web.*,com.lxisoft.wayout.domain.*,java.sql.*,java.util.*,com.lxisoft.wayout.config.pageNavigator"%>
+<%@ page import="com.lxisoft.wayout.web.*,com.lxisoft.wayout.domain.*,java.sql.*,java.util.*,com.lxisoft.wayout.model.pageNavigator"%>
 
 <%
-//Set<SecurityQuestion> secQuestions=(Set<SecurityQuestion>)session.getAttribute("question");
+Set<SecurityQuestion> secQuestions=(Set<SecurityQuestion>)session.getAttribute("question");
 //Set<SecurityQuestion> secQuestions=Set<SecurityQuestion>)session.getAttribute("PageImport");
 %>
 <table style="width:100%">

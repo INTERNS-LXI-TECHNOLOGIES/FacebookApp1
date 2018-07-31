@@ -41,9 +41,27 @@ public class QuestionEditServlet extends HttpServlet{
 	
 	static Logger logger=Logger.getLogger(QuestionEditServlet.class.getName());
 	
+	/**
+	 * 
+	 * Method for getting only a single Question 
+	 *
+	 * @param request
+	 *        httpRequest
+	 *    
+	 * @param response
+	 *         httpResponse
+	 *
+	 * @throws IOException
+	 *          if IOException occurs
+	 *
+	 * @throws ServletException 
+	 *           if Undesired condition occurs 
+	 */
+	
 	public void doGet(HttpServletRequest request, HttpServletResponse response )throws IOException, ServletException{
-		
+		logger.info("entering the doget method to get a single question to edit");
 		try{
+			logger.info(">>>>>>>>>>entering the  try block of edit servlet");
 		String sId=request.getParameter("questionId");
 		long questionId=Long.parseLong(sId);
 
@@ -52,6 +70,7 @@ public class QuestionEditServlet extends HttpServlet{
 		request.getSession().setAttribute("question",question);
 		response.sendRedirect("Edit.jsp");
 
+		logger.info(">>>>>>>>>>exiting the  try block of the method to get the single questionto edit");
 		}
 		catch(Exception e){
 	 			e.printStackTrace();
@@ -63,9 +82,27 @@ public class QuestionEditServlet extends HttpServlet{
 
 	}
 
-	public void doPost(HttpServletRequest request, HttpServletResponse response )throws IOException, ServletException{
+	/**
+	 * 
+	 * Method for editing the Question 
+	 *
+	 * @param request
+	 *        httpRequest
+	 *    
+	 * @param response
+	 *         httpResponse
+	 *
+	 * @throws IOException
+	 *          if IOException occurs
+	 *
+	 * @throws ServletException 
+	 *           if Undesired condition occurs 
+	 */
 
+	public void doPost(HttpServletRequest request, HttpServletResponse response )throws IOException, ServletException{
+				logger.info(">>>>>>>>>>entering the  try block of edit servlet");
 		try{
+
 		String sId=request.getParameter("questionId");
 		long questionId=Long.parseLong(sId);
 		String question=request.getParameter("quetion");
@@ -87,22 +124,13 @@ public class QuestionEditServlet extends HttpServlet{
 
 		securityQuestionServiceImpl.updateSecurityQuestion(securityQuestion);
 		response.sendRedirect("AdminOtions.jsp");
+				logger.info(">>>>>>>>>>exiting the  try block of edit servlet");
 
 		}
 		catch(Exception e){
 	 			e.printStackTrace();
 
 	 	}
-
-
-
-
-
-
-
-
-
-
 
 	}
 

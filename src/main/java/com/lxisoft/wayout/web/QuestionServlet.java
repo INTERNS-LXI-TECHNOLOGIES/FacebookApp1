@@ -85,10 +85,14 @@ public class QuestionServlet extends HttpServlet{
 			
 			securityQuestion.setOptions(options);
 			securityQuestion.setAnswer(answer);
-
+ 
 			securityQuestionServiceImpl.addSecurityQuestion(securityQuestion);
+			/**
+			*redirecting to another page
+			*
+			*/
 			response.sendRedirect("RedirectingPage.jsp");
-
+			logger.info(">>>>>>>>>>>>>>>>>>>>exiting from the try block");
 
 
  		}
@@ -100,17 +104,30 @@ public class QuestionServlet extends HttpServlet{
 
 
  	}
+ 	/**
+       * Get method to find all questions from the database
+       *
+       * @param request
+       *            http request
+       * @param response
+       *            http response
+       * @throws IOException
+		*          if IOException occurs
+		*
+		* @throws ServletException 
+		*           if Undesired condition occurs 
+       */
 
  	public void doGet(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException{
  		try{
 
- 			
+ 			logger.info(">>>>>>>>>>>>>>entering the find all Method");
 
 			Set<SecurityQuestion> questions=securityQuestionServiceImpl.findAllSecurityQuestion();
 
 			//request.getSession().setAttribute("PageImport",questions);
 			response.sendRedirect("DisplayAll.jsp");
-
+			logger.info(">>>>>>>>>>>>>>exiting the find all Method");
 
  		}
  		catch(Exception e){
