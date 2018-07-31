@@ -39,7 +39,7 @@
 
 <body>
 
-<%@ page import="java.util.*,com.lxisoft.controller.*,com.lxisoft.model.*,java.sql.*"%>
+<%@ page import="java.util.*,com.lxisoft.controller.*,com.lxisoft.model.*,com.lxisoft.domain.*,java.sql.*,java.util.*"%>
 
    
 			<%
