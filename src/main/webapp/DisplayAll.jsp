@@ -25,6 +25,9 @@ input[type=text] {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+table, th, td {
+    border: 1px solid black;
+}
 
 </style>
 </p>

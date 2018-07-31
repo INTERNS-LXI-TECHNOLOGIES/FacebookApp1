@@ -20,36 +20,43 @@ import com.lxisoft.wayout.service.impl.*;
 
 public class AddQuestionServlet extends HttpServlet{
 
-	/**
-     *  creating the object of security Question to set the questions and answer 
-     *
-     */
+	
+	 /**
+       * Reference to SwcurityQuestion class
+       */
+
 
     SecurityQuestion securityQuestion=new SecurityQuestion();
 
-    /**
-     *  creating the object of security Question implementation 
-     *
-     */
+     /**
+       * Reference to SecuritQuestionimpl class
+       */
 
     SecurityQuestionServiceImpl securityQuestionServiceImpl= new SecurityQuestionServiceImpl();
 
 
 
-	/**
-     *  setting logger 
-     *
-     */
+	 /**
+       * Reference to Logger class to get log messages
+       */
  	static Logger logger=Logger.getLogger(AddQuestionServlet.class.getName());
 
 
  	/**
 	 * 
+	 * Method for adding Questions
+	 *
 	 * @param request
-	 * httpRequest
+	 *        httpRequest
 	 *    
 	 * @param response
-	 * httpResponse
+	 *         httpResponse
+	 *
+	 * @throws IOException
+	 *          if IOException occurs
+	 *
+	 * @throws ServletException 
+	 *           if Undesired condition occurs 
 	 */
 
  	public void doPost(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException{
@@ -58,7 +65,7 @@ public class AddQuestionServlet extends HttpServlet{
  		logger.info("entering the method");
  		try{
 
- 			logger.info("Hello this is an info message");
+ 			logger.info(">>>>>>>>>>entering the  try block");
 			
 
 			String question=request.getParameter("question");

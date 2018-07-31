@@ -56,7 +56,7 @@ Set<String> options=securityQuestion.getOptions();
 	out.println(""+securityQuestion.getQuestion());
 	for(String option:options)
 		out.println(option);
-	out.println(""+securityQuestion.getAnswer());
+	out.println(""+securityQuestion.getAnswer());%>
 
 </div>
 
