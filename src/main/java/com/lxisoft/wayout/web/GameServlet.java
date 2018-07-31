@@ -363,11 +363,14 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		Prisoner prisoner = new Prisoner();
 		List<SuperKey> superKeys = new ArrayList<SuperKey>();
 		int i=0;
+		long skId=0l;
 		while(i<3)
 		{
 			SuperKey key = new SuperKey();
+			key.setSuperKeyId(skId);
 			superKeys.add(key);	
 			i++;
+			skId++;
 		}
 		prisoner.setSuperKeys(superKeys);
 		List<Hall> prisonHalls=prison.getHalls();
