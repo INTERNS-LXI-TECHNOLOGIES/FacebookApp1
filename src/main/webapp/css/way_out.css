@@ -1,0 +1,55 @@
+.cover {
+	background-image: url("../images/prison4.jpg");
+	background-size: cover;
+	background-position: fixed;
+	background-repeat: no-repeat;
+	background-color: #000;
+	padding-bottom: 0px;
+}
+p.blue {
+	color: #00b2bc;
+	font-size: 30px;
+	display: inline;
+	/*font-weight: bold;*/
+}
+.pink {
+	color: #f44298;
+	font-size: 30px;
+	/*font-weight: bold;*/
+}
+.text-center {
+	text-align: center;
+}
+.logo {
+	height: auto;
+	width: 100%;
+	min-width: 300px;
+	margin-top: 50px;
+}
+span {
+	display: inline;
+}
+.move-up {
+	margin-top: 100px;
+}
+a img {
+	width: 250px;
+	height: 250px;
+}
+.p-animation {
+	font-size: 20px;
+	animation: highlight 1.5s infinite;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes highlight {
+	0%{     color: #00b2bc;     }
+    50%{    color: #66c6cc;  }
+    100%{   color: #9facad;    }
+}
+
+/* Standard syntax */
+@keyframes highlight {
+	0%{     color: #00b2bc;    }
+    50%{    color:#66c6cc;  }
+    100%{   color: #9facad;    }
+}

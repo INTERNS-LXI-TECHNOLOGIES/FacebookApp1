@@ -1,0 +1,10 @@
+$(document).ready(function(){
+    $("#change-lock").hover(function(){
+        $(this).attr("src","images/lock_open.png");
+        $(".p-animation").hide();
+    },
+    function(){
+    	$(this).attr("src","images/lock.png");
+    	$(".p-animation").show();
+    }); 
+});
