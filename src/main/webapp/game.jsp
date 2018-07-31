@@ -4,27 +4,86 @@
 	<link rel="stylesheet" type="text/css" href="css\way_out.css">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
 
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/wayout.js"></script>
+	<script src="js/my-countdownTimer.js"></script>
+	<script src="js/jQuery.countdownTimer.min.js"></script>
+	<script src="js/jQuery.countdownTimer.js"></script>
 	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
 </head>
-<body class="game-body">
+<%@ page import="com.lxisoft.wayout.model.Game,java.util.*,com.lxisoft.wayout.domain.*"%>
 
-<!-- 	<div class="container-fluid">
+<% 
+	Game model= (Game)session.getAttribute("model"); //model object of this page
+	List<Door> doors= model.getPrisoner().getCurrentLocation().getDoors();
+	List<Door> superKeys= model.getPrisoner().getSuperKeys();
+%>
+
+<body class="game-body" onload="checkCookie()">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-1"></div>
-			<div class="text-center col-sm-6">
-				<img src="images/wayout1.png" class="logo move-up">
+			<div class="col-sm-8 timer-warning text-center"><p>Click on below image to open door</p></div>
+			<div class="col-sm-2 text-center">
+				<div class="game-timer text-center">
+					<p id="timer"></p>
+				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-12 move text-center">
-				<p class="blue">INTELLIGENCE IS THE </p><span class="pink">KEY</span><p class="blue"> TO OPEN LOCKS</p>
+		<div class="row margin-top">
+			<!-- for loop -->
+			<div class="col-sm-1">
+			</div>
+			<div class="col-sm-8">
+				<div class="bxslider">
+					<%
+						String pictureName;
+						for(Door door: doors)
+						{
+							pictureName=(door.isOpen())?"images/room-modified-open.jpg":"images/room-modified.jpg";
+					
+							if(door.isAccessDenied()) {%>
+							  <div>
+								 <div>
+									<a href="aas?<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+						  			<p class="float-right key-number"><%=model.getNoOfKeys()%></p>
+								</div>
+							  	<img src="<%=pictureName%>" id="div-image" onclick="window.location('asa?<%=door.getDoorId()%>')" title="Door with id =<%door.getDoorId()%>"></div>
+							<%}
+							else {%>
+							  <div>
+							  	<div>
+									<a href="aas?<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+						  			<p class="float-right key-number"><%=model.getNoOfKeys()%></p>
+								</div>
+							  	<img src="<%=pictureName%>" id="div-image" onclick="popupWarningWindow(<%door.getDoorId()%>)" title="Door with id =<%door.getDoorId()"></div>
+							<%}
+						 }
+						 if(model.getPrisoner().getBackDoor().getDoorId()!=null) {%>
+
+						  <div>
+								<div>
+									<a href="aas?<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+						  			<p class="float-right key-number"><%=model.getNoOfKeys()%></p>
+								</div>
+						  	<img src="images/room-modified-open.jpg" id="div-image" onclick="window.location('asa?<%=model.getPrisoner().getBackDoor().getDoorId()%>')" title="The door you come through"></div>
+						  %}%
+				</div>
 			</div>
 		</div>
-		<% response.setHeader("Refresh", "2;url=start.html");%> -->
+		<div id="warning-message" class="full">
+		<div class="warning text-center animate-zoom">
+			<h3>Warning!</h3>
+			<h5>The door you trying to open may be permanently locked</h5>
+			<h4>Use the superkeys if you have. Else try an attempt</h4>
+			<input type="button" onclick="redirect()" class="go-ahead float-right" name="go ahead" value="go ahead">
+			<input type="button" onclick="document.getElementById('warning-message').style.display='none'" class="go-ahead float-right" name="go ahead" value="cancel">
+		</div>
+		</div>
 </body>
 </html>
