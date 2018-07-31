@@ -13,7 +13,7 @@ public class Prisoner
 	/**
 	*super keys the prisoner has
 	*/
-	private List<SuperKey> superkey;
+	private List<SuperKey> superKeys;
 
 	/**
 	*variable to locate the prisoner
@@ -21,13 +21,13 @@ public class Prisoner
 	private Hall currentLocation;
 	
 	/**
-	*@param superkey
+	*@param superKeys
 	*method to set superkeys to the prisoner
 	*/
-	public void setSuperKey(List<SuperKey> superkey)
+	public void setSuperKeys(List<SuperKey> superKeys)
 	{
 
-		this.superkey=superkey;
+		this.superKeys=superKeys;
 		
 	}
 	
@@ -36,10 +36,10 @@ public class Prisoner
 	*@return superkey
 	*method to get superkeys to the prisoner
 	*/
-	public List<SuperKey> getSuperKey()
+	public List<SuperKey> getSuperKeys()
 	{
 
-	return superkey;
+	return this.superKeys;
 
 	}
 	
@@ -59,7 +59,7 @@ public class Prisoner
 	*/
 	public Hall getCurrentLocation(){
 		
-		return currentLocation;
+		return this.currentLocation;
 	}
 	
 	

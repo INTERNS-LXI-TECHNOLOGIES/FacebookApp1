@@ -166,7 +166,7 @@ public SecurityQuestion findOne(Long id){
 			while(resultSet.next())
 			{
 
-					securityQuestion.setQuestionId(resultSet.getInt(1));
+					securityQuestion.setQuestionId((long)resultSet.getInt(1));
 					securityQuestion.setQuestion(resultSet.getString(2));
 					Set<String>options=new TreeSet<String>();
 					options.add(resultSet.getString(3));
@@ -193,7 +193,7 @@ public SecurityQuestion findOne(Long id){
 	*@return securityQuestions
 	**/
 
-public Set<SecurityQuestion> findAll(){
+/*public Set<SecurityQuestion> findAll(){
 
 		Set<SecurityQuestion>securityQuestions=new TreeSet<SecurityQuestion>();
 		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion() with no id==========");
@@ -207,7 +207,7 @@ public Set<SecurityQuestion> findAll(){
 
 		
 				SecurityQuestion securityQuestion=new SecurityQuestion();
-				securityQuestion.setQuestionId(resultSet.getInt(1));
+				securityQuestion.setQuestionId((long)resultSet.getInt(1));
 				securityQuestion.setQuestion(resultSet.getString(2));
 				Set<String>options=new TreeSet<String>();
 				options.add(resultSet.getString(3));
@@ -226,6 +226,65 @@ public Set<SecurityQuestion> findAll(){
 				logger.info("eeeeeeeeeeeeeeeeeeeeee"+e);
 		}
 		logger.info("============Exited from  SecurityQuestionRepository/updateSecurityQuestion()===========");
+		
+		return securityQuestions;
+	}*/
+	
+	
+	public Set<SecurityQuestion> findAll(){
+
+	SecurityQuestion securityQuestion=new SecurityQuestion();
+	
+		Set<SecurityQuestion> securityQuestions=new HashSet<SecurityQuestion>();
+		logger.info("============Entered into SecurityQuestionRepository/findAllSecurityQuestion() with no id==========");
+		try
+		{
+			context=new InitialContext();
+			dataSource=(DataSource)context.lookup("java:comp/env/jdbc/datasource");
+			connection=dataSource.getConnection();
+			statement=connection.createStatement();
+			ResultSet resultSet=statement.executeQuery("select sq.question_id,sq.image_path,sq.question,qo.opt,sq.answer from question_option qo inner join security_question_options sqo on qo.option_id = sqo.option_id inner join security_question sq on sqo.question_id = sq.question_id" );
+			int i =0,oldQuestionId=0;
+
+			Set<String> options=new HashSet<String>();
+			
+			while(resultSet.next())
+			{
+				i=i+1;
+				int currentQuestionId = resultSet.getInt("question_id");
+				if(oldQuestionId != currentQuestionId ) {
+				    if ( i != 1){
+					    securityQuestion.setOptions(options);
+					    securityQuestions.add(securityQuestion);
+                       i=0;					
+				    }
+					securityQuestion.setQuestionId((long)resultSet.getInt("question_id"));
+					securityQuestion.setImageUrl(resultSet.getString("image_path"));
+					securityQuestion.setQuestion(resultSet.getString("question"));
+					securityQuestion.setAnswer(resultSet.getString("answer"));
+					
+				}
+				
+				options.add(resultSet.getString("opt"));	
+				oldQuestionId = currentQuestionId;
+	
+			//	logger.info("============"+securityQuestion+"===========");
+			}
+			//if (i > 0) {
+				securityQuestion.setOptions(options);
+				securityQuestions.add(securityQuestion);
+			//}
+		
+					
+			connection.close();
+			
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();			
+			logger.info("eeeeeeeeeeeeeeeeeeeeee"+e);
+		}
+		logger.info("============Exited from  SecurityQuestionRepository/findAllSecurityQuestion()===========");
 		
 		return securityQuestions;
 	}

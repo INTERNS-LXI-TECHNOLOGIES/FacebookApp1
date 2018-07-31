@@ -49,7 +49,6 @@ private static final Logger log=Logger.getLogger(SecurityQuestionServiceImpl.cla
 **/
 public void addSecurityQuestion(SecurityQuestion securityQuestion){
 	log.info("========Enter into questionServce/addSecurityQuestion()========");
-	
 	log.info("========Exiting from questionServce/addSecurityQuestion()========");
 	securityQuestionRepository.save(securityQuestion);
 }

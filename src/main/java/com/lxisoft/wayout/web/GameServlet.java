@@ -13,7 +13,7 @@ import com.lxisoft.wayout.service.impl.*;
 /**
  * Servlet class for working as a controller for managing games
  *
- * @author Sarangi Balu
+ * @author Sarangi Balu,Ruhail
  * 
  * @version $version-stub$
  *
@@ -62,8 +62,7 @@ public class GameServlet extends HttpServlet
 public void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
 
    {
-	   try
-	   {
+	   
 		  log.info("********************GameServlet**********************doGet---------> start");
 
 		  HttpSession session=request.getSession();  
@@ -71,32 +70,200 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		  Object object=session.getAttribute("model");
 
 		  if((object==null) || !(object instanceof Game))
+          {  
+            try
+            {
 			game=loadGame();
+		    }
+            catch(Exception ex)
+	        {
+		      ex.printStackTrace(); 
+	        }
+ 
+          }
 		  else
-			game=playGame();
+			 {
+             
+             game=playGameWithSuperKey(Long.parseLong(request.getParameter("door_id")),Long.parseLong(request.getParameter("superKey_id")));
+
+             game.setNumberOfKeys((game.getNumberOfKeys())-1);
+
+             }
 			
 		  session.setAttribute("model",game);
 
-		  // forward to jsp page with request parameters 
-		  request.getRequestDispatcher("game.jsp").forward(request,response);     
+		  if(game.getPrisoner().getCurrentLocation().isExitHall())
+		    {
+                 // forward to jsp page with request parameters 
+		           request.getRequestDispatcher("gameWin.jsp").forward(request,response); 
+
+		    }         
+            else 
+            {	
+		          // forward to jsp page with request parameters 
+		           request.getRequestDispatcher("game.jsp").forward(request,response);     
+			}	 
 				 
 			 
 		  log.info("********************GameServlet**********************doGet---------> end");
-	   }
-	   catch(Exception ex)
-	   {
-		   
-	   }
-
+	   
+	   
    }
 
+  
 
-   public Game playGame()
-   {
+   /**
+     * Create a game model and its validation with SuperKey
+     *
+     * @param doorId
+     *            UniqueId of Door class
+     * @param superKeyId
+     *            UniqueId of superKey class
+     *
+     * @return game object
+     */
+
+
+   public Game playGameWithSuperKey(Long doorId,Long superKeyId)
+   { 
+
+   	  log.info("********************playGameWithSuperKey**********************---------> start");
+       
+      List<SuperKey> superkeys=game.getPrisoner().getSuperKeys();
+
+   	  for(SuperKey superKey:superkeys)
+      {
+        if(superKeyId==superKey.getSuperKeyId())
+
+        	superKey.setIsUsed(true);
+
+      } 
+
+      List<Door> doors=game.getPrisoner().getCurrentLocation().getDoors();	
+
+      for(Door door:doors)
+      {
+      	if(doorId==(door.getDoorId()))
+
+      		door.setIsOpen(true); 
+
+      		game.getPrisoner().setCurrentLocation(door.getOpeningHall());  
+
+      		game.getPrisoner().getCurrentLocation().setBackDoor(door);          
+      }
+
+       
+     log.info("********************playGameWithSuperKey**********************---------> end");
+
+
       return game;
    }
+
+
+    /**
+   * Create a game model and its validation with answerKey
+   *
+   * @param request
+   *            http request
+   * @param response
+   *            http response
+   */
+
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
+
+   {
+		  log.info("********************GameServlet**********************doPost---------> start");
+
+		  HttpSession session=request.getSession();  
+
+		  Object object=session.getAttribute("model");
+
+		  if((object==null) || !(object instanceof Game))
+           {
+
+			try
+            {
+			game=loadGame();
+		    }
+            catch(Exception ex)
+	        {
+		      ex.printStackTrace(); 
+	        }
+
+		   }
+
+		  else
+			 {
+             
+             game=playGame(request.getParameter("answerKey"));
+
+                
+             }
+			
+		  session.setAttribute("model",game);
+
+		  if(game.getPrisoner().getCurrentLocation().isExitHall())
+		    {
+                 // forward to jsp page with request parameters 
+		           request.getRequestDispatcher("gameWin.jsp").forward(request,response); 
+
+		    }         
+            else 
+            {	
+		          // forward to jsp page with request parameters 
+		           request.getRequestDispatcher("game.jsp").forward(request,response);     
+			}	 
+			 
+		  log.info("********************GameServlet**********************doPost---------> end");
+	   
+	   
+   }
+
+    /**
+     * Create a game model and its validation with answerKey
+     *
+     * @param answer
+     *            answerKey of sequrityQusetion
+     *
+     * @return game object
+     */
+
+    public Game playGame(String answer)
+    {
+       log.info("********************GameServlet**********************playGame---------> start");
+        
+         List<Door> doors=game.getPrisoner().getCurrentLocation().getDoors();	
+
+         for(Door door:doors)
+         {
+      	   if(answer==(door.getSecurityQuestion().getAnswer()))
+
+      		door.setIsOpen(true);               
+
+      		game.getPrisoner().setCurrentLocation(door.getOpeningHall()); 
+
+      		game.getPrisoner().getCurrentLocation().setBackDoor(door); 
+
+      		  
+         }
+
+       log.info("********************GameServlet**********************playGame-----------> end");
+
+       return game;
    
-   public Game loadGame()throws Exception
+    }
+    
+
+    /**
+     * Create a game model and sets all instance at loading game time
+     *
+     * @return game object
+     * 
+     * @exception Exception throw the Exception
+     */
+    
+    public Game loadGame()throws Exception
 	{
 		log.info("-----------GameServlet-----------loadGame()---------starts");
 		Game game;
@@ -202,7 +369,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 			superKeys.add(key);	
 			i++;
 		}
-		prisoner.setSuperKey(superKeys);
+		prisoner.setSuperKeys(superKeys);
 		List<Hall> prisonHalls=prison.getHalls();
 		
 		//setting up prisoner current location which is first hall.

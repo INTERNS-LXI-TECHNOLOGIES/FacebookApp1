@@ -20,7 +20,7 @@ public class SecurityQuestion
 	/**
 	*This is a unique id for security question
 	*/
-	private long questionId;
+	private Long questionId;
 
 	/**
 	*This is a question for security
@@ -59,7 +59,7 @@ public class SecurityQuestion
 	*/
 	public String getImageUrl()
 	{
-		return imageUrl;
+		return this.imageUrl;
 	}
    
 	/**
@@ -67,7 +67,7 @@ public class SecurityQuestion
 	*
 	*@param questionId - the question id to set
 	*/
-	public void setQuestionId(long questionId)
+	public void setQuestionId(Long questionId)
 	{
 		log.info("SecurityQuestion class..........................setQuestionId................starts");
 		
@@ -81,11 +81,11 @@ public class SecurityQuestion
 	*
 	*@return questionId - the question id to return
 	*/
-	public long getQuestionId()
+	public Long getQuestionId()
 	{
 		log.info("SecurityQuestion class..........................getQuestionId................starts/ends");
 
-		return questionId;
+		return this.questionId;
 	}
 	
 	/**
@@ -112,7 +112,7 @@ public class SecurityQuestion
 	{
 		log.info("SecurityQuestion class..........................getQuestion................starts/ends");
 
-		return question;
+		return this.question;
 		
 	}
 	
@@ -140,7 +140,7 @@ public class SecurityQuestion
 	{
 		log.info("SecurityQuestion class..........................getAnswer................starts/ends");
 
-		return answer;
+		return this.answer;
 	}
 	
 	/**
@@ -167,7 +167,7 @@ public class SecurityQuestion
 	{
 		log.info("SecurityQuestion class..........................getOptions................starts/ends");
 
-		return options;
+		return this.options;
 	}	
 	
 	/**

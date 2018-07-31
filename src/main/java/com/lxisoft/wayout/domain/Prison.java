@@ -48,7 +48,7 @@ public class Prison
 	{
 		log.info("Prison class..........................getPrisoner................starts/ends");
 		
-		return prisoner;
+		return this.prisoner;
 	}
 	
 	/**
@@ -74,6 +74,6 @@ public class Prison
 	{
 		log.info("Prison class..........................getHalls................starts/ends");
 		
-		return halls;
+		return this.halls;
 	}
 }
