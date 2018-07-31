@@ -28,7 +28,7 @@
 </style>
 			
 <p align="left">
-<a href="AdminOptions.jsp"><img src="/ContactsApp/images/home.jpg" width="50" height="50"></a></br></br>
+<a href="AdminOptions.jsp"><img src="/images/icons/home.jpg" width="50" height="50"></a></br></br>
 </p>
 
 <h1>Details</h1>
@@ -39,7 +39,7 @@
 
 <body>
 
-<%@ page import="java.util.*,com.lxisoft.controller.*,com.lxisoft.model.*,com.lxisoft.domain.*,java.sql.*,java.util.*"%>
+<%@ page import="java.util.*,com.lxisoft.wayout.web.*,com.lxisoft.wayout.model.*,com.lxisoft.wayout.domain.*,java.sql.*,java.util.*"%>
 
    
 			<%
