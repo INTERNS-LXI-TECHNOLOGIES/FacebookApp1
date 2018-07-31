@@ -1,4 +1,9 @@
-
+body { 
+	background-color: #fff;
+	margin: 0;
+	padding: 0px ;
+	font-family: sans-serif, verdana;
+}
 #top{
 	background-color:lightgreen;
 }
@@ -17,4 +22,106 @@
 #mid{
 	background-color:lightyellow;
 }
-	
+	span:hover {
+    position: relative;
+}
+span[title]:hover:after 
+{
+     content: attr(title);
+     padding: 10px 15px;
+     position: absolute;
+     right: 50%;
+     top: 100%;
+     white-space: nowrap;
+     z-index: 20px;
+     background: #ff1493;
+     color: #fff;
+     border-radius: 5px;
+}
+.login {
+	margin-left: 20%;
+	margin-top: 30px;
+	/*position: absolute;*/
+	width: 40%;
+	border:1px solid #009999;
+	border-radius: 4px;
+	text-align: left;
+	background-color: #2ba77b;
+	color: #bbdbcd;
+	line-height: 25px;
+	float: left;
+	padding-left: 20%;
+	padding-top: 40px;
+}
+#login_submit {
+	margin-top: 10px;
+	margin-bottom: 15px;
+	width: 130px;
+	padding: 10px;
+	color: #12845d;
+	background-color: #fff;
+	border-radius: 3px;
+	border: none;
+	font-size: 18px; 
+}
+
+form input {
+	margin-bottom: 10px;
+	margin-left: 15%;
+	padding: 5px;
+	background-color: #12845d;
+	color: #fff;
+	border: none;
+	width:40%;
+	font-size: 150%;
+}
+input[type=email] {
+	text-align: right;
+}
+
+form input#login-phn 
+{
+	margin-left: 8%;
+}
+#cancel {
+	margin-top: 10px;
+	margin-bottom: 14px;
+	width: 130px;
+	padding: 8px;
+	color: #12845d;
+	background-color: #fff;
+	border-radius: 3px;
+	border: none;
+	font-size: 18px; 
+	margin-left: 50px;
+}
+
+
+#login_submit:hover {
+	/*border: 1px solid #12845d;*/
+	color: #12845d;
+	background-color: #bbdbcd;
+}
+
+
+a
+{
+    
+    color: black;
+    padding: 6px 15px;
+    text-align: center; 
+    text-decoration: none;
+    display: inline-block;
+}
+
+a img
+{
+	width:90px;
+	height:90px;
+
+}
+
+a:hover 
+{
+    color: red;
+}

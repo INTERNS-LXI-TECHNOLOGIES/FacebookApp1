@@ -22,13 +22,14 @@
 </style>
 <body>
 <div>
+
 <h1>Operations</h1></br></br>
 
-<a href="AddQuestion.jsp"><img src="/fbtest/images/addQuestion.jpg" width="50" height="50" title=addQuestion><%out.println("add a question");%></a></br></br>
+<a href="AddQuestion.jsp"><img src="/fbtest/images/addQuestion.jpg" width="100" height="100" title=addQuestion><h2><%out.println("add a question");%></h2></a></br></br>
 
 
 <form action="addQuestion" method="get"> 
-	<input type="submit" value="showAllQuestions">
+	<h2><input align="center" type="submit" value="showAllQuestions"></h2>
 </form>
 
 

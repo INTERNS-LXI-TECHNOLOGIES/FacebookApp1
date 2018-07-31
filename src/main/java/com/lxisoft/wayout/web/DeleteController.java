@@ -1,4 +1,6 @@
 package com.lxisoft.wayout.web;
+
+// Import required java libraries
 import com.lxisoft.wayout.domain.*; 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -20,6 +22,7 @@ import java.util.*;
 *
 */
 
+// Extend HttpServlet class
 
 public class DeleteController extends HttpServlet{
 	/**
@@ -30,15 +33,13 @@ public class DeleteController extends HttpServlet{
     SecurityQuestion securityQuestion=new SecurityQuestion();
 
     /**
-     *  creating the object of security Question implementation 
-     *
-     */
+       * Reference to Service class
+       */
 
     SecurityQuestionServiceImpl securityQuestionServiceImpl= new SecurityQuestionServiceImpl();
     /**
-     *  setting logger 
-     *
-     */
+       * Reference to Logger class to get log messages
+       */
 	
 	static Logger logger=Logger.getLogger(AddQuestionController.class.getName());
 	
