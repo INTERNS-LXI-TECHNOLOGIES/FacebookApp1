@@ -162,7 +162,7 @@ public SecurityQuestion findOne(Long id){
 			connection=dataSource.getConnection();
 			statement=connection.createStatement();
 
-			ResultSet resultSet=statement.executeQuery("select * from security_question where question_id="+id);
+			ResultSet resultSet=statement.executeQuery("select * from securityQuestion where id="+id);
 			while(resultSet.next())
 			{
 
@@ -243,22 +243,23 @@ public SecurityQuestion findOne(Long id){
 			dataSource=(DataSource)context.lookup("java:comp/env/jdbc/datasource");
 			connection=dataSource.getConnection();
 			statement=connection.createStatement();
-			ResultSet resultSet=statement.executeQuery("select sq.question_id,sq.image_path,sq.question,qo.opt,sq.answer from question_option qo inner join security_question_options sqo on qo.option_id = sqo.option_id inner join security_question sq on sqo.question_id = sq.question_id" );
-			int i =0,oldQuestionId=0;
-
+			ResultSet resultSet=statement.executeQuery("select sq.id,sq.image_path,sq.question,qo.opt,sq.answer from question_option qo inner join security_question_options sqo on qo.id = sqo.option_id inner join security_question sq on sqo.question_id = sq.id order by sq.id" );
+			
 			Set<String> options=new HashSet<String>();
 			
+			int i =0,oldQuestionId=0;
+
 			while(resultSet.next())
 			{
 				i=i+1;
-				int currentQuestionId = resultSet.getInt("question_id");
+				int currentQuestionId = resultSet.getInt("id");
 				if(oldQuestionId != currentQuestionId ) {
-				    if ( i != 1){
+				   /* if ( i != 1){
 					    securityQuestion.setOptions(options);
 					    securityQuestions.add(securityQuestion);
                        i=0;					
-				    }
-					securityQuestion.setQuestionId((long)resultSet.getInt("question_id"));
+				    }*/
+					securityQuestion.setQuestionId((long)resultSet.getInt("id"));
 					securityQuestion.setImageUrl(resultSet.getString("image_path"));
 					securityQuestion.setQuestion(resultSet.getString("question"));
 					securityQuestion.setAnswer(resultSet.getString("answer"));
@@ -275,6 +276,15 @@ public SecurityQuestion findOne(Long id){
 				securityQuestions.add(securityQuestion);
 			//}
 		
+		
+			for(SecurityQuestion securityquestion:securityQuestions){
+				System.out.println("*************"+securityquestion.getQuestionId());
+				System.out.println("*************"+securityquestion.getQuestion());
+				System.out.println("*************"+securityquestion.getAnswer());
+				System.out.println("*************"+securityquestion.getImageUrl());
+				System.out.println("*************"+securityquestion.getOptions());
+					
+			}
 					
 			connection.close();
 			
