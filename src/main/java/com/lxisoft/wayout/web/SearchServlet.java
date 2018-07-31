@@ -20,7 +20,7 @@ import com.lxisoft.wayout.service.*;
 *
 */
 
-public class SearchController extends HttpServlet{
+public class SearchServlet extends HttpServlet{
 
 	/**
      *  creating the object of security Question implementation 

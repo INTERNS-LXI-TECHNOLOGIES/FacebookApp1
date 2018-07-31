@@ -37,12 +37,6 @@ input[type=text] {
 
 %>
 
-
-
-
-
-
-
 <form action="edit" method="post">
     
 <div>

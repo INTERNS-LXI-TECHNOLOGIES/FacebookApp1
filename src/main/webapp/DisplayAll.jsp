@@ -4,7 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="Sample.css">
 </head>
 <div id="add">
-<h1>Display all Question</h1>
+<center><h1> Question</h1></center>
 <p align="left">
 <a href="AdminOptions.jsp"><img src="/ContactsDB/images/home.jpg" width="50" height="50"></a></br></br>
 
@@ -29,9 +29,9 @@ input[type=text] {
 </style>
 </p>
 </div>
-<% @ page import="com.lxisoft.wayout.web.*,com.lxisoft.wayout.domain.*,java.sql.*"%>
+<%@ page import="com.lxisoft.wayout.web.*,com.lxisoft.wayout.domain.*,java.sql.*,java.util.*"%>
 
-<%Set<question> secQuestion=(Set<Question>)request.getSession.getAttribute("question");%>
+<%Set<SecurityQuestion> secQuestions=(Set<SecurityQuestion>)session.getAttribute("question");%>
 <table style="width:100%">
 <caption>Questions</caption>
     <tr>
@@ -39,10 +39,10 @@ input[type=text] {
         <th>answer</th>
     </tr>
     <tr>
-   <% while(secQuestion.hasNext()){%>
+   <% for(SecurityQuestion secQuestion:secQuestions){%>
 
        <td> <a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%out.println(secQuestion.getQuestion());%></a></td>
-       <td><%out.println(secQuestion.getQuestion());%></td>
+       <td><%out.println(secQuestion.getAnswer());%></td>
    </tr>
 </table>
 <%

@@ -24,7 +24,7 @@ import java.util.*;
 
 // Extend HttpServlet class
 
-public class DeleteController extends HttpServlet{
+public class DeleteServlet extends HttpServlet{
 	/**
      *  creating the object of security Question to set the questions and answer 
      *
@@ -41,7 +41,7 @@ public class DeleteController extends HttpServlet{
        * Reference to Logger class to get log messages
        */
 	
-	static Logger logger=Logger.getLogger(AddQuestionController.class.getName());
+	static Logger logger=Logger.getLogger(DeleteServlet.class.getName());
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response ){
 		

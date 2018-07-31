@@ -71,22 +71,22 @@
 
 
 <servlet>
-	<servlet-name>AddQuestionController</servlet-name>
-	<servlet-class>com.lxisoft.wayout.web.AddQuestionController</servlet-class>
+	<servlet-name>AddQuestionServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.AddQuestionServlet</servlet-class>
 </servlet>
 
 <servlet-mapping>
-	<servlet-name>AddQuestionController</servlet-name>
+	<servlet-name>AddQuestionServlet</servlet-name>
 	<url-pattern>/addQuestion</url-pattern>
 </servlet-mapping>
 
 <servlet>
-	<servlet-name>SearchController</servlet-name>
-	<servlet-class>com.lxisoft.wayout.web.SearchController</servlet-class>
+	<servlet-name>SearchServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.SearchServlet</servlet-class>
 </servlet>
 
 <servlet-mapping>
-	<servlet-name>SearchController</servlet-name>
+	<servlet-name>SearchServlet</servlet-name>
 	<url-pattern>/search</url-pattern>
 </servlet-mapping>
 
@@ -101,22 +101,22 @@
 </servlet-mapping>
 
 <servlet>
-	<servlet-name>EditController</servlet-name>
-	<servlet-class>com.lxisoft.wayout.web.EditController</servlet-class>
+	<servlet-name>EditServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.EditServlet</servlet-class>
 </servlet>
 
 <servlet-mapping>
-	<servlet-name>EditController</servlet-name>
+	<servlet-name>EditServlet</servlet-name>
 	<url-pattern>/edit</url-pattern>
 </servlet-mapping>
 
 <servlet>
-	<servlet-name>DeleteController</servlet-name>
-	<servlet-class>com.lxisoft.wayout.web.DeleteController</servlet-class>
+	<servlet-name>DeleteServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.DeleteServlet</servlet-class>
 </servlet>
 
 <servlet-mapping>
-	<servlet-name>DeleteController</servlet-name>
+	<servlet-name>DeleteServlet</servlet-name>
 	<url-pattern>/delete</url-pattern>
 </servlet-mapping>
 

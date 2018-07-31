@@ -18,7 +18,7 @@ import com.lxisoft.wayout.service.impl.*;
 *
 */
 
-public class AddQuestionController extends HttpServlet{
+public class AddQuestionServlet extends HttpServlet{
 
 	/**
      *  creating the object of security Question to set the questions and answer 
@@ -40,7 +40,7 @@ public class AddQuestionController extends HttpServlet{
      *  setting logger 
      *
      */
- 	static Logger logger=Logger.getLogger(AddQuestionController.class.getName());
+ 	static Logger logger=Logger.getLogger(AddQuestionServlet.class.getName());
 
 
  	/**
