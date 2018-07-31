@@ -8,3 +8,32 @@ $(document).ready(function(){
     	$(".p-animation").show();
     }); 
 });
+$(function(){
+  $('.bxslider').bxSlider({
+    mode: 'fade',
+    captions: true,
+    slideWidth: 800,
+  });
+});
+$(function(){
+    $('#question-timer').countdowntimer({
+        minutes :1,
+        seconds : 10,
+        size : "lg",
+        displayFormat : "MS",
+        expiryUrl : "start.html"
+    });
+});
+var doorId;
+function popupWarningWindow(id) {
+    doorId=id;
+    document.getElementById('warning-message').style.display='block';
+}
+function getAccess(id,number) {
+    if(number>0){
+        window.location="hjhk";
+    }
+}
+function redirect() {
+    window.location="question.jsp?"+doorId;
+}
