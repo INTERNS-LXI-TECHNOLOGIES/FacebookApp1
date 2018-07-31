@@ -26,11 +26,10 @@
 </div>
 
 
-<form action="redirect" method="post">
+<form action="AddQuestion.jsp" method="post">
 	<% out.println("do you want to add new question?");%>
 <input type="submit" value="submit" name="first"/>
-<input type="submit" value="cancel" name="second"/>
-	
+<a id="cancel" href="AdminOptions.jsp"></a>
 
 </form>
 

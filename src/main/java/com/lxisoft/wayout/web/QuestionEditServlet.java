@@ -20,7 +20,7 @@ import java.util.*;
 *
 */
 
-public class EditServlet extends HttpServlet{
+public class QuestionEditServlet extends HttpServlet{
 	/**
      *  creating the object of security Question to set the questions and answer 
      *
@@ -39,7 +39,7 @@ public class EditServlet extends HttpServlet{
      *
      */
 	
-	static Logger logger=Logger.getLogger(EditServlet.class.getName());
+	static Logger logger=Logger.getLogger(QuestionEditServlet.class.getName());
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response )throws IOException, ServletException{
 		

@@ -28,7 +28,10 @@ input[type=text] {
 </style>
 </p>
 </div>
-<form action="/delete" method="post">
+<form action="AdminOptions.jsp" method="post">
+   <% SecurityQuestion secQuestion=(SecurityQuestion)session.getAttribute("question");
+   out.println(""+secQuestion.getQuestion()+"is deleted");%>
+   <input type="submit" value="ok">
 
 
 </form>

@@ -16,9 +16,9 @@ import com.lxisoft.wayout.service.impl.*;
 *
 *@version 1.0
 *
-*/
+*/ 
 
-public class AddQuestionServlet extends HttpServlet{
+public class QuestionServlet extends HttpServlet{
 
 	
 	 /**
@@ -39,7 +39,7 @@ public class AddQuestionServlet extends HttpServlet{
 	 /**
        * Reference to Logger class to get log messages
        */
- 	static Logger logger=Logger.getLogger(AddQuestionServlet.class.getName());
+ 	static Logger logger=Logger.getLogger(QuestionServlet.class.getName());
 
 
  	/**
@@ -108,7 +108,7 @@ public class AddQuestionServlet extends HttpServlet{
 
 			Set<SecurityQuestion> questions=securityQuestionServiceImpl.findAllSecurityQuestion();
 
-			request.getSession().setAttribute("question",questions);
+			//request.getSession().setAttribute("PageImport",questions);
 			response.sendRedirect("DisplayAll.jsp");
 
 

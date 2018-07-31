@@ -20,22 +20,22 @@ import com.lxisoft.wayout.service.*;
 *
 */
 
-public class SearchServlet extends HttpServlet{
+public class QuestionSearchServlet extends HttpServlet{
 
 	/**
      *  creating the object of security Question implementation 
      *
      */
 
-   // SecurityQuestionServiceImpl securityQuestionServiceImpl= new SecurityQuestionServiceImpl();
+   SecurityQuestionServiceImpl securityQuestionServiceImpl= new SecurityQuestionServiceImpl();
 
 
 public void doGet(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException{
 	String sid=request.getParameter("questionId");
 	Long id=Long.parseLong(sid);
 
-	//SecurityQuestion question=securityQuestionServiceImpl.findSecurityQuestion(id);
-	//request.getSession().setAttribute("ques",question);
+	SecurityQuestion question=securityQuestionServiceImpl.findSecurityQuestion(id);
+	request.getSession().setAttribute("ques",question);
 
 	response.sendRedirect("Details.jsp");
 

@@ -24,7 +24,7 @@ import java.util.*;
 
 // Extend HttpServlet class
 
-public class DeleteServlet extends HttpServlet{
+public class QuestionDeleteServlet extends HttpServlet{
 	/**
      *  creating the object of security Question to set the questions and answer 
      *
@@ -41,7 +41,7 @@ public class DeleteServlet extends HttpServlet{
        * Reference to Logger class to get log messages
        */
 	
-	static Logger logger=Logger.getLogger(DeleteServlet.class.getName());
+	static Logger logger=Logger.getLogger(QuestionDeleteServlet.class.getName());
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response ){
 		
@@ -52,8 +52,8 @@ public class DeleteServlet extends HttpServlet{
 		SecurityQuestion question=securityQuestionServiceImpl.findSecurityQuestion(questionId);
 		securityQuestionServiceImpl.deleteSecurityQuestion(question);
 
-		
-		response.sendRedirect("AdminOptions.jsp");
+		request.getSession().setAttribute("question",question);
+		response.sendRedirect("Delete.jsp");
 
 		}
 		catch(Exception e){

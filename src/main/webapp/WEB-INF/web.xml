@@ -71,52 +71,42 @@
 
 
 <servlet>
-	<servlet-name>AddQuestionServlet</servlet-name>
-	<servlet-class>com.lxisoft.wayout.web.AddQuestionServlet</servlet-class>
+	<servlet-name>QuestionServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.QuestionServlet</servlet-class>
 </servlet>
 
 <servlet-mapping>
-	<servlet-name>AddQuestionServlet</servlet-name>
+	<servlet-name>QuestionServlet</servlet-name>
 	<url-pattern>/addQuestion</url-pattern>
 </servlet-mapping>
 
 <servlet>
-	<servlet-name>SearchServlet</servlet-name>
-	<servlet-class>com.lxisoft.wayout.web.SearchServlet</servlet-class>
+	<servlet-name>QuestionSearchServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.QuestionSearchServlet</servlet-class>
 </servlet>
 
 <servlet-mapping>
-	<servlet-name>SearchServlet</servlet-name>
+	<servlet-name>QuestionSearchServlet</servlet-name>
 	<url-pattern>/search</url-pattern>
 </servlet-mapping>
 
 <servlet>
-	<servlet-name>MainServlet</servlet-name>
-	<servlet-class>com.lxisoft.wayout.web.MainServlet</servlet-class>
+	<servlet-name>QuestionEditServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.QuestionEditServlet</servlet-class>
 </servlet>
 
 <servlet-mapping>
-	<servlet-name>MainServlet</servlet-name>
-	<url-pattern>/redirect</url-pattern>
-</servlet-mapping>
-
-<servlet>
-	<servlet-name>EditServlet</servlet-name>
-	<servlet-class>com.lxisoft.wayout.web.EditServlet</servlet-class>
-</servlet>
-
-<servlet-mapping>
-	<servlet-name>EditServlet</servlet-name>
+	<servlet-name>QuestionEditServlet</servlet-name>
 	<url-pattern>/edit</url-pattern>
 </servlet-mapping>
 
 <servlet>
-	<servlet-name>DeleteServlet</servlet-name>
-	<servlet-class>com.lxisoft.wayout.web.DeleteServlet</servlet-class>
+	<servlet-name>QuestionDeleteServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.QuestionDeleteServlet</servlet-class>
 </servlet>
 
 <servlet-mapping>
-	<servlet-name>DeleteServlet</servlet-name>
+	<servlet-name>QuestionDeleteServlet</servlet-name>
 	<url-pattern>/delete</url-pattern>
 </servlet-mapping>
 

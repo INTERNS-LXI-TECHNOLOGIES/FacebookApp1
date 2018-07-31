@@ -162,7 +162,7 @@ public SecurityQuestion findOne(Long id){
 			connection=dataSource.getConnection();
 			statement=connection.createStatement();
 
-			ResultSet resultSet=statement.executeQuery("select * from securityQuestion where id="+id);
+			ResultSet resultSet=statement.executeQuery("select * from security_question where question_id="+id);
 			while(resultSet.next())
 			{
 
