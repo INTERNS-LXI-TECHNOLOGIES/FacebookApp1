@@ -25,7 +25,7 @@
 
 <h1>Operations</h1></br></br>
 
-<a href="AddQuestion.jsp"><img src="/fbtest/images/addQuestion.jpg" width="100" height="100" title=addQuestion><h2><%out.println("add a question");%></h2></a></br></br>
+<a href="AddQuestion.jsp"><img src="/images/icons/addQuestion.jpg" width="100" height="100" title=addQuestion><h2><%out.println("add a question");%></h2></a></br></br>
 
 
 <form action="addQuestion" method="get"> 

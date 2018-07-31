@@ -81,7 +81,7 @@ span.psw {
 
 <form class="modal-content" action="j_security_check" method=post>
   <div class="imgcontainer">
-    <img src="/fbtest/images/login1.jpg" alt="Avatar" class="avatar">
+    <img src="/images/icons/login1.jpg" alt="Avatar" class="avatar">
   </div>
 
   <div class="container">

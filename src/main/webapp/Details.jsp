@@ -32,9 +32,7 @@
 </p>
 
 <h1>Details</h1>
-<p align="center">
-<img src="/fbtest/images/addque.jpg" width="140" height="150">
-</p>
+
 
 
 <body>
@@ -51,15 +49,17 @@ Set<String> options=securityQuestion.getOptions();
 <div>
 	<a href="edit?questionId=<%=securityQuestion.getQuestionId()%>"><img src="/images/icons/edit.jpg" width="50" height="50" title=editContact></a>
 	<a href="delete?questionId=<%=securityQuestion.getQuestionId()%>"><img src="/images/icons/delete.jpg" width="50" height="50" title=deleteContact></a>
-
-	<%out.println(""+securityQuestion.getImgUrl());
+	<%String imgurl=securityQuestion.getImageUrl()%>
+	<img src="<%=imgurl;%>"  height="150" width="140">
+	<%
 	out.println(""+securityQuestion.getQuestion());
 	for(String option:options)
 		out.println(option);
+
 	out.println(""+securityQuestion.getAnswer());%>
 
 </div>
-
+	
 </body>
 
 
