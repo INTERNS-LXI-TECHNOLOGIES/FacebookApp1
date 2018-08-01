@@ -1,19 +1,93 @@
-<html>
+<!DOCTYPE html>
 <head>
-  <title>Game page</title>
+	<title>game</title>
+	<link rel="stylesheet" type="text/css" href="css\way_out.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<script src="js/wayout.js"></script>
+	<script src="js/my-countdownTimer.js"></script>
+	<script src="js/jQuery.countdownTimer.min.js"></script>
+	<script src="js/jQuery.countdownTimer.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
 </head>
+<%@ page import="com.lxisoft.wayout.model.Game,java.util.*,com.lxisoft.wayout.domain.*"%>
 
-<body>
-  
-  <%@ page import="java.util.*,com.lxisoft.wayout.domain*"%>
+<% 
+	Game model= (Game)session.getAttribute("model"); //model object of this page
+	List<Door> doors= model.getPrisoner().getCurrentLocation().getDoors();
+	List<SuperKey> superKeys= model.getPrisoner().getSuperKeys();
+	String hallName= "Hall "+(model.getPrisoner().getCurrentLocation().getHallId()+1);
+%>
 
-  <%@ page isErrorPage="exception.jsp" %>
-  
-  <%
+<body class="game-body" onload="checkCookie()">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-8 timer-warning text-center"><p>Click on below image to open door</p></div>
+			<div class="col-sm-2 text-center">
+				<div class="game-timer text-center">
+					<p id="timer"></p>
+				</div>
+			</div>
+		</div>
+		<div class="row margin-top">
+			<!-- for loop -->
+			<div class="col-sm-1">
+			</div>
+			<div class="col-sm-8">
+				<div class="bxslider">
+					<%
+						String pictureName;
+						for(Door door: doors)
+						{
+							pictureName=(door.isOpen())?"images/room-modified-open.jpg":"images/room-modified.jpg";
+					
+							if(door.isAccessDenied()) {%>
+							  <div>
+								 <div>
+									<a href="play?dooId=<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+						  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
+						  			<p class="float-right hall-name"><%=hallName%></p>
+								</div>
+							  	<img src="<%=pictureName%>" id="div-image" title="Door with id =<%=door.getDoorId()%>"></div>
+							<%}
+							else {%>
+							  <div>
+							  	<div>
+									<a href="play?doorId=<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+						  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
+						  			<p class="float-right hall-name"><%=hallName%></p>
+								</div>
+							  	<img src="<%=pictureName%>" id="div-image" onclick="popupWarningWindow(<%=door.getDoorId()%>)" title="Door with id =<%=door.getDoorId()%>"></div>
+							<%}
+						 }
+						 if(model.getPrisoner().getCurrentLocation().getBackDoor()!=null) {%>
 
-   Prisoner prisoner= (Prisoner) session.getAttribute("prisoner");
-
-    
- %>
+						  <div>
+								<div>
+									<a href="play?doorId=<%=model.getPrisoner().getCurrentLocation().getBackDoor().getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+						  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
+						  			<p class="float-right hall-name"><%=hallName%></p>
+								</div>
+						  	<img src="images/room-modified-open.jpg" id="div-image" onclick="window.location='play?doorId=<%=model.getPrisoner().getCurrentLocation().getBackDoor().getDoorId()%>'" title="<%=model.getPrisoner().getCurrentLocation().getBackDoor().getDoorId()%>"></div>
+						  <%}%>
+				</div>
+			</div>
+		</div>
+		<div id="warning-message" class="full">
+		<div class="warning text-center animate-zoom">
+			<h3>Warning!</h3>
+			<h5>The door you trying to open may be permanently locked</h5>
+			<h4>Use the superkeys if you have. Else try an attempt</h4>
+			<input type="button" onclick="redirect()" class="go-ahead float-right" name="go ahead" value="go ahead">
+			<input type="button" onclick="document.getElementById('warning-message').style.display='none'" class="go-ahead float-right" name="go ahead" value="cancel">
+		</div>
+		</div>
 </body>
 </html>

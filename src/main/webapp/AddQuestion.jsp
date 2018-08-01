@@ -52,9 +52,9 @@ input[type=text] {
     <input type="text" value="<%=imageUrl%>" name="imageUrl"  required></br></br>
 
 	<label for="question"><b>Question</b></label>
+
     <input type="text" value="<%=question%>"  name="Question"  required></br></br>
 
-   
 
 
     <%
@@ -64,7 +64,7 @@ input[type=text] {
         { %>
             <label for="no:of options"><b> no:of options</b></label>
             <input type="text" placeholder="enter the no:of options" name="noOfOptions"  required>
-            <input type="submit" value="v" class="button" width="50" height="50"></br>
+            <input type="submit" value="go" class="button" width="50" height="50"></br>
        <% }
         else
         {
@@ -88,12 +88,7 @@ input[type=text] {
 
     %>
    
-    <label for="answer"><b>answer</b></label>
-    <input type="text" placeholder="answer" name="answer" required></br></br>
-
-    <input type="submit" value="Submit" class="button">
-     <input type="reset" value="Reset" class="button">
-
+    
   
 
 </div></center>

@@ -156,25 +156,30 @@ public class SecurityQuestionRepository{
 
 public SecurityQuestion findOne(Long id){
 		SecurityQuestion securityQuestion=new SecurityQuestion();
+		PreparedStatement stmt;
+		
 		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion() with id="+id+"===========");
 		try
 		{
 			connection=dataSource.getConnection();
-			statement=connection.createStatement();
-
-			ResultSet resultSet=statement.executeQuery("select * from securityQuestion where id="+id);
+			stmt=connection.prepareStatement("select sq.id,sq.image_path,sq.question,sq.answer,GROUP_CONCAT(DISTINCT qo.opt SEPARATOR ',') as opt from question_option qo inner join security_question_options sqo on qo.id = sqo.option_id inner join security_question sq on sqo.question_id = sq.id where sq.id=? group by sq.id");
+			
+			stmt.setLong(1,id);
+			
+			ResultSet resultSet=stmt.executeQuery();
 			while(resultSet.next())
 			{
 
-					securityQuestion.setQuestionId((long)resultSet.getInt(1));
-					securityQuestion.setQuestion(resultSet.getString(2));
-					Set<String>options=new TreeSet<String>();
-					options.add(resultSet.getString(3));
-					options.add(resultSet.getString(4));
-					options.add(resultSet.getString(5));
-					securityQuestion.setOptions(options);
-					securityQuestion.setAnswer(resultSet.getString(6));
-
+					securityQuestion.setQuestionId((long)resultSet.getInt("id"));
+					securityQuestion.setImageUrl(resultSet.getString("image_path"));
+					securityQuestion.setQuestion(resultSet.getString("question"));
+					securityQuestion.setAnswer(resultSet.getString("answer"));
+					String questionOptions=resultSet.getString("opt");
+					
+					Set<String> opt=new HashSet<String>(Arrays.asList(questionOptions.split(",")));
+					
+					securityQuestion.setOptions(opt);		
+					
 			}
 			connection.close();	
 		}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+	<title>question</title>
+	<link rel="stylesheet" type="text/css" href="css\way_out.css">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!-- Bootstrap core CSS -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+	<!-- Material Design Bootstrap -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/jQuery.countdownTimer.min.js"></script>
+	<script src="js/jQuery.countdownTimer.js"></script>
+	<script src="js/wayout.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+</head>
+<body class="question-container" onload="checkCookie()">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-10 question text-center"><p>Click on below image to open door</p></div>
+			<div class="col-sm-1 text-center"></div>
+		</div>
+		<div class="row">
+			<div class="col-sm-1"></div>
+			<div class="col-sm-7 question-image text-center"><img src="images/room3.jpg"></div>
+			<div class="col-sm-3 options text-center">
+				<div class="row">
+					<div class="question-timer"><p id="question-timer"></p></div>
+				</div>
+				<div class="row">
+				<form class="question-form">
+				<div class="custom-control custom-radio">
+				  <input type="radio" class="custom-control-input" id="defaultGroupExample1" name="groupOfDefaultRadios">
+				  <label class="custom-control-label" for="defaultGroupExample1">Option 1</label>
+				</div>
+
+				<!-- Group of default radios - option 2 -->
+				<div class="custom-control custom-radio">
+				  <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios" checked>
+				  <label class="custom-control-label" for="defaultGroupExample2">Option 2</label>
+				</div>
+
+				<!-- Group of default radios - option 3 -->
+				<div class="custom-control custom-radio">
+				  <input type="radio" class="custom-control-input" id="defaultGroupExample3" name="groupOfDefaultRadios">
+				  <label class="custom-control-label" for="defaultGroupExample3">Option 3</label>
+				</div>
+				<input type="submit" class="go-ahead" name="submit" value="submit">
+			</div>
+		</form>
+		</div>
+		</div>
+		</div>
+		
+</body>
+</html>
