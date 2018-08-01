@@ -76,28 +76,37 @@ public class SecurityQuestionRepository{
 
 
 	public void save(SecurityQuestion securityQuestion){
+		
+		PreparedStatement stmt;
 
-		try
+		/*try
 		{
  
 			logger.info("============Entered into SecurityQuestionRepository/addSecurityQuestion()===========");
 			
 			connection=dataSource.getConnection();
-			statement=connection.createStatement();
-			ResultSet resultSet=statement.executeQuery("select * from securityQuestion;"); 
-			Long id=securityQuestion.getQuestionId();
-			if(id==0)
-			{
-				id=1l;
-				while(resultSet.next())
-				{
-
-					id=(resultSet.getInt(1)+1l);	
-
-				}
+			
+			Set<String> options=securityQuestion.getOptions();
+			
+				for(String opt:options){
+			
+					stmt=connection.prepareStatement("Insert into question_option (opt) values(?)");
+					stmt.setString(1,opt);
 			}
-			List<String>options=new ArrayList(securityQuestion.getOptions());
-			statement.execute("insert into securityQuestion values("+id+",'"+securityQuestion.getQuestion()+"','"+options.get(0)+"','"+options.get(1)+"','"+options.get(2)+"','"+securityQuestion.getAnswer()+")");
+			
+			stmt.executeUpdate(); 
+			stmt.close();
+			logger.info("============question options inserted===========");
+			
+			stmt=connection.prepareStatement("INSERT INTO security_question (image_path,question,answer) VALUES ('?', '?','?')");
+			stmt.setString(1,securityQuestion.getImageUrl());
+			stmt.setString(1,securityQuestion.getQuestion());
+			stmt.setString(1,securityQuestion.getAnswer());
+			
+			stmt.executeUpdate(); 
+			stmt.close();
+			logger.info("============question inserted===========");
+			
 			
 			connection.close();
 		}
@@ -106,7 +115,7 @@ public class SecurityQuestionRepository{
 			e.printStackTrace();
 		}
 		logger.info("============Exited from  SecurityQuestionRepository/addSecurityQuestion()===========");
-
+*/
 	}
 
 
@@ -126,6 +135,8 @@ public class SecurityQuestionRepository{
 			connection=dataSource.getConnection();
 			stmt=connection.prepareStatement("delete from security_question where id=?");
 			stmt.setLong(1,securityQuestion.getQuestionId());
+			
+			stmt.executeUpdate();
 			
 			connection.close();
 		}
