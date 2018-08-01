@@ -1,5 +1,6 @@
 package com.lxisoft.wayout.web;
 import com.lxisoft.wayout.domain.*;
+import com.lxisoft.wayout.model.*;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -61,19 +62,52 @@ public class QuestionServlet extends HttpServlet{
 
  	public void doPost(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException{
 
-
+ 			AddQuestionModel addQuestionModel=new AddQuestionModel();
  		logger.info("entering the method");
  		try{
 
  			logger.info(">>>>>>>>>>entering the  try block");
 			
 
-			String question=request.getParameter("question");
-			String option1=request.getParameter("option1");
-			String option2=request.getParameter("option2");
-			String option3=request.getParameter("option3");
-			
-			String answer=request.getParameter("answer");
+			addQuestionModel.question=request.getParameter("question");
+			addQuestionModel.imageUrl=request.getParameter("imageUrl");
+			String sNoOfOptions=request.getParameter("noOfOptions");
+			if(sNoOfOptions!=null)
+			{
+
+				addQuestionModel.noOfOptions=Integer.parseInt(request.getParameter("noOfOptions"));
+				request.getSession().setAttribute("model",addQuestionModel);
+				response.sendRedirect("AddQuestion.jsp");
+			}
+			else
+			{
+
+				SecurityQuestion securityQuestion=new SecurityQuestion();
+				Set<String> options= new TreeSet<String>();
+				addQuestionModel=(AddQuestionModel)request.getSession().getAttribute("model");
+				int noOfOptions=addQuestionModel.noOfOptions;
+				addQuestionModel.options=new String[noOfOptions];
+				for(int i=1;i<=noOfOptions;i++)
+				{
+					addQuestionModel.options[i]=request.getParameter("option"+i);
+					options.add(request.getParameter("option"+i));
+				}
+				securityQuestion.setQuestion(addQuestionModel.question);
+				
+				securityQuestion.setOptions(options);
+				securityQuestion.setAnswer(request.getParameter("answer"));
+
+				securityQuestion.setImageUrl(addQuestionModel.imageUrl);
+	 
+				securityQuestionServiceImpl.addSecurityQuestion(securityQuestion);
+				/**
+				*redirecting to another page
+				*
+				*/
+				response.sendRedirect("RedirectingPage.jsp");
+
+			}
+		/*	String answer=request.getParameter("answer");
 
 			
 
@@ -86,12 +120,12 @@ public class QuestionServlet extends HttpServlet{
 			securityQuestion.setOptions(options);
 			securityQuestion.setAnswer(answer);
  
-			securityQuestionServiceImpl.addSecurityQuestion(securityQuestion);
+			securityQuestionServiceImpl.addSecurityQuestion(securityQuestion);*/
 			/**
 			*redirecting to another page
 			*
 			*/
-			response.sendRedirect("RedirectingPage.jsp");
+		/*	response.sendRedirect("RedirectingPage.jsp");*/
 			logger.info(">>>>>>>>>>>>>>>>>>>>exiting from the try block");
 
 
