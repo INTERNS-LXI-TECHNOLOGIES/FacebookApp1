@@ -162,8 +162,10 @@ public SecurityQuestion findOne(Long id){
 		try
 		{
 			connection=dataSource.getConnection();
-			stmt=connection.prepareStatement("select sq.id,sq.image_path,sq.question,sq.answer,GROUP_CONCAT(DISTINCT qo.opt SEPARATOR ',') as opt from question_option qo inner join security_question_options sqo on qo.id = sqo.option_id inner join security_question sq on sqo.question_id = sq.id where sq.id=1 group by sq.id");
-
+			stmt=connection.prepareStatement("select sq.id,sq.image_path,sq.question,sq.answer,GROUP_CONCAT(DISTINCT qo.opt SEPARATOR ',') as opt from question_option qo inner join security_question_options sqo on qo.id = sqo.option_id inner join security_question sq on sqo.question_id = sq.id where sq.id=? group by sq.id");
+			
+			stmt.setLong(1,id);
+			
 			ResultSet resultSet=stmt.executeQuery();
 			while(resultSet.next())
 			{
@@ -210,15 +212,18 @@ public SecurityQuestion findOne(Long id){
 			statement=connection.createStatement();
 			ResultSet resultSet=statement.executeQuery("select sq.id,sq.image_path,sq.question,sq.answer,GROUP_CONCAT(DISTINCT qo.opt SEPARATOR ',') as opt from question_option qo inner join security_question_options sqo on qo.id = sqo.option_id inner join security_question sq on sqo.question_id = sq.id group by sq.id");
 			
+			
 			while(resultSet.next())
 				
 				{	
 					SecurityQuestion securityQuestion=new SecurityQuestion();
+	
 					securityQuestion.setQuestionId((long)resultSet.getInt("id"));
 					securityQuestion.setImageUrl(resultSet.getString("image_path"));
 					securityQuestion.setQuestion(resultSet.getString("question"));
 					securityQuestion.setAnswer(resultSet.getString("answer"));
 					String questionOptions=resultSet.getString("opt");
+					
 					Set<String> opt=new HashSet<String>(Arrays.asList(questionOptions.split(",")));
 					//options.addAll(opt);
 		
