@@ -28,6 +28,7 @@ input[type=text] {
 </style>
 </p>
 </div>
+<%@ page import= "com.lxisoft.wayout.domain.*,com.lxisoft.wayout.model.*,java.util.*"%>
 <form action="AdminOptions.jsp" method="post">
    <% SecurityQuestion secQuestion=(SecurityQuestion)session.getAttribute("question");
    out.println(""+secQuestion.getQuestion()+"is deleted");%>

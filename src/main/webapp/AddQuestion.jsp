@@ -4,7 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="Sample.css">
 </head>
 <div id="add">
-<h1>Add Question</h1>
+<center><h1>Add Question</h1></center>
 <p align="left">
 <a href="AdminOptions.jsp"><img src="images/icons/home.jpg" width="50" height="50"></a></br></br>
 
@@ -18,12 +18,15 @@
 }
 
 input[type=text] {
-    width: 100%;
+    width: 80%;
     padding: 12px 20px;
     margin: 10px 0;
-    display: inline-block;
     border: 1px solid #ccc;
-    box-sizing: border-box;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    font-size: 15px;
+    color:black;
+    
 }
 
 </style>
@@ -31,26 +34,59 @@ input[type=text] {
 </div>
 <body>
 <%@ page import= "com.lxisoft.wayout.domain.*,com.lxisoft.wayout.model.*,java.util.*"%>
-<% SecurityQuestion securityQuestion=new SecurityQuestion();%>
+<% AddQuestionModel addQuestionModel=(AddQuestionModel)session.getAttribute("model");
+    if(addQuestionModel==null)
+        addQuestionModel=new AddQuestionModel();
+
+        String imageUrl=addQuestionModel.imageUrl;
+        String question=addQuestionModel.question;
+
+
+%>
+
 
 <form action="addQuestion" method="post">
-	
+	<center>
 <div>
     <label for="imageUrl"><b>imageUrl</b></label>
-    <input type="text" placeholder="imageUrl" name="imageUrl"  required></br></br>
+    <input type="text" value="<%=imageUrl%>" name="imageUrl"  required></br></br>
 
 	<label for="question"><b>Question</b></label>
-    <input type="text" placeholder="Enter Question" name="Question"  required></br></br>
+    <input type="text" value="<%=question%>"  name="Question"  required></br></br>
 
-    <label for="option 1"><b>option 1</b></label>
-    <input type="text" placeholder="option 1" name="option1" required></br></br>
+   
 
-    <label for="option 2"><b>option 2</b></label>
-    <input type="text" placeholder="option 2" name="option2" required></br></br>
 
-    <label for="option 3"><b>option 3</b></label>
-    <input type="text" placeholder="option 3" name="option3" required></br></br>
+    <%
 
+        int count=0;
+        if(addQuestionModel.noOfOptions==0)
+        { %>
+            <label for="no:of options"><b> no:of options</b></label>
+            <input type="text" placeholder="enter the no:of options" name="noOfOptions"  required>
+            <input type="submit" value="v" class="button" width="50" height="50"></br>
+       <% }
+        else
+        {
+            int noOfOptions=addQuestionModel.noOfOptions;
+            for(int i=1;i<=noOfOptions;i++)
+            {
+             count++;
+            String optionName="option"+count;
+    %>
+        <label for=<%=optionName%>><b><%=optionName%></b></label>
+        <input type="text" placeholder="<%=optionName %>" name="<%=optionName %>" required></br></br>
+    <%
+            }%>
+            <label for="answer"><b>answer</b></label>
+            <input type="text" placeholder="answer" name="answer" required></br></br>
+
+            <input type="submit" value="Submit" class="button"  >
+            <input type="reset" value="Reset" class="button">
+
+      <%  }
+
+    %>
    
     <label for="answer"><b>answer</b></label>
     <input type="text" placeholder="answer" name="answer" required></br></br>
@@ -60,7 +96,7 @@ input[type=text] {
 
   
 
-</div>
+</div></center>
 </form>
 
 </body>

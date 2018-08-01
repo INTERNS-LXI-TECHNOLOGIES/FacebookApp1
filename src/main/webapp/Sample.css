@@ -8,7 +8,7 @@ body {
 	background-color:lightgreen;
 }
 #add{
-	background-color:pink;
+	background-color:skyblue;
 }
 #contact{
 	margin: 4px;
@@ -131,28 +131,3 @@ ul.my-pagination {
     margin: 0;
 }
 
-ul.my-pagination li {display: inline;}
-
-ul.my-pagination li a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ff1493;
-    border-radius: 25px;
-    margin-left: 5px;
-    color: #ff1493;
-}
-
-ul.my-pagination li a.active {
-    background-color: #ff1493;
-    color: white;
-    border: 1px solid #ff1493;
-}
-
-ul.my-pagination li a:hover:not(.active) {
-	border-color: #3385ff;
-	color: #e6f0ff;
-	background-color: #3385ff;
-}
