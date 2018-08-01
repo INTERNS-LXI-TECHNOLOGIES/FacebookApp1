@@ -247,7 +247,7 @@ public SecurityQuestion findOne(Long id){
 			
 			Set<String> options=new HashSet<String>();
 			
-			int i =0,oldQuestionId=0;
+			int i =0,oldQuestionId=-1;
 
 			while(resultSet.next())
 			{
@@ -259,6 +259,12 @@ public SecurityQuestion findOne(Long id){
 					    securityQuestions.add(securityQuestion);
                        i=0;					
 				    }*/
+				    options.clear();
+				    if(securityQuestions.size()!=0)
+				    {
+				    	securityQuestions.add(securityQuestion);
+				    	securityQuestion=new SecurityQuestion();
+				    }
 					securityQuestion.setQuestionId((long)resultSet.getInt("id"));
 					securityQuestion.setImageUrl(resultSet.getString("image_path"));
 					securityQuestion.setQuestion(resultSet.getString("question"));
@@ -266,16 +272,12 @@ public SecurityQuestion findOne(Long id){
 					
 				}
 				
-				options.add(resultSet.getString("opt"));	
+				options.add(resultSet.getString("opt"));
+				securityQuestion.setOptions(options);	
 				oldQuestionId = currentQuestionId;
 	
 			//	logger.info("============"+securityQuestion+"===========");
 			}
-			//if (i > 0) {
-				securityQuestion.setOptions(options);
-				securityQuestions.add(securityQuestion);
-			//}
-		
 		
 			for(SecurityQuestion securityquestion:securityQuestions){
 				System.out.println("*************"+securityquestion.getQuestionId());
