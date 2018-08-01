@@ -125,7 +125,7 @@ public class QuestionServlet extends HttpServlet{
 
 			Set<SecurityQuestion> questions=securityQuestionServiceImpl.findAllSecurityQuestion();
 
-			//request.getSession().setAttribute("PageImport",questions);
+			request.getSession().setAttribute("question",questions);
 			response.sendRedirect("DisplayAll.jsp");
 			logger.info(">>>>>>>>>>>>>>exiting the find all Method");
 
