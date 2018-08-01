@@ -27,13 +27,19 @@ public class Door
      * Unique id of doorId
      */
 
-    private long doorId;
+    private Long doorId;
 
     /**
      * The Boolean value corresponding to the door current status
      */
 
-    private boolean isPermanentlyBlocked;
+    private Boolean isAccessDenied;
+
+    /**
+     * The Boolean value corresponding to the door open/close status
+     */
+
+    private Boolean isOpen;
 
     /**
      * Reference to Logger class to get log messages
@@ -110,7 +116,7 @@ public class Door
 	 *            unique id of a door
 	 */
     
-	public void setDoorId(long doorId)
+	public void setDoorId(Long doorId)
 	{
 		log.info("Door class..........................setDoorId................starts");
 
@@ -138,51 +144,82 @@ public class Door
     /**
 	 * setter for status of door
 	 * 
-	 * @param isPermanentlyBlocked
+	 * @param isAccessDenied
 	 *            block status of a door
 	 */
 
-	public void setIsPermanentlyBlocked(boolean isPermanentlyBlocked)
+	public void setIsAccessDenied(Boolean isAccessDenied)
 	{
-		log.info("Door class...........setIsPermanentlyBlocked................starts");
+		log.info("Door class...........setIsAccessDenied................starts");
 
-		this.isPermanentlyBlocked=isPermanentlyBlocked;
+		this.isAccessDenied=isAccessDenied;
 
-		log.info("Door class...........setIsPermanentlyBlocked..................ends");
+		log.info("Door class...........setIsAccessDenied..................ends");
 		
 	}
 
 	/**
 	 * getter for status of door
 	 * 
-	 * @return isPermanentlyBlocked
+	 * @return isAccessDenied
 	 *            block status of a door
 	 *
 	 */
 	
-	public boolean IsPermanentlyBlocked()
+	public Boolean isAccessDenied()
 	{
-		log.info("Door class.............IsPermanentlyBlocked................starts/ends");
+		log.info("Door class.............isAccessDenied...................starts/ends");
 
-		return this.isPermanentlyBlocked;
+		return this.isAccessDenied;
 	}
 
+    /**
+	 * setter for status of door
+	 * 
+	 * @param isOpen
+	 *            open status of a door
+	 */
+
+	public void setIsOpen(Boolean isOpen)
+	{
+		log.info("Door class...........setIsOpen................starts");
+
+		this.isOpen=isOpen;
+
+		log.info("Door class...........setIsOpen..................ends");
+		
+	}
+
+	/**
+	 * getter for status of door
+	 * 
+	 * @return isOpen
+	 *            open status of a door
+	 *
+	 */
+	
+	public Boolean isOpen()
+	{
+		log.info("Door class.............isOpen...................starts/ends");
+
+		return this.isOpen;
+	}
 	
 	/**
 	 * implementation of equals method 
 	 * 
-	 * @param door
+	 * @param obj
 	 *            Indicates whether some other object is "equal to" this one
 	 *
 	 *@return bool - the boolean value for equals
 	 *
 	 */
 
-	public boolean equals(Object door)
+	public boolean equals(Object obj)
 	{
 		log.info("Door class...........equals()...................................starts/ends");
 
-		return this.doorId==((Door)door).doorId;
+	    return ((obj != null) && (obj instanceof Door) && this.doorId==((Door)obj).doorId);		
 			 
 	}	
 

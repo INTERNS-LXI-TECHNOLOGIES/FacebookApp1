@@ -1,6 +1,7 @@
 package com.lxisoft.wayout.domain;
 import java.util.*;
 import java.util.logging.*;
+
 /** 
 * This class is for control security question
 *
@@ -12,9 +13,14 @@ import java.util.logging.*;
 public class SecurityQuestion
 {
 	/**
+	*This is a image url for security question
+	*/
+	private String imageUrl;
+	
+	/**
 	*This is a unique id for security question
 	*/
-	private long questionId;
+	private Long questionId;
 
 	/**
 	*This is a question for security
@@ -36,12 +42,32 @@ public class SecurityQuestion
     */  
     private static final Logger log=Logger.getLogger(SecurityQuestion.class.getName());
    
+    /**
+	*This ia setter which set the image url
+	*
+	*@param imageUrl - the image url to set
+	*/
+	public void setImageUrl(String imageUrl)
+	{
+		this.imageUrl = imageUrl;
+	}
+	
+	/**
+	*This is a getter which returns the image url
+	*
+	*@return imageUrl - the image url to get
+	*/
+	public String getImageUrl()
+	{
+		return this.imageUrl;
+	}
+   
 	/**
 	*This is a setter which sets the question id
 	*
 	*@param questionId - the question id to set
 	*/
-	public void setQuestionId(long questionId)
+	public void setQuestionId(Long questionId)
 	{
 		log.info("SecurityQuestion class..........................setQuestionId................starts");
 		
@@ -55,11 +81,11 @@ public class SecurityQuestion
 	*
 	*@return questionId - the question id to return
 	*/
-	public long getQuestionId()
+	public Long getQuestionId()
 	{
 		log.info("SecurityQuestion class..........................getQuestionId................starts/ends");
 
-		return questionId;
+		return this.questionId;
 	}
 	
 	/**
@@ -86,7 +112,7 @@ public class SecurityQuestion
 	{
 		log.info("SecurityQuestion class..........................getQuestion................starts/ends");
 
-		return question;
+		return this.question;
 		
 	}
 	
@@ -114,7 +140,7 @@ public class SecurityQuestion
 	{
 		log.info("SecurityQuestion class..........................getAnswer................starts/ends");
 
-		return answer;
+		return this.answer;
 	}
 	
 	/**
@@ -141,7 +167,7 @@ public class SecurityQuestion
 	{
 		log.info("SecurityQuestion class..........................getOptions................starts/ends");
 
-		return options;
+		return this.options;
 	}	
 	
 	/**

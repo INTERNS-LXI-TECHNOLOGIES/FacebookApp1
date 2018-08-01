@@ -69,5 +69,47 @@
 		</form-login-config>
 </login-config>
 
+
+<servlet>
+	<servlet-name>QuestionServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.QuestionServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>QuestionServlet</servlet-name>
+	<url-pattern>/addQuestion</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>QuestionSearchServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.QuestionSearchServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>QuestionSearchServlet</servlet-name>
+	<url-pattern>/search</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>QuestionEditServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.QuestionEditServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>QuestionEditServlet</servlet-name>
+	<url-pattern>/edit</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>QuestionDeleteServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.QuestionDeleteServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>QuestionDeleteServlet</servlet-name>
+	<url-pattern>/delete</url-pattern>
+</servlet-mapping>
+
+
 </web-app>
 

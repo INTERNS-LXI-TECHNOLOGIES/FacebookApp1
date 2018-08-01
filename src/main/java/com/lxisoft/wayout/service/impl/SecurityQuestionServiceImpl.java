@@ -49,9 +49,8 @@ private static final Logger log=Logger.getLogger(SecurityQuestionServiceImpl.cla
 **/
 public void addSecurityQuestion(SecurityQuestion securityQuestion){
 	log.info("========Enter into questionServce/addSecurityQuestion()========");
-	
 	log.info("========Exiting from questionServce/addSecurityQuestion()========");
-	securityQuestionRepository.addSecurityQuestion(securityQuestion);
+	securityQuestionRepository.save(securityQuestion);
 }
 
 /**
@@ -61,7 +60,7 @@ public void deleteSecurityQuestion(SecurityQuestion securityQuestion){
 	log.info("========Enter into questionServce/deleteSecurityQuestion()========");
 	
 	log.info("========Exiting from questionServce/deleteSecurityQuestion()========");
-	securityQuestionRepository.deleteSecurityQuestion(securityQuestion);
+	securityQuestionRepository.delete(securityQuestion);
 }
 
 /**
@@ -69,7 +68,7 @@ public void deleteSecurityQuestion(SecurityQuestion securityQuestion){
 **/
 public void updateSecurityQuestion(SecurityQuestion securityQuestion){
 	log.info("========Enter into questionServce/updateSecurityQuestion()========");
-	securityQuestionRepository.updateSecurityQuestion(securityQuestion);
+	securityQuestionRepository.update(securityQuestion);
 	log.info("========Exiting from questionServce/updateSecurityQuestion()========");
 }
 
@@ -77,7 +76,7 @@ public SecurityQuestion findSecurityQuestion(Long id){
 	log.info("========Enter into questionServce/findSecurityQuestion()========");
 	
 	log.info("========Exiting from questionServce/findSecurityQuestion()========");
-	return securityQuestionRepository.findSecurityQuestion(id);
+	return securityQuestionRepository.findOne(id);
 }
 
 public Set<SecurityQuestion> findAllSecurityQuestion(){
@@ -85,7 +84,7 @@ public Set<SecurityQuestion> findAllSecurityQuestion(){
 	log.info("========Enter into questionServce/findAllSecurityQuestion()========");
 	
 	log.info("========Exiting from questionServce/findAllSecurityQuestion()========");
-	return securityQuestionRepository.findAllSecurityQuestion();
+	return securityQuestionRepository.findAll();
 
 	}
 }

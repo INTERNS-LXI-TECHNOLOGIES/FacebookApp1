@@ -6,7 +6,7 @@
 <div id="add">
 <h1>Add Question</h1>
 <p align="left">
-<a href="AdminOptions.jsp"><img src="/ContactsDB/images/home.jpg" width="50" height="50"></a></br></br>
+<a href="AdminOptions.jsp"><img src="images/icons/home.jpg" width="50" height="50"></a></br></br>
 
 <style>
 .button{
@@ -29,13 +29,16 @@ input[type=text] {
 </style>
 </p>
 </div>
-
-<%@ page import= "com.lxisoft.fbapp.model.*"%>
+<body>
+<%@ page import= "com.lxisoft.wayout.domain.*,com.lxisoft.wayout.model.*,java.util.*"%>
 <% SecurityQuestion securityQuestion=new SecurityQuestion();%>
 
-<form action="QuestionController.java" method="post">
+<form action="addQuestion" method="post">
 	
 <div>
+    <label for="imageUrl"><b>imageUrl</b></label>
+    <input type="text" placeholder="imageUrl" name="imageUrl"  required></br></br>
+
 	<label for="question"><b>Question</b></label>
     <input type="text" placeholder="Enter Question" name="Question"  required></br></br>
 
@@ -48,9 +51,7 @@ input[type=text] {
     <label for="option 3"><b>option 3</b></label>
     <input type="text" placeholder="option 3" name="option3" required></br></br>
 
-    <label for="option 4"><b>option 4</b></label>
-    <input type="text" placeholder="option 4" name="option4" required></br></br>
-
+   
     <label for="answer"><b>answer</b></label>
     <input type="text" placeholder="answer" name="answer" required></br></br>
 
@@ -62,6 +63,6 @@ input[type=text] {
 </div>
 </form>
 
-
+</body>
 
 </html>

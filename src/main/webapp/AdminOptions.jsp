@@ -22,16 +22,22 @@
 </style>
 <body>
 <div>
+
 <h1>Operations</h1></br></br>
 
-`
-<a href="AddQuestion.jsp"><img src="/fbtest/images/addQuestion.jpg" width="50" height="50" title=addQuestion><%out.println("add a question");%></a></br></br>
-<a href="SearchQuestion.jsp"><img src="/fbtest/images/search.jpg" width="50" height="50" title=searchQuestion><%out.println("read a question");%></a></br></br>
-<a href="UpdateQuestion.jsp"><img src="/fbtest/images/edit.jpg" width="50" height="50" title=updateQuestion><%out.println("edit a question");%></a></br></br>
-<a href="DeleteQuestion.jsp"><img src="/fbtest/images/delete.jpg" width="50" height="50" title=deleteQuestion><%out.println("delete a question");%></a></br></br>
+<a href="AddQuestion.jsp"><img src="images/icons/addQuestion.jpg" width="100" height="100" title=addQuestion><h2><%out.println("add a question");%></h2></a></br></br>
 
 
+<form action="addQuestion" method="get"> 
+	<h2><input align="center" type="submit" value="showAllQuestions"></h2>
+</form>
 
+<form action="search" method="get" >
+
+
+<input type="text" name="questionId" placeholder="search id">
+<input type="submit" value="go"></br>
+</form>
 
 
 </body>
