@@ -15,7 +15,7 @@ public class Hall
 	/**
 	*This is for checking exit hall
 	*/
-	private Boolean isExitHall;
+	private boolean isExitHall=false;
 	
 	/**
 	*This is a list of doors
@@ -42,7 +42,7 @@ public class Hall
 	*
 	*@param isExitHall - the value of exit hall to set 
 	*/
-	public void setExitHall(Boolean isExitHall)
+	public void setExitHall(boolean isExitHall)
 	{
 		log.info("Hall class..........................setExitHall................starts");
 		
@@ -56,7 +56,7 @@ public class Hall
 	*
 	*@return isExitHall - the value of exit hall to get
 	*/
-	public Boolean isExitHall()
+	public boolean isExitHall()
 	{
 		log.info("Hall class..........................isExitHall................starts/ends");
 		

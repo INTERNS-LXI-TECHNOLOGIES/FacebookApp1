@@ -109,6 +109,15 @@
 	<servlet-name>QuestionDeleteServlet</servlet-name>
 	<url-pattern>/delete</url-pattern>
 </servlet-mapping>
+<servlet>
+	<servlet-name>GameServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.GameServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>GameServlet</servlet-name>
+	<url-pattern>/play</url-pattern>
+</servlet-mapping>
 
 
 </web-app>

@@ -14,13 +14,13 @@ public class SuperKey{
 	/**
 	*variable to check whether super keys are used
 	*/
-	private Boolean isUsed;
+	private boolean isUsed=false;
 	
 	/**
 	*@param isUsed
 	*method to set super keys from prisoner
 	*/
-	public void setIsUsed(Boolean isUsed){
+	public void setIsUsed(boolean isUsed){
 		
 		this.isUsed=isUsed;
 		
@@ -30,7 +30,7 @@ public class SuperKey{
 	*@return isUsed
 	*method to get super keys from prisoner
 	*/
-	public Boolean isUsed(){
+	public boolean isUsed(){
 		
 		return this.isUsed;
 	}

@@ -1,0 +1,107 @@
+.slider-wrapper {
+  height: 100%;
+  text-align: left;
+  -webkit-backface-visibility: hidden;
+  /* Chrome, Safari, Opera */
+  backface-visibility: hidden;
+  transform: translate3d(0, 0px, 0px);
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.slider-wrapper-outer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.slider-item { float: left; }
+
+.arrow {
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  height: 60px;
+  margin: auto;
+  cursor: pointer;
+  position: absolute;
+  display: inline-block;
+  border: 1px solid transparent;
+  background-position: 50% 50%;
+  background-size: 70px auto;
+  background-color: rgba(170, 170, 170, 0.5);
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.arrow-left {
+  left: 30px;
+  background-image: url("../arrows/arrow-left.svg");
+}
+
+.arrow-right {
+  right: 30px;
+  background-image: url("../arrows/arrow-right.svg");
+}
+
+.arrow.disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.arrow:hover {
+  border-color: white;
+  background-color: rgba(140, 140, 140, 0.7);
+}
+
+#main-slider {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+  text-align: center;
+  vertical-align: top;
+}
+
+#main-slider .container {
+  height: 100%;
+  display: inline-block;
+}
+
+#main-slider header {
+  width: 100%;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(100, 100, 100, 0.35);
+}
+
+#main-slider .slide {
+  height: 100%;
+  text-align: center;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.vertical-hook {
+  width: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.vertical-container {
+  width: 100%;
+  margin-left: -4px;
+  display: inline-block;
+  vertical-align: middle;
+}
+#main-slider .slide-1 { background-image: url("../../images/arrest.jpg"); }
+
+#main-slider .slide-2 { background-image: url("../../images/in-jail.jpg"); }
+
+#main-slider .slide-3 { background-image: url("../../images/with-cop.jpg"); }

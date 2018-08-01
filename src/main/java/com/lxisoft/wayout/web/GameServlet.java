@@ -67,7 +67,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 
 		  HttpSession session=request.getSession();  
 		  
-		  Door door=getDoorByDoorId(Long.parseLong(request.getParameter("doorId")));
+		  Door door=null;
 
 		  Object object=session.getAttribute("model");
 
@@ -83,19 +83,24 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 	        }
  
           }
-		  
 		  else if(request.getParameter("isAccessDenied")=="true")
 		  {
-		     Game game=(Game)object;
-		     
+		     game=(Game)object;
+
+		     if(request.getParameter("doorId")!=null)
+		  		door=getDoorByDoorId(Long.parseLong(request.getParameter("doorId")));
+
 			 door.setIsAccessDenied(true); 
 		  }
 			 
      	  else  
-     	  {
-     		 Game game=(Game)object;
-     		 
-             game=playGameWithSuperKey(door);
+     	  { 
+     	  	game=(Game)object;
+
+     	  	if(request.getParameter("doorId")!=null)
+		  		door=getDoorByDoorId(Long.parseLong(request.getParameter("doorId")));
+
+             playGameWithSuperKey(door);
      	  }
 		  
 		  
@@ -106,17 +111,15 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		  if(game.getPrisoner().getCurrentLocation().isExitHall())
 		    {
                  // forward to jsp page with request parameters 
-		           request.getRequestDispatcher("win.jsp").forward(request,response); 
+		           request.getRequestDispatcher("win.html").forward(request,response);
+		           return; 
 
 		    }   
 		  
 		  	
 		   // forward to jsp page with request parameters 
+		   log.info("********************GameServlet**********************doGet---------> end");
 		   request.getRequestDispatcher("game.jsp").forward(request,response);     
-							 
-			 
-		  log.info("********************GameServlet**********************doGet---------> end");
-	   
 	   
    }
 
@@ -128,11 +131,10 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
      * @param door
      *            door object of Door class    
      *
-     * @return game object
      */
 
 
-   public Game playGameWithSuperKey(Door door)
+   public void playGameWithSuperKey(Door door)
    { 
 
    	  log.info("******GameServlet**************playGameWithSuperKey**********************---------> start");
@@ -149,21 +151,19 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
       	        {
       	   	    	
       	        if(superKey.isUsed()==false)
-
+      	        {
       	        	superKey.setIsUsed(true);
       	            
       	            break;
-
       	        }
+
+      	       }
       			
       		}
-      	      changeState(door);
+      	    changeState(door);
 
       		          
      log.info("********GameServlet************playGameWithSuperKey**********************---------> end");
-
-
-      return game;
    }
 
    /**
@@ -233,8 +233,8 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 
 		  HttpSession session=request.getSession();  
 		  
-		  Door door=getDoorByDoorId(Long.parseLong(request.getParameter("doorId")));
-
+		  
+		  Door door;
 		  Object object=session.getAttribute("model");
 
 		  if((object==null) || !(object instanceof Game))
@@ -254,8 +254,8 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		  else
 			 {
              
-			  Game game=(Game)object;
-             			  
+			  game=(Game)object;
+             door=getDoorByDoorId(Long.parseLong(request.getParameter("doorId")));	  
 			  if(request.getParameter("option").equals(door.getSecurityQuestion().getAnswer()))
 	       	    {
 	       	    	door.setIsOpen(true);   
@@ -274,8 +274,8 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		  if((game.getPrisoner().getCurrentLocation().isExitHall()))
 		    {
                  // forward to jsp page with request parameters 
-		           request.getRequestDispatcher("win.jsp").forward(request,response); 
-
+		           request.getRequestDispatcher("win.html").forward(request,response); 
+		           return;
 		    }         
    
 		          // forward to jsp page with request parameters 
@@ -368,9 +368,11 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 					//Creating random number to take question randomly from list and remove the taken question from list.  
 					
 					int randomNumber=(int)(Math.random()*listOfQuestions.size());
-					SecurityQuestion securityQuestion=listOfQuestions.get(randomNumber);
-					door.setSecurityQuestion(securityQuestion);
-					listOfQuestions.remove(securityQuestion);
+					if(listOfQuestions.size()>0) {
+						SecurityQuestion securityQuestion=listOfQuestions.get(randomNumber);
+						door.setSecurityQuestion(securityQuestion);
+						listOfQuestions.remove(securityQuestion);
+					}
 					
 					//Setting up opening halls of doors.
 					
