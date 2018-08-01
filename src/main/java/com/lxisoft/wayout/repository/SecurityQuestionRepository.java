@@ -111,20 +111,21 @@ public class SecurityQuestionRepository{
 
 
 	/**
-	*to dlete SecurityQuestion
+	*to delete SecurityQuestion
 	*@param securityQuestion the given question is deleted;
 	**/
 
 	public void delete(SecurityQuestion securityQuestion){
 
+	PreparedStatement stmt;
+	
 		logger.info("============Entered into SecurityQuestionRepository/addSecurityQuestion()===========");
 		try
 		{
 			
 			connection=dataSource.getConnection();
-			statement=connection.createStatement();
-			
-			statement.execute("delete from securityQuestion where id="+securityQuestion.getQuestionId()+"");
+			stmt=connection.prepareStatement("delete from security_question where id=?");
+			stmt.setLong(1,securityQuestion.getQuestionId());
 			
 			connection.close();
 		}
@@ -142,7 +143,7 @@ public class SecurityQuestionRepository{
 	public void update(SecurityQuestion securityQuestion){
 
 		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion()===========");
- 		logger.info("OOOOOOOOsecurityQuestion"+securityQuestion+"OOOOOOOO");
+ 		//logger.info("OOOOOOOOsecurityQuestion"+securityQuestion+"OOOOOOOO");
 		delete(securityQuestion);
 		save(securityQuestion);		
 		logger.info("============Exited from  SecurityQuestionRepository/updateSecurityQuestion()===========");
