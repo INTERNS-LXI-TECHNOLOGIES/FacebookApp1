@@ -41,7 +41,7 @@ input[type=text] {
 
 	<label for="question"><b>Question</b></label>
     <input type="text" placeholder="Enter Question" name="Question"  required></br></br>
-
+    
     <label for="option 1"><b>option 1</b></label>
     <input type="text" placeholder="option 1" name="option1" required></br></br>
 
