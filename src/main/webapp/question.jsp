@@ -26,8 +26,8 @@
 <% 
 	Game model= (Game)session.getAttribute("model"); //model object of this page
 	List<Door> doors= model.getPrisoner().getCurrentLocation().getDoors();
-	List<Door> superKeys= model.getPrisoner().getSuperKeys();
-	Door door;
+	List<SuperKey> superKeys= model.getPrisoner().getSuperKeys();
+	Door door=null;
 %>
 <body class="question-container" onload="start(<%=request.getDoorId()%>)">
 
@@ -35,12 +35,15 @@
 			if(d.getDoorId()==request.getParameter("doorId"))
 				door=d;
 	}
-		Set<String> options=door.getOptions();
+		Set<String> options=door.getSecurityQuestion().getOptions();
+		String question="See the below image";
+		if(door.getSecurityQuestion().getQuestion()!=null)
+			question=door.getSecurityQuestion().getQuestion();
 	%>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-1"></div>
-			<div class="col-sm-10 question text-center"><p><%=door.getSecurityQuestion()%></p></div>
+			<div class="col-sm-10 question text-center"><p><%=question%></p></div>
 			<div class="col-sm-1 text-center"></div>
 		</div>
 		<div class="row">
@@ -57,9 +60,9 @@
 				<div class="custom-control custom-radio">
 				  <input type="radio" class="custom-control-input" id="defaultGroupExample2" value="<%=option%>" name="option">
 				  <label class="custom-control-label" for="defaultGroupExample2"><%=option%></label>
-				  <input type="hidden" class="custom-control-input" id="defaultGroupExample2" value="<%=door.getDoorId()%>" name="doorId">
 				</div>
 				<%}%>
+				<input type="hidden" class="custom-control-input" id="defaultGroupExample2" value="<%=door.getDoorId()%>" name="doorId">
 				<input type="submit" class="go-ahead" name="submit" value="submit">
 				</form>
 			</div>
