@@ -21,7 +21,7 @@ $(function(){
         seconds : 10,
         size : "lg",
         displayFormat : "MS",
-        expiryUrl : "start.html"
+        expiryUrl : "play?doorId="+doorId,
     });
 });
 var doorId;
@@ -35,5 +35,9 @@ function getAccess(id,number) {
     }
 }
 function redirect() {
-    window.location="question.jsp?"+doorId;
+    window.location="question.jsp?doorId="+doorId;
+}
+function start(id) {
+    doorId=id;
+    checkCookie();
 }

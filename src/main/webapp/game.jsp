@@ -8,11 +8,11 @@
 
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 	<script src="js/wayout.js"></script>
 	<script src="js/my-countdownTimer.js"></script>
 	<script src="js/jQuery.countdownTimer.min.js"></script>
 	<script src="js/jQuery.countdownTimer.js"></script>
-	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
 </head>
@@ -21,7 +21,8 @@
 <% 
 	Game model= (Game)session.getAttribute("model"); //model object of this page
 	List<Door> doors= model.getPrisoner().getCurrentLocation().getDoors();
-	List<Door> superKeys= model.getPrisoner().getSuperKeys();
+	List<SuperKey> superKeys= model.getPrisoner().getSuperKeys();
+	String hallName= "Hall "+(model.getPrisoner().getCurrentLocation().getHallId()+1);
 %>
 
 <body class="game-body" onload="checkCookie()">
@@ -50,29 +51,32 @@
 							if(door.isAccessDenied()) {%>
 							  <div>
 								 <div>
-									<a href="aas?<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
-						  			<p class="float-right key-number"><%=model.getNoOfKeys()%></p>
+									<a href="play?dooId=<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+						  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
+						  			<p class="float-right hall-name"><%=hallName%></p>
 								</div>
-							  	<img src="<%=pictureName%>" id="div-image" onclick="window.location('asa?<%=door.getDoorId()%>')" title="Door with id =<%door.getDoorId()%>"></div>
+							  	<img src="<%=pictureName%>" id="div-image" title="Door with id =<%=door.getDoorId()%>"></div>
 							<%}
 							else {%>
 							  <div>
 							  	<div>
-									<a href="aas?<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
-						  			<p class="float-right key-number"><%=model.getNoOfKeys()%></p>
+									<a href="play?doorId=<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+						  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
+						  			<p class="float-right hall-name"><%=hallName%></p>
 								</div>
-							  	<img src="<%=pictureName%>" id="div-image" onclick="popupWarningWindow(<%door.getDoorId()%>)" title="Door with id =<%door.getDoorId()"></div>
+							  	<img src="<%=pictureName%>" id="div-image" onclick="popupWarningWindow(<%=door.getDoorId()%>)" title="Door with id =<%=door.getDoorId()%>"></div>
 							<%}
 						 }
-						 if(model.getPrisoner().getBackDoor().getDoorId()!=null) {%>
+						 if(model.getPrisoner().getCurrentLocation().getBackDoor()!=null) {%>
 
 						  <div>
 								<div>
-									<a href="aas?<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
-						  			<p class="float-right key-number"><%=model.getNoOfKeys()%></p>
+									<a href="play?doorId=<%=model.getPrisoner().getCurrentLocation().getBackDoor().getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+						  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
+						  			<p class="float-right hall-name"><%=hallName%></p>
 								</div>
-						  	<img src="images/room-modified-open.jpg" id="div-image" onclick="window.location('asa?<%=model.getPrisoner().getBackDoor().getDoorId()%>')" title="The door you come through"></div>
-						  %}%
+						  	<img src="images/room-modified-open.jpg" id="div-image" onclick="window.location='play?doorId=<%=model.getPrisoner().getCurrentLocation().getBackDoor().getDoorId()%>'" title="<%=model.getPrisoner().getCurrentLocation().getBackDoor().getDoorId()%>"></div>
+						  <%}%>
 				</div>
 			</div>
 		</div>

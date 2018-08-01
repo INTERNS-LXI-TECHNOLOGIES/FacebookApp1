@@ -74,6 +74,6 @@ var x = setInterval(function() {
     if (distance < 0) {
         clearInterval(x);
         document.getElementById("timer").innerHTML = "OVER";
-        window.location="start.html";
+        window.location="gameover.html";
     }
 }, 1000);

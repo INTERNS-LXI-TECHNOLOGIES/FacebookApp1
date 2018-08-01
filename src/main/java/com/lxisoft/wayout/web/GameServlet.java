@@ -13,7 +13,7 @@ import com.lxisoft.wayout.service.impl.*;
 /**
  * Servlet class for working as a controller for managing games
  *
- * @author Sarangi Balu,Ruhail
+ * @author Sarangi Balu
  * 
  * @version $version-stub$
  *
@@ -66,6 +66,8 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		  log.info("********************GameServlet**********************doGet---------> start");
 
 		  HttpSession session=request.getSession();  
+		  
+		  Door door=null;
 
 		  Object object=session.getAttribute("model");
 
@@ -81,32 +83,43 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 	        }
  
           }
-		  else
-			 {
-             
-             game=playGameWithSuperKey(Long.parseLong(request.getParameter("door_id")),Long.parseLong(request.getParameter("superKey_id")));
+		  else if(request.getParameter("isAccessDenied")=="true")
+		  {
+		     game=(Game)object;
 
-             game.setNumberOfKeys((game.getNumberOfKeys())-1);
+		     if(request.getParameter("doorId")!=null)
+		  		door=getDoorByDoorId(Long.parseLong(request.getParameter("doorId")));
 
-             }
-			
+			 door.setIsAccessDenied(true); 
+		  }
+			 
+     	  else  
+     	  { 
+     	  	game=(Game)object;
+
+     	  	if(request.getParameter("doorId")!=null)
+		  		door=getDoorByDoorId(Long.parseLong(request.getParameter("doorId")));
+
+             playGameWithSuperKey(door);
+     	  }
+		  
+		  
 		  session.setAttribute("model",game);
+		  
+		  
 
 		  if(game.getPrisoner().getCurrentLocation().isExitHall())
 		    {
                  // forward to jsp page with request parameters 
-		           request.getRequestDispatcher("gameWin.jsp").forward(request,response); 
+		           request.getRequestDispatcher("win.html").forward(request,response);
+		           return; 
 
-		    }         
-            else 
-            {	
-		          // forward to jsp page with request parameters 
-		           request.getRequestDispatcher("game.jsp").forward(request,response);     
-			}	 
-				 
-			 
-		  log.info("********************GameServlet**********************doGet---------> end");
-	   
+		    }   
+		  
+		  	
+		   // forward to jsp page with request parameters 
+		   log.info("********************GameServlet**********************doGet---------> end");
+		   request.getRequestDispatcher("game.jsp").forward(request,response);     
 	   
    }
 
@@ -115,52 +128,95 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
    /**
      * Create a game model and its validation with SuperKey
      *
-     * @param doorId
-     *            UniqueId of Door class
-     * @param superKeyId
-     *            UniqueId of superKey class
+     * @param door
+     *            door object of Door class    
      *
-     * @return game object
      */
 
 
-   public Game playGameWithSuperKey(Long doorId,Long superKeyId)
+   public void playGameWithSuperKey(Door door)
    { 
 
-   	  log.info("********************playGameWithSuperKey**********************---------> start");
+   	  log.info("******GameServlet**************playGameWithSuperKey**********************---------> start");
        
-      List<SuperKey> superkeys=game.getPrisoner().getSuperKeys();
+        if(!door.isOpen())
+      		{
+      			door.setIsOpen(true);
+      			
+      			game.setNumberOfKeys((game.getNumberOfKeys())-1);
+      			
+      			List<SuperKey> superkeys=game.getPrisoner().getSuperKeys();
 
-   	  for(SuperKey superKey:superkeys)
-      {
-        if(superKeyId==superKey.getSuperKeyId())
+      	   	    for(SuperKey superKey:superkeys)
+      	        {
+      	   	    	
+      	        if(superKey.isUsed()==false)
+      	        {
+      	        	superKey.setIsUsed(true);
+      	            
+      	            break;
+      	        }
 
-        	superKey.setIsUsed(true);
+      	       }
+      			
+      		}
+      	    changeState(door);
 
-      } 
-
-      List<Door> doors=game.getPrisoner().getCurrentLocation().getDoors();	
-
-      for(Door door:doors)
-      {
-      	if(doorId==(door.getDoorId()))
-
-      		door.setIsOpen(true); 
-
-      		game.getPrisoner().setCurrentLocation(door.getOpeningHall());  
-
-      		game.getPrisoner().getCurrentLocation().setBackDoor(door);          
-      }
-
-       
-     log.info("********************playGameWithSuperKey**********************---------> end");
-
-
-      return game;
+      		          
+     log.info("********GameServlet************playGameWithSuperKey**********************---------> end");
    }
 
+   /**
+    * change the state of prisoner
+    *
+    * @param door
+    *            door is the Door class object
+    */
+   
+   public void changeState(Door door)
+   {
+	   log.info("*****GameServlet***************changeState**********************---------> start");
+	   
+	   Hall temp= game.getPrisoner().getCurrentLocation();
+	   
+	   game.getPrisoner().setCurrentLocation(door.getOpeningHall());
+	   
+	   door.setOpeningHall(temp);
+	   
+	   if((game.getPrisoner().getCurrentLocation().getBackDoor())==null)
+	   {
+		   game.getPrisoner().getCurrentLocation().setBackDoor(door);
+	   }
+	   
+	   log.info("******GameServlet**************changeState**********************---------> end");
+	   
+   }
+   
+   /**
+    * get the door by DoorId
+    *
+    * @param doorId
+    *            doorId is the id of Door class 
+    * @return Door its a door object           
+    */
+   
+   public Door getDoorByDoorId(Long doorId)
+   {
+	   log.info("*****GameServlet***************getDoorByDoorId**********************---------> start");
+	   
+	   List<Door> doors=game.getPrisoner().getCurrentLocation().getDoors();	
 
-    /**
+       for(Door door:doors)
+    	   
+         if(doorId==(door.getDoorId()))
+        	 
+         return door;
+        	 
+       return null;
+        	           
+   }
+   
+   /**
    * Create a game model and its validation with answerKey
    *
    * @param request
@@ -176,7 +232,9 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		  log.info("********************GameServlet**********************doPost---------> start");
 
 		  HttpSession session=request.getSession();  
-
+		  
+		  
+		  Door door;
 		  Object object=session.getAttribute("model");
 
 		  if((object==null) || !(object instanceof Game))
@@ -196,65 +254,39 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		  else
 			 {
              
-             game=playGame(request.getParameter("answerKey"));
+			  game=(Game)object;
+             door=getDoorByDoorId(Long.parseLong(request.getParameter("doorId")));	  
+			  if(request.getParameter("option").equals(door.getSecurityQuestion().getAnswer()))
+	       	    {
+	       	    	door.setIsOpen(true);   
+	           	    
+	           	    changeState(door);
 
-                
+	       	    }
+	       	    else
+	       	    
+	       	    	door.setIsAccessDenied(true);
+	       	                  
              }
 			
 		  session.setAttribute("model",game);
 
-		  if(game.getPrisoner().getCurrentLocation().isExitHall())
+		  if((game.getPrisoner().getCurrentLocation().isExitHall()))
 		    {
                  // forward to jsp page with request parameters 
-		           request.getRequestDispatcher("gameWin.jsp").forward(request,response); 
-
+		           request.getRequestDispatcher("win.html").forward(request,response); 
+		           return;
 		    }         
-            else 
-            {	
+   
 		          // forward to jsp page with request parameters 
 		           request.getRequestDispatcher("game.jsp").forward(request,response);     
-			}	 
+			 
 			 
 		  log.info("********************GameServlet**********************doPost---------> end");
 	   
 	   
    }
-
-    /**
-     * Create a game model and its validation with answerKey
-     *
-     * @param answer
-     *            answerKey of sequrityQusetion
-     *
-     * @return game object
-     */
-
-    public Game playGame(String answer)
-    {
-       log.info("********************GameServlet**********************playGame---------> start");
-        
-         List<Door> doors=game.getPrisoner().getCurrentLocation().getDoors();	
-
-         for(Door door:doors)
-         {
-      	   if(answer==(door.getSecurityQuestion().getAnswer()))
-
-      		door.setIsOpen(true);               
-
-      		game.getPrisoner().setCurrentLocation(door.getOpeningHall()); 
-
-      		game.getPrisoner().getCurrentLocation().setBackDoor(door); 
-
-      		  
-         }
-
-       log.info("********************GameServlet**********************playGame-----------> end");
-
-       return game;
-   
-    }
     
-
     /**
      * Create a game model and sets all instance at loading game time
      *
@@ -336,9 +368,11 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 					//Creating random number to take question randomly from list and remove the taken question from list.  
 					
 					int randomNumber=(int)(Math.random()*listOfQuestions.size());
-					SecurityQuestion securityQuestion=listOfQuestions.get(randomNumber);
-					door.setSecurityQuestion(securityQuestion);
-					listOfQuestions.remove(securityQuestion);
+					if(listOfQuestions.size()>0) {
+						SecurityQuestion securityQuestion=listOfQuestions.get(randomNumber);
+						door.setSecurityQuestion(securityQuestion);
+						listOfQuestions.remove(securityQuestion);
+					}
 					
 					//Setting up opening halls of doors.
 					
@@ -363,14 +397,11 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		Prisoner prisoner = new Prisoner();
 		List<SuperKey> superKeys = new ArrayList<SuperKey>();
 		int i=0;
-		long skId=0l;
 		while(i<3)
 		{
 			SuperKey key = new SuperKey();
-			key.setSuperKeyId(skId);
 			superKeys.add(key);	
 			i++;
-			skId++;
 		}
 		prisoner.setSuperKeys(superKeys);
 		List<Hall> prisonHalls=prison.getHalls();

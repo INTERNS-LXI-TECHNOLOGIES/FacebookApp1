@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-	<title>start(testing)</title>
+	<title>cover</title>
 	<link rel="stylesheet" type="text/css" href="css\way_out.css">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">

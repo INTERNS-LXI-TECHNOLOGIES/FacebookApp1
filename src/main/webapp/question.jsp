@@ -14,6 +14,7 @@
 
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="js/my-countdownTimer.js"></script>
 	<script src="js/jQuery.countdownTimer.min.js"></script>
 	<script src="js/jQuery.countdownTimer.js"></script>
 	<script src="js/wayout.js"></script>
@@ -28,7 +29,7 @@
 	List<Door> superKeys= model.getPrisoner().getSuperKeys();
 	Door door;
 %>
-<body class="question-container" onload="checkCookie()">
+<body class="question-container" onload="start(<%=request.getDoorId()%>)">
 
 	<% for (Door d:doors) {
 			if(d.getDoorId()==request.getParameter("doorId"))
@@ -44,19 +45,21 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-1"></div>
-			<div class="col-sm-7 question-image text-center"><img src="images/room3.jpg"></div>
+			<div class="col-sm-7 question-image text-center"><img src="<%=door.getSecurityQuestion().getImageUrl()%>"></div>
 			<div class="col-sm-3 options text-center">
 				<div class="row">
 					<div class="question-timer"><p id="question-timer"></p></div>
 				</div>
 				<div class="row">
-				<form class="question-form">
+				<form class="question-form" method="POST" action="play">
 				<!-- Group of default radios - option 2 -->
 				<% for(String option:options){%>
 				<div class="custom-control custom-radio">
 				  <input type="radio" class="custom-control-input" id="defaultGroupExample2" value="<%=option%>" name="option">
 				  <label class="custom-control-label" for="defaultGroupExample2"><%=option%></label>
+				  <input type="hidden" class="custom-control-input" id="defaultGroupExample2" value="<%=door.getDoorId()%>" name="doorId">
 				</div>
+				<%}%>
 				<input type="submit" class="go-ahead" name="submit" value="submit">
 				</form>
 			</div>

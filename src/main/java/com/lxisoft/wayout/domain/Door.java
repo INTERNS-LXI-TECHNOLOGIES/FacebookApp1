@@ -33,13 +33,13 @@ public class Door
      * The Boolean value corresponding to the door current status
      */
 
-    private Boolean isAccessDenied;
+    private boolean isAccessDenied=false;
 
     /**
-     * The Boolean value corresponding to the door open/close status
+     * The boolean value corresponding to the door open/close status
      */
 
-    private Boolean isOpen;
+    private boolean isOpen=false;
 
     /**
      * Reference to Logger class to get log messages
@@ -148,7 +148,7 @@ public class Door
 	 *            block status of a door
 	 */
 
-	public void setIsAccessDenied(Boolean isAccessDenied)
+	public void setIsAccessDenied(boolean isAccessDenied)
 	{
 		log.info("Door class...........setIsAccessDenied................starts");
 
@@ -166,7 +166,7 @@ public class Door
 	 *
 	 */
 	
-	public Boolean isAccessDenied()
+	public boolean isAccessDenied()
 	{
 		log.info("Door class.............isAccessDenied...................starts/ends");
 
@@ -180,7 +180,7 @@ public class Door
 	 *            open status of a door
 	 */
 
-	public void setIsOpen(Boolean isOpen)
+	public void setIsOpen(boolean isOpen)
 	{
 		log.info("Door class...........setIsOpen................starts");
 
@@ -198,7 +198,7 @@ public class Door
 	 *
 	 */
 	
-	public Boolean isOpen()
+	public boolean isOpen()
 	{
 		log.info("Door class.............isOpen...................starts/ends");
 

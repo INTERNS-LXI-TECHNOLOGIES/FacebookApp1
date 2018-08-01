@@ -192,50 +192,12 @@ public SecurityQuestion findOne(Long id){
 	*to find SecurityQuestion
 	*@return securityQuestions
 	**/
+		public Set<SecurityQuestion> findAll(){
 
-/*public Set<SecurityQuestion> findAll(){
-
-		Set<SecurityQuestion>securityQuestions=new TreeSet<SecurityQuestion>();
-		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion() with no id==========");
-		try
-		{
-			connection=dataSource.getConnection();
-			statement=connection.createStatement();
-			ResultSet resultSet=statement.executeQuery("select * from securityquestion;" );
-			while(resultSet.next())
-			{
-
-		
-				SecurityQuestion securityQuestion=new SecurityQuestion();
-				securityQuestion.setQuestionId((long)resultSet.getInt(1));
-				securityQuestion.setQuestion(resultSet.getString(2));
-				Set<String>options=new TreeSet<String>();
-				options.add(resultSet.getString(3));
-				options.add(resultSet.getString(4));
-				options.add(resultSet.getString(5));
-				securityQuestion.setOptions(options);
-				securityQuestion.setAnswer(resultSet.getString(6));
-				logger.info("============"+securityQuestion+"===========");
-				securityQuestions.add(securityQuestion);
-			}
-			connection.close();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();			
-				logger.info("eeeeeeeeeeeeeeeeeeeeee"+e);
-		}
-		logger.info("============Exited from  SecurityQuestionRepository/updateSecurityQuestion()===========");
-		
-		return securityQuestions;
-	}*/
-	
-	
-	public Set<SecurityQuestion> findAll(){
-
-	SecurityQuestion securityQuestion=new SecurityQuestion();
+	//SecurityQuestion securityQuestion=new SecurityQuestion();
 	
 		Set<SecurityQuestion> securityQuestions=new HashSet<SecurityQuestion>();
+		List<String> options=new ArrayList<String>();
 		logger.info("============Entered into SecurityQuestionRepository/findAllSecurityQuestion() with no id==========");
 		try
 		{
@@ -243,42 +205,25 @@ public SecurityQuestion findOne(Long id){
 			dataSource=(DataSource)context.lookup("java:comp/env/jdbc/datasource");
 			connection=dataSource.getConnection();
 			statement=connection.createStatement();
-			ResultSet resultSet=statement.executeQuery("select sq.id,sq.image_path,sq.question,qo.opt,sq.answer from question_option qo inner join security_question_options sqo on qo.id = sqo.option_id inner join security_question sq on sqo.question_id = sq.id order by sq.id" );
+			ResultSet resultSet=statement.executeQuery("select sq.id,sq.image_path,sq.question,sq.answer,GROUP_CONCAT(DISTINCT qo.opt SEPARATOR ',') as opt from question_option qo inner join security_question_options sqo on qo.id = sqo.option_id inner join security_question sq on sqo.question_id = sq.id group by sq.id");
 			
-			Set<String> options=new HashSet<String>();
-			
-			int i =0,oldQuestionId=-1;
-
 			while(resultSet.next())
-			{
-				i=i+1;
-				int currentQuestionId = resultSet.getInt("id");
-				if(oldQuestionId != currentQuestionId ) {
-				   /* if ( i != 1){
-					    securityQuestion.setOptions(options);
-					    securityQuestions.add(securityQuestion);
-                       i=0;					
-				    }*/
-				    options.clear();
-				    if(securityQuestions.size()!=0)
-				    {
-				    	securityQuestions.add(securityQuestion);
-				    	securityQuestion=new SecurityQuestion();
-				    }
+				
+				{	
+					SecurityQuestion securityQuestion=new SecurityQuestion();
 					securityQuestion.setQuestionId((long)resultSet.getInt("id"));
 					securityQuestion.setImageUrl(resultSet.getString("image_path"));
 					securityQuestion.setQuestion(resultSet.getString("question"));
 					securityQuestion.setAnswer(resultSet.getString("answer"));
-					
-				}
-				
-				options.add(resultSet.getString("opt"));
-				securityQuestion.setOptions(options);	
-				oldQuestionId = currentQuestionId;
-	
-			//	logger.info("============"+securityQuestion+"===========");
-			}
+					String questionOptions=resultSet.getString("opt");
+					Set<String> opt=new HashSet<String>(Arrays.asList(questionOptions.split(",")));
+					//options.addAll(opt);
 		
+					securityQuestion.setOptions(opt);		
+					securityQuestions.add(securityQuestion);
+				
+				}				
+				
 			for(SecurityQuestion securityquestion:securityQuestions){
 				System.out.println("*************"+securityquestion.getQuestionId());
 				System.out.println("*************"+securityquestion.getQuestion());
@@ -300,7 +245,6 @@ public SecurityQuestion findOne(Long id){
 		
 		return securityQuestions;
 	}
-
 
 } 
  
