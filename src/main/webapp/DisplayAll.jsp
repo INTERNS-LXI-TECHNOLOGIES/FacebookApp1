@@ -35,7 +35,7 @@ table, th, td {
 <%@ page import="com.lxisoft.wayout.web.*,com.lxisoft.wayout.domain.*,java.sql.*,java.util.*"%>
 
 <%
-Set<SecurityQuestion> secQuestions=(Set<SecurityQuestion>)session.getAttribute("question");
+TreeSet<SecurityQuestion> secQuestions=(TreeSet<SecurityQuestion>)session.getAttribute("question");
 
 //Set<SecurityQuestion> secQuestions=Set<SecurityQuestion>)session.getAttribute("PageImport");
 //Collections.sort(secQuestions);
