@@ -11,7 +11,7 @@ import com.lxisoft.wayout.web.*;
 *
 * @version 1.0
 */
-public class AddQuestionModel implements Comparable<AddQuestionModel>
+public class AddQuestionModel
 {
 
 
@@ -70,13 +70,6 @@ public class AddQuestionModel implements Comparable<AddQuestionModel>
 	}
 
 
-public int compareTo(AddQuestionModel addQuestionModel){
 
-		
-			long l= id-addQuestionModel.getId();
-			return (int) l;
-
-
-	}
 
 }

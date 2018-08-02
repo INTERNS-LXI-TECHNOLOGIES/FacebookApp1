@@ -10,7 +10,7 @@ import java.util.logging.*;
 * @version 1.0
 *
 */
-public class SecurityQuestion
+public class SecurityQuestion implements Comparable<SecurityQuestion>
 {
 	/**
 	*This is a image url for security question
@@ -182,5 +182,13 @@ public class SecurityQuestion
 		log.info("SecurityQuestion class..........................equals................starts/ends");
 
 		return ((obj != null) && (obj instanceof SecurityQuestion) && (this.getQuestionId() == ((SecurityQuestion)obj).getQuestionId())); 
+	}
+	public int compareTo(SecurityQuestion secQuestion){
+
+		
+			long l= questionId-secQuestion.getQuestionId();
+			return (int) l;
+
+
 	}
 }
