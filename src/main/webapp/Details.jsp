@@ -47,16 +47,16 @@ Set<String> options=securityQuestion.getOptions();
 %>
 
 <div>
-	<a href="edit?questionId=<%=securityQuestion.getQuestionId()%>"><img src="images/icons/edit.jpg" width="50" height="50" title=editContact></a>
-	<a href="delete?questionId=<%=securityQuestion.getQuestionId()%>"><img src="images/icons/delete.jpg" width="50" height="50" title=deleteContact></a>
+	<a href="edit?questionId=<%=securityQuestion.getQuestionId()%>"><img src="images/icons/edit.jpg" width="50" height="50" title=editContact></a></br></br>
+	<a href="delete?questionId=<%=securityQuestion.getQuestionId()%>"><img src="images/icons/delete.jpg" width="50" height="50" title=deleteContact></a></br></br>
 	<%String imgurl=securityQuestion.getImageUrl();%>
-	<img src="<%=imgurl%>"  height="150" width="140">
+	<img src="<%=imgurl%>"  height="150" width="140"></br></br>
 	<%
-	out.println(""+securityQuestion.getQuestion());
-	for(String option:options)
-		out.println(option);
+	out.println(""+securityQuestion.getQuestion());%></br></br>
+	<%for(String option:options)%>
+		<%out.println(option);%></br></br>
 
-	out.println(""+securityQuestion.getAnswer());%>
+	<%out.println(""+securityQuestion.getAnswer());%></br></br>
 
 </div>
 	

@@ -45,17 +45,22 @@ Set<SecurityQuestion> secQuestions=(Set<SecurityQuestion>)session.getAttribute("
         <th>question</th>
         <th>answer</th>
     </tr>
+    <% for(SecurityQuestion secQuestion:secQuestions){
+    /*for(int i=secQuestions.size();i<=0;i--){
+   SecurityQuestion secQuestion=secQuestions.get(i);*/ %>
+
     <tr>
-   <% for(SecurityQuestion secQuestion:secQuestions){%>
+   
       <td><center><%out.println(secQuestion.getQuestionId());%></center></td>
       <td>  <center> <a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%out.println(secQuestion.getQuestion());%></a></center></td>
        <td><center><%out.println(secQuestion.getAnswer());%></center></td>
    </tr>
-</table>
-<%
+   <%
 }
 
 %>
+</table>
+
 
   
 

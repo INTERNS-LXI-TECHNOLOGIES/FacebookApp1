@@ -52,8 +52,7 @@ input[type=text] {
     <input type="text" value="<%=imageUrl%>" name="imageUrl"  required></br></br>
 
 	<label for="question"><b>Question</b></label>
-
-    <input type="text" value="<%=question%>"  name="Question"  required></br></br>
+    <input type="text" value="<%=question%>"  name="question"  required></br></br>
 
 
 
