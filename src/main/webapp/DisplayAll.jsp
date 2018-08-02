@@ -74,7 +74,7 @@ String pageNo=request.getParameter("link");
       }
 
 %>
-<table style="width:100%">
+<table style="width:80%;margin-top: 20px;margin-left: 10%" class="text-center">
 <caption>Questions</caption>
     <tr>
         <center><th>questionId</th></center>
