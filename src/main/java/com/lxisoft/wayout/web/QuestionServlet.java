@@ -69,13 +69,13 @@ public class QuestionServlet extends HttpServlet{
  			logger.info(">>>>>>>>>>entering the  try block");
 			
 
-			addQuestionModel.question=request.getParameter("question");
-			addQuestionModel.imageUrl=request.getParameter("imageUrl");
+			addQuestionModel.setQuestion(request.getParameter("question"));
+			addQuestionModel.setImageUrl(request.getParameter("imageUrl"));
 			String sNoOfOptions=request.getParameter("noOfOptions");
 			if(sNoOfOptions!=null)
 			{
 
-				addQuestionModel.noOfOptions=Integer.parseInt(request.getParameter("noOfOptions"));
+				addQuestionModel.setNoOfOption(Integer.parseInt(request.getParameter("noOfOptions")));
 				request.getSession().setAttribute("model",addQuestionModel);
 				response.sendRedirect("AddQuestion.jsp");
 			}
@@ -85,21 +85,26 @@ public class QuestionServlet extends HttpServlet{
 				SecurityQuestion securityQuestion=new SecurityQuestion();
 				Set<String> options= new TreeSet<String>();
 				addQuestionModel=(AddQuestionModel)request.getSession().getAttribute("model");
-				int noOfOptions=addQuestionModel.noOfOptions;
-				addQuestionModel.options=new String[noOfOptions];
+
+				
+				int noOfOptions=addQuestionModel.getNoOfOption();
+				
+				addQuestionModel.setOptions(new String[noOfOptions]);
 				for(int i=0;i<noOfOptions;i++)
 				{
 					
-					addQuestionModel.options[i]=request.getParameter("option"+(i+1));
+					//addQuestionModel.options[i]=request.getParameter("option"+(i+1));
+					addQuestionModel.setOptionsOf(request.getParameter("option"+(i+1)), i);
 					options.add(request.getParameter("option"+(i+1)));
 				}
 				
-				securityQuestion.setQuestion(addQuestionModel.question);
+				securityQuestion.setQuestion(addQuestionModel.getQuestion());
+
 				
 				securityQuestion.setOptions(options);
 				securityQuestion.setAnswer(request.getParameter("answer"));
 
-				securityQuestion.setImageUrl(addQuestionModel.imageUrl);
+				securityQuestion.setImageUrl(addQuestionModel.getImageUrl());
 	 
 				securityQuestionServiceImpl.addSecurityQuestion(securityQuestion);
 				/**

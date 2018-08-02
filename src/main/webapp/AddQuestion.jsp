@@ -36,6 +36,8 @@ input[type=text] {
 <%@ page import= "com.lxisoft.wayout.domain.*,com.lxisoft.wayout.model.*,java.util.*"%>
 <% AddQuestionModel addQuestionModel=(AddQuestionModel)session.getAttribute("model");
 
+    request.getSession().removeAttribute("contact");
+
     if(addQuestionModel==null)
         addQuestionModel=new AddQuestionModel();
 

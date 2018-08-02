@@ -38,6 +38,7 @@ table, th, td {
 Set<SecurityQuestion> secQuestions=(Set<SecurityQuestion>)session.getAttribute("question");
 
 //Set<SecurityQuestion> secQuestions=Set<SecurityQuestion>)session.getAttribute("PageImport");
+//Collections.sort(secQuestions);
 %>
 <table style="width:100%">
 <caption>Questions</caption>
