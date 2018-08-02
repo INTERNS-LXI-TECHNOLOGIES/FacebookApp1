@@ -41,8 +41,8 @@ input[type=text] {
     if(addQuestionModel==null)
         addQuestionModel=new AddQuestionModel();
 
-        String imageUrl=addQuestionModel.imageUrl;
-        String question=addQuestionModel.question;
+        String imageUrl=addQuestionModel.getImageUrl();
+        String question=addQuestionModel.getQuestion();
 
 
 %>
@@ -61,8 +61,8 @@ input[type=text] {
 
     <%
 
-        int count=0;0
-        if(addQuestionModel.noOfOptions==0)
+        int count=0;
+        if(addQuestionModel.getNoOfOption()==0)
         { %>
             <label for="no:of options"><b> no:of options</b></label>
             <input type="text" placeholder="enter the no:of options" name="noOfOptions"  required>
@@ -70,7 +70,7 @@ input[type=text] {
        <% }
         else
         {
-            int noOfOptions=addQuestionModel.noOfOptions;
+            int noOfOptions=addQuestionModel.getNoOfOption();
             for(int i=1;i<=noOfOptions;i++)
             {
              count++;
