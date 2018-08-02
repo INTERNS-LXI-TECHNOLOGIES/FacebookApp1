@@ -446,7 +446,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		Prisoner prisoner = new Prisoner();
 		List<SuperKey> superKeys = new ArrayList<SuperKey>();
 		int i=0;
-		while(i<3)
+		while(i<1)
 		{
 			SuperKey key = new SuperKey();
 			superKeys.add(key);	
@@ -462,7 +462,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		
 		game = new Game();//creating game model object to pass to playGame() method. 
 		game.setPrisoner(prison.getPrisoner());
-		game.setNumberOfKeys(3);
+		game.setNumberOfKeys(1);
 		log.info("-----------GameServlet-----------loadGame()---------ends");
 		return game;
 	}
