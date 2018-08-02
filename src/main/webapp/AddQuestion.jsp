@@ -4,7 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="Sample.css">
 </head>
 <div id="add">
-<center><h1>Add Question</h1></center>
+
 <p align="left">
 <a href="AdminOptions.jsp"><img src="images/icons/home.jpg" width="50" height="50"></a></br></br>
 
@@ -52,10 +52,10 @@ input[type=text] {
 	<center>
 <div>
     <label for="imageUrl"><b>imageUrl</b></label>
-    <input type="text" value="<%=imageUrl%>" name="imageUrl"  required></br></br>
+    <input type="text" placeholder="enter the img url..." name="imageUrl"  required></br></br>
 
 	<label for="question"><b>Question</b></label>
-    <input type="text" value="<%=question%>"  name="question"  required></br></br>
+    <input type="text" placeholder="enter the questions..."  name="question"  required></br></br>
 
 
 
@@ -65,7 +65,7 @@ input[type=text] {
         if(addQuestionModel.getNoOfOption()==0)
         { %>
             <label for="no:of options"><b> no:of options</b></label>
-            <input type="text" placeholder="enter the no:of options" name="noOfOptions"  required>
+            <input type="text" placeholder="enter the no:of options..." name="noOfOptions"  required></br></br>
             <input type="submit" value="go" class="button" width="50" height="50"></br>
        <% }
         else

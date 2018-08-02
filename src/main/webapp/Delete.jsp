@@ -4,7 +4,7 @@
 	<link rel="stylesheet" type="text/css" href="Sample.css">
 </head>
 <div id="add">
-<h1>Delete Question</h1>
+
 <p align="left">
 <a href="AdminOptions.jsp"><img src="/images/icons/home.jpg" width="50" height="50"></a></br></br>
 
