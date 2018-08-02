@@ -128,7 +128,7 @@ public class SecurityQuestionRepository{
 
 	PreparedStatement stmt;
 	
-		logger.info("============Entered into SecurityQuestionRepository/addSecurityQuestion()===========");
+		logger.info("============Entered into SecurityQuestionRepository/delete()===========");
 		try
 		{
 			
@@ -144,7 +144,7 @@ public class SecurityQuestionRepository{
 		{
 			e.printStackTrace();
 		}
-
+		logger.info("============Exit from SecurityQuestionRepository/delete()===========");
 	}
 
 	/**
@@ -153,11 +153,11 @@ public class SecurityQuestionRepository{
 
 	public void update(SecurityQuestion securityQuestion){
 
-		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion()===========");
+		logger.info("============Entered into SecurityQuestionRepository/update()===========");
  		//logger.info("OOOOOOOOsecurityQuestion"+securityQuestion+"OOOOOOOO");
 		delete(securityQuestion);
 		save(securityQuestion);		
-		logger.info("============Exited from  SecurityQuestionRepository/updateSecurityQuestion()===========");
+		logger.info("============Exited from  SecurityQuestionRepository/update()===========");
 		
 	}
 	/**
@@ -170,7 +170,7 @@ public SecurityQuestion findOne(Long id){
 		SecurityQuestion securityQuestion=new SecurityQuestion();
 		PreparedStatement stmt;
 		
-		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion() with id="+id+"===========");
+		logger.info("============Entered into SecurityQuestionRepository/findOne() with id="+id+"===========");
 		try
 		{
 			connection=dataSource.getConnection();
@@ -199,7 +199,7 @@ public SecurityQuestion findOne(Long id){
 		{
 			e.printStackTrace();
 		}
-		logger.info("============Exited from  SecurityQuestionRepository/updateSecurityQuestion()===========");
+		logger.info("============Exited from  SecurityQuestionRepository/findOne()===========");
 		
 		return securityQuestion;
 	}
@@ -215,7 +215,7 @@ public SecurityQuestion findOne(Long id){
 	
 		Set<SecurityQuestion> securityQuestions=new HashSet<SecurityQuestion>();
 		List<String> options=new ArrayList<String>();
-		logger.info("============Entered into SecurityQuestionRepository/findAllSecurityQuestion() with no id==========");
+		logger.info("============Entered into SecurityQuestionRepository/findAll() with no id==========");
 		try
 		{
 			context=new InitialContext();
@@ -261,7 +261,7 @@ public SecurityQuestion findOne(Long id){
 			e.printStackTrace();			
 			logger.info("eeeeeeeeeeeeeeeeeeeeee"+e);
 		}
-		logger.info("============Exited from  SecurityQuestionRepository/findAllSecurityQuestion()===========");
+		logger.info("============Exited from  SecurityQuestionRepository/findAll()===========");
 		
 		return securityQuestions;
 	}

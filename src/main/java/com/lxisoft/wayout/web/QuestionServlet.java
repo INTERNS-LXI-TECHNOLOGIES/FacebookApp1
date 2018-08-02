@@ -82,20 +82,18 @@ public class QuestionServlet extends HttpServlet{
 			else
 			{
 
-				System.out.println("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
 				SecurityQuestion securityQuestion=new SecurityQuestion();
 				Set<String> options= new TreeSet<String>();
 				addQuestionModel=(AddQuestionModel)request.getSession().getAttribute("model");
 				int noOfOptions=addQuestionModel.noOfOptions;
-				System.out.println("***************************************"+noOfOptions);
 				addQuestionModel.options=new String[noOfOptions];
 				for(int i=0;i<noOfOptions;i++)
 				{
-					System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+					
 					addQuestionModel.options[i]=request.getParameter("option"+(i+1));
 					options.add(request.getParameter("option"+(i+1)));
 				}
-				System.out.println("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz");
+				
 				securityQuestion.setQuestion(addQuestionModel.question);
 				
 				securityQuestion.setOptions(options);
@@ -108,6 +106,8 @@ public class QuestionServlet extends HttpServlet{
 				*redirecting to another page
 				*
 				*/
+				addQuestionModel=null;
+				request.getSession().removeAttribute("model");
 				response.sendRedirect("RedirectingPage.jsp");
 
 			}

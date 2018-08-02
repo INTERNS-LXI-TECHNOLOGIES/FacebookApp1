@@ -35,6 +35,7 @@ input[type=text] {
 <body>
 <%@ page import= "com.lxisoft.wayout.domain.*,com.lxisoft.wayout.model.*,java.util.*"%>
 <% AddQuestionModel addQuestionModel=(AddQuestionModel)session.getAttribute("model");
+
     if(addQuestionModel==null)
         addQuestionModel=new AddQuestionModel();
 
@@ -58,7 +59,7 @@ input[type=text] {
 
     <%
 
-        int count=0;
+        int count=0;0
         if(addQuestionModel.noOfOptions==0)
         { %>
             <label for="no:of options"><b> no:of options</b></label>
