@@ -4,7 +4,7 @@ import java.util.logging.*;
 /**
 * This class is for control prison
 *
-* @author Dheeraj das
+* @author Aparna,Manoj
 *
 * @version 1.0
 */

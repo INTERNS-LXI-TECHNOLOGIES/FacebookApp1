@@ -3,7 +3,7 @@ package com.lxisoft.wayout.domain;
 import java.util.*;
 
 /**
-*@author Anjali
+*@author Vishnu,Sreejith
 *
 *model class for Prisoner
 *

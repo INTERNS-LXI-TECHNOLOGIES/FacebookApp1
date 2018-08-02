@@ -5,7 +5,7 @@ import java.util.logging.*;
 /** 
 * This class is for control security question
 *
-* @author Dheeraj das
+* @author Arya
 *
 * @version 1.0
 *

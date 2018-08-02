@@ -5,7 +5,7 @@ import java.util.logging.*;
 /**
  * define Door enitity in the game. 
  * 
- * @author Sarangi Balu
+ * @author Balagopal,Prabinraj
  * 
  * @version $version-stub$
  *
