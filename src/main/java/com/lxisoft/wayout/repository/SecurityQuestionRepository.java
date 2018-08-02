@@ -35,6 +35,8 @@ public class SecurityQuestionRepository{
 	*Reference to the Stetement 
 	**/
 
+	PreparedStatement stmt;
+
 	Statement statement;
 
 	/**
@@ -77,9 +79,7 @@ public class SecurityQuestionRepository{
 
 	public void save(SecurityQuestion securityQuestion){
 		
-		PreparedStatement stmt;
-
-		/*try
+		try
 		{
  
 			logger.info("============Entered into SecurityQuestionRepository/addSecurityQuestion()===========");
@@ -88,25 +88,26 @@ public class SecurityQuestionRepository{
 			
 			Set<String> options=securityQuestion.getOptions();
 			
+			for(String opt:options){
+				
+				System.out.println(opt);
+			}
 				for(String opt:options){
 			
 					stmt=connection.prepareStatement("Insert into question_option (opt) values(?)");
 					stmt.setString(1,opt);
+					stmt.executeUpdate();
+					stmt.close();
 			}
 			
-			stmt.executeUpdate(); 
-			stmt.close();
 			logger.info("============question options inserted===========");
 			
-			stmt=connection.prepareStatement("INSERT INTO security_question (image_path,question,answer) VALUES ('?', '?','?')");
+			stmt=connection.prepareStatement("INSERT INTO security_question (image_path,question,answer) VALUES (?,?,?)");
 			stmt.setString(1,securityQuestion.getImageUrl());
-			stmt.setString(1,securityQuestion.getQuestion());
-			stmt.setString(1,securityQuestion.getAnswer());
+			stmt.setString(2,securityQuestion.getQuestion());
+			stmt.setString(3,securityQuestion.getAnswer());
 			
 			stmt.executeUpdate(); 
-			stmt.close();
-			logger.info("============question inserted===========");
-			
 			
 			connection.close();
 		}
@@ -115,7 +116,7 @@ public class SecurityQuestionRepository{
 			e.printStackTrace();
 		}
 		logger.info("============Exited from  SecurityQuestionRepository/addSecurityQuestion()===========");
-*/
+
 	}
 
 
@@ -154,8 +155,7 @@ public class SecurityQuestionRepository{
 	public void update(SecurityQuestion securityQuestion){
 
 		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion()===========");
- 		//logger.info("OOOOOOOOsecurityQuestion"+securityQuestion+"OOOOOOOO");
-		delete(securityQuestion);
+ 		delete(securityQuestion);
 		save(securityQuestion);		
 		logger.info("============Exited from  SecurityQuestionRepository/updateSecurityQuestion()===========");
 		
@@ -222,7 +222,7 @@ public SecurityQuestion findOne(Long id){
 			dataSource=(DataSource)context.lookup("java:comp/env/jdbc/datasource");
 			connection=dataSource.getConnection();
 			statement=connection.createStatement();
-			ResultSet resultSet=statement.executeQuery("select sq.id,sq.image_path,sq.question,sq.answer,GROUP_CONCAT(DISTINCT qo.opt SEPARATOR ',') as opt from question_option qo inner join security_question_options sqo on qo.id = sqo.option_id inner join security_question sq on sqo.question_id = sq.id group by sq.id");
+			ResultSet resultSet=statement.executeQuery("select sq.id,sq.image_path,sq.question,sq.answer,GROUP_CONCAT(DISTINCT qo.opt SEPARATOR ',') as opt from security_question sq inner join security_question_options sqo on sqo.question_id = sq.id inner join question_option qo on sqo.option_id = qo.id group by sq.id");
 			
 			
 			while(resultSet.next())
