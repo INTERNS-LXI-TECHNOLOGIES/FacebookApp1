@@ -21,6 +21,11 @@ import com.lxisoft.wayout.service.impl.*;
 
 public class QuestionServlet extends HttpServlet{
 
+     
+     /**
+       * Reference to QuestionsView
+       */
+     private QuestionsView questionsView;
 	
 	 /**
        * Reference to SwcurityQuestion class
