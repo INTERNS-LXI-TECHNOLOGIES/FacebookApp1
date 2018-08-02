@@ -11,8 +11,7 @@
 	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 	<script src="js/wayout.js"></script>
 	<script src="js/my-countdownTimer.js"></script>
-	<script src="js/jQuery.countdownTimer.min.js"></script>
-	<script src="js/jQuery.countdownTimer.js"></script>
+	<script src="js/bxslider-initializer.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
 </head>
@@ -51,11 +50,20 @@
 							if(door.isAccessDenied()) {%>
 							  <div>
 								 <div>
-									<a href="play?dooId=<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+									<a href="play?doorId=<%=door.getDoorId()%>&isAccessDenied=true%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
 						  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
 						  			<p class="float-right hall-name"><%=hallName%></p>
 								</div>
-							  	<img src="<%=pictureName%>" id="div-image" title="Door with id =<%=door.getDoorId()%>"></div>
+							  	<img src="<%=pictureName%>" onclick="noAccess()" id="div-image" title="Door with id =<%=door.getDoorId()%>"></div>
+							<%}
+							else if(door.getOpeningHall()==null) {%>
+							  <div>
+							  	<div>
+									<a href="play?doorId=<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+						  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
+						  			<p class="float-right hall-name"><%=hallName%></p>
+								</div>
+							  	<img src="<%=pictureName%>" onclick="noOpen()" id="div-image" title="Door with id =<%=door.getDoorId()%>"></div>
 							<%}
 							else {%>
 							  <div>
@@ -87,6 +95,20 @@
 			<h4>Use the superkeys if you have. Else try an attempt</h4>
 			<input type="button" onclick="redirect()" class="go-ahead float-right" name="go ahead" value="go ahead">
 			<input type="button" onclick="document.getElementById('warning-message').style.display='none'" class="go-ahead float-right" name="go ahead" value="cancel">
+		</div>
+		</div>
+		<div id="warning" class="full">
+		<div class="warning text-center animate-zoom">
+			<h3>Warning!</h3>
+			<h5>Access denied</h5>
+			<input type="button" onclick="document.getElementById('warning').style.display='none'" class="go-ahead float-right" name="go ahead" value="close">
+		</div>
+		</div>
+		<div id="no-open" class="full">
+		<div class="warning text-center animate-zoom">
+			<h3>Warning!</h3>
+			<h5>No hall</h5>
+			<input type="button" onclick="document.getElementById('no-open').style.display='none'" class="go-ahead float-right" name="go ahead" value="close">
 		</div>
 		</div>
 </body>

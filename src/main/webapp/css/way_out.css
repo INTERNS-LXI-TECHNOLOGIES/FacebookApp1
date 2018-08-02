@@ -295,3 +295,13 @@ img.arrow {
 .option-color {
 	color: #e3e5e8;
 }
+.label-color {
+	color: #edd9ce !important;
+	opacity: 0.9;
+}
+#warning {
+	display: none;
+}
+#no-hall {
+	display: none;
+}

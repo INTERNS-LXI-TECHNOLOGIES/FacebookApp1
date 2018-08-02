@@ -1,3 +1,4 @@
+var doorId;
 $(document).ready(function(){
     $("#change-lock").hover(function(){
         $(this).attr("src","images/lock_open.png");
@@ -8,36 +9,33 @@ $(document).ready(function(){
     	$(".p-animation").show();
     }); 
 });
-$(function(){
-  $('.bxslider').bxSlider({
-    mode: 'fade',
-    captions: true,
-    slideWidth: 800,
-  });
-});
-$(function(){
+/*$(function(){
     $('#question-timer').countdowntimer({
-        minutes :1,
-        seconds : 10,
+        seconds : 20,
         size : "lg",
-        displayFormat : "MS",
+        displayFormat : "S",
         expiryUrl : "play?doorId="+doorId+"\&isAccessDenied=true",
     });
-});
-var doorId;
+});*/
 function popupWarningWindow(id) {
     doorId=id;
     document.getElementById('warning-message').style.display='block';
 }
-function getAccess(id,number) {
-    if(number>0){
-        window.location="hjhk";
-    }
+function noAccess() {
+    document.getElementById('warning').style.display='block';
+}
+function noOpen() {
+    document.getElementById('no-hall').style.display='block';
 }
 function redirect() {
     window.location="question.jsp?doorId="+doorId;
 }
 function start(id) {
     doorId=id;
-    checkCookie();
+    $('#question-timer').countdowntimer({
+        seconds : 20,
+        size : "lg",
+        displayFormat : "S",
+        expiryUrl : "play?doorId="+doorId+"\&isAccessDenied=true",
+    });
 }

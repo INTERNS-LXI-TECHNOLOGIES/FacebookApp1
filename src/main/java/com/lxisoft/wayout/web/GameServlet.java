@@ -63,7 +63,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 
    {
 	   
-		  log.info("********************GameServlet**********************doGet---------> start");
+		  log.info("********************GameServlet**********************doGet---------> start"+request.getParameter("isAccessDenied")+request.getParameter("doorId"));
 
 		  HttpSession session=request.getSession();  
 		  
@@ -83,7 +83,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 	        }
  
           }
-		  else if(request.getParameter("isAccessDenied")=="true")
+		  else if(request.getParameter("isAccessDenied")!=null&&request.getParameter("isAccessDenied").equals("true"))
 		  {
 		     game=(Game)object;
 
@@ -112,7 +112,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		  if(game.getPrisoner().getCurrentLocation().isExitHall())
 		    {
                  // forward to jsp page with request parameters 
-		           request.getRequestDispatcher("win.html").forward(request,response);
+		           request.getRequestDispatcher("win.jsp").forward(request,response);
 		           return; 
 
 		    }   
@@ -144,7 +144,8 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
       		{
       			door.setIsOpen(true);
       			
-      			game.setNumberOfKeys((game.getNumberOfKeys())-1);
+      			if(game.getNumberOfKeys()>0)
+      				game.setNumberOfKeys((game.getNumberOfKeys())-1);
       			
       			List<SuperKey> superkeys=game.getPrisoner().getSuperKeys();
 
@@ -178,18 +179,22 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
    {
 	   log.info("*****GameServlet***************changeState**********************---------> start");
 	   
+	   if(door.getOpeningHall()!=null) {
 	   Hall temp= game.getPrisoner().getCurrentLocation();
 	   
 	   game.getPrisoner().setCurrentLocation(door.getOpeningHall());
 	   
 	   door.setOpeningHall(temp);
 	   
-	   if((game.getPrisoner().getCurrentLocation().getBackDoor())==null)
+	   if((game.getPrisoner().getCurrentLocation().getBackDoor())==null&&game.getPrisoner().getCurrentLocation().getHallId()!=0)
 	   {
 		   game.getPrisoner().getCurrentLocation().setBackDoor(door);
-		   door.setDoorId((long)(game.getPrisoner().getCurrentLocation().getDoors().size()));
+		   if(game.getPrisoner().getCurrentLocation().getDoors()!=null)
+		   	door.setDoorId((long)(game.getPrisoner().getCurrentLocation().getDoors().size()));
+		   else
+		   	door.setDoorId((long)0);
 	   }
-	   
+	   }
 	   log.info("******GameServlet**************changeState**********************---------> end");
 	   
    }
@@ -208,6 +213,11 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 	   
 	   List<Door> doors=game.getPrisoner().getCurrentLocation().getDoors();	
 
+/*	   if(game.getPrisoner().getCurrentLocation().getDoors()!=null && game.getPrisoner().getCurrentLocation().getBackDoor()!=null)
+	   {
+	   		if(game.getPrisoner().getCurrentLocation().getBackDoor().getDoorId()==doorId)
+	   			return game.getPrisoner().getCurrentLocation().getBackDoor();
+	   	}*/
        for(Door door:doors)
     	   
          if(doorId==(door.getDoorId()))
@@ -229,21 +239,26 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
    {
 	   log.info("_____________________________ start_________________________"+door.getDoorId());
 	   
-	   List<Door> doors=game.getPrisoner().getCurrentLocation().getDoors();
+	   if(door.getOpeningHall()!=null&&door.getOpeningHall().getDoors()!=null) {
+		   List<Door> doors=door.getOpeningHall().getDoors();
 
-	   int i;
+		   long i;
 
-	   outerloop:
-	   for(i=0;i<doors.size();i++) { // Loop to find the previous id if there is one
-       	
-       		for(Door d:doors)
-    	   
-         		if(i==(d.getDoorId()))
-         			continue outerloop;
-         	door.setDoorId((long)i);	
-         	break;
-        }
-        	           
+		   outerloop:
+		   for(i=0;i<doors.size();i++) { // Loop to find the previous id if there is one
+	       	
+	       		for(Door d:doors)
+	    	   
+	         		if(i==(d.getDoorId()))
+	         		{
+	         			log.info("***"+i+" door id"+d.getDoorId());
+	         			continue outerloop;
+	         		}
+	         	door.setDoorId(i);	
+	         	break;
+	        }
+	     }
+       log.info("_____________________________ end_________________________"+door.getDoorId());  	           
    }
    
    /**
@@ -350,7 +365,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		/*setting up some outer halls as exit hall without locked doors to escape prisoner
 		'exitHallCount' variable is used to controll while loop to set up 4 halls as exit halls
 		creating random number to determin which door to be used as exit door.*/
-		int exitHallCount=0;
+		int exitHallCount=1;
 		List<Hall> hallsForExit=prison.getHalls();
 		while(exitHallCount<4)
 		{
@@ -363,7 +378,11 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 					exitHallCount++;
 			}
 		}
-		
+
+		List<Hall> halls1=prison.getHalls();
+		for(Hall hall: halls1) {
+			log.info("______________________________________"+hall.getHallId()+" "+hall.isExitHall());
+		}
 		/*Creating 'SecurityQuestionServiceImpl' class object reference and calling its 'findAllSecurityQuestion()' method to get 
 		security question to allocate all doors
 		converting set collection to list collection to take question using index.*/
