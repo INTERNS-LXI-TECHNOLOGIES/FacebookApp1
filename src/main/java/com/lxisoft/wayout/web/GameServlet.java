@@ -446,7 +446,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		Prisoner prisoner = new Prisoner();
 		List<SuperKey> superKeys = new ArrayList<SuperKey>();
 		int i=0;
-		while(i<3)
+		while(i<1)
 		{
 			SuperKey key = new SuperKey();
 			superKeys.add(key);	
