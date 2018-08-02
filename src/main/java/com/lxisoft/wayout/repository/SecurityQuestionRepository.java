@@ -79,7 +79,68 @@ public class SecurityQuestionRepository{
 
 	public void save(SecurityQuestion securityQuestion){
 		
+		
+		logger.info("============Entered into save method SecurityQuestionRepository===========");
+		PreparedStatement stmt;
+		Set<String> options = new TreeSet<String>();
+		String question = securityQuestion.getQuestion();
+		String answer = securityQuestion.getAnswer();
+		String imagePath = securityQuestion.getImageUrl();
+		options = securityQuestion.getOptions();
 		try
+		{
+			logger.info("============Entered into try of save method SecurityQuestionRepository===========");
+			ResultSet rs1,rs2,rs3;
+			connection=dataSource.getConnection();
+			stmt=connection.prepareStatement("insert into security_question(question,image_path,answer) values('"+question+"','"+imagePath+"','"+answer+"')");
+			int a = stmt.executeUpdate();
+			if(a>0)
+			{
+				stmt = connection.prepareStatement("select id from security_question order by id desc limit 1");
+				rs1 = stmt.executeQuery();
+				if(rs1.next())
+				{
+					int q_id = Integer.parseInt(rs1.getString("id"));
+					for(String s:options)
+					{
+						int o_id;
+						int b;
+						stmt = connection.prepareStatement("select * from question_option where opt='"+s+"'");
+						rs2 = stmt.executeQuery();
+						if(rs2.next())
+						{
+							o_id = Integer.parseInt(rs2.getString("id"));
+							stmt = connection.prepareStatement("insert into security_question_options(question_id,option_id) values('"+q_id+"','"+o_id+"')");
+							int c = stmt.executeUpdate();
+						}
+						else
+						{
+							stmt=connection.prepareStatement("insert into question_option(opt) values('"+s+"')");
+							b = stmt.executeUpdate();
+							if(b>0)
+							{
+								stmt = connection.prepareStatement("select id from question_option order by id desc limit 1");
+								rs3 = stmt.executeQuery();
+								if(rs3.next())
+								{
+									o_id = Integer.parseInt(rs3.getString("id"));
+									stmt = connection.prepareStatement("insert into security_question_options(question_id,option_id) values('"+q_id+"','"+o_id+"')");
+									int c = stmt.executeUpdate();
+								}
+							}
+						}
+					}
+				}
+			}
+			connection.close();
+			logger.info("============completed save method SecurityQuestionRepository===========");
+		}
+		catch(Exception ex)
+		{
+			logger.info("============exception in save method SecurityQuestionRepository===========");
+			ex.printStackTrace();
+		}
+		/*try
 		{
  
 			logger.info("============Entered into SecurityQuestionRepository/addSecurityQuestion()===========");
@@ -115,7 +176,7 @@ public class SecurityQuestionRepository{
 		{
 			e.printStackTrace();
 		}
-		logger.info("============Exited from  SecurityQuestionRepository/addSecurityQuestion()===========");
+		logger.info("============Exited from  SecurityQuestionRepository/addSecurityQuestion()===========");*/
 
 	}
 
