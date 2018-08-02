@@ -21,7 +21,7 @@ $(function(){
         seconds : 10,
         size : "lg",
         displayFormat : "MS",
-        expiryUrl : "play?doorId="+doorId,
+        expiryUrl : "play?doorId="+doorId+"\&isAccessDenied=true",
     });
 });
 var doorId;

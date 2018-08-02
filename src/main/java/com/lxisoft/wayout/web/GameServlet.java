@@ -100,6 +100,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
      	  	if(request.getParameter("doorId")!=null)
 		  		door=getDoorByDoorId(Long.parseLong(request.getParameter("doorId")));
 
+		  	resetDoorId(door); //Door id should be reset to its previous value if prisoner comes back through back door  
              playGameWithSuperKey(door);
      	  }
 		  
@@ -186,6 +187,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 	   if((game.getPrisoner().getCurrentLocation().getBackDoor())==null)
 	   {
 		   game.getPrisoner().getCurrentLocation().setBackDoor(door);
+		   door.setDoorId((long)(game.getPrisoner().getCurrentLocation().getDoors().size()));
 	   }
 	   
 	   log.info("******GameServlet**************changeState**********************---------> end");
@@ -212,7 +214,35 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
         	 
          return door;
         	 
-       return null;
+       return game.getPrisoner().getCurrentLocation().getBackDoor(); //returns back door if there is no other door with this id
+        	           
+   }
+
+    /**
+    * get the door by DoorId
+    *
+    * @param door
+    *            door whose doorId to be reset           
+    */
+   
+   public void resetDoorId(Door door)
+   {
+	   log.info("_____________________________ start_________________________"+door.getDoorId());
+	   
+	   List<Door> doors=game.getPrisoner().getCurrentLocation().getDoors();
+
+	   int i;
+
+	   outerloop:
+	   for(i=0;i<doors.size();i++) { // Loop to find the previous id if there is one
+       	
+       		for(Door d:doors)
+    	   
+         		if(i==(d.getDoorId()))
+         			continue outerloop;
+         	door.setDoorId((long)i);	
+         	break;
+        }
         	           
    }
    
