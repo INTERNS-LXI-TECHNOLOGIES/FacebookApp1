@@ -29,7 +29,7 @@
 <form action="AddQuestion.jsp" method="post">
 	<% out.println("do you want to add new question?");%>
 <input type="submit" value="submit" name="first"/>
-<a id="cancel" href="AdminOptions.jsp"></a>
+<a id="cancel" href="AdminOptions.jsp">home</a>
 
 </form>
 
