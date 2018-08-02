@@ -79,6 +79,10 @@ public class SecurityQuestionRepository{
 
 	public void save(SecurityQuestion securityQuestion){
 		
+		ResultSet rs = null;
+		int optionId=0,questionId=0;
+		Set<Integer> optionIds=new HashSet<Integer>();
+		
 		try
 		{
  
@@ -94,21 +98,36 @@ public class SecurityQuestionRepository{
 			}
 				for(String opt:options){
 			
-					stmt=connection.prepareStatement("Insert into question_option (opt) values(?)");
+					stmt=connection.prepareStatement("Insert into question_option (opt) values(?)",Statement.RETURN_GENERATED_KEYS);
 					stmt.setString(1,opt);
 					stmt.executeUpdate();
+					rs=stmt.getGeneratedKeys();
+					
+					if(rs != null && rs.next()){
+					
+						optionId=rs.getInt(1);
+					}
+					optionIds.add(optionId);
+					
 					stmt.close();
 			}
 			
 			logger.info("============question options inserted===========");
 			
-			stmt=connection.prepareStatement("INSERT INTO security_question (image_path,question,answer) VALUES (?,?,?)");
+			stmt=connection.prepareStatement("INSERT INTO security_question (image_path,question,answer) VALUES (?,?,?)",Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1,securityQuestion.getImageUrl());
 			stmt.setString(2,securityQuestion.getQuestion());
 			stmt.setString(3,securityQuestion.getAnswer());
 			
 			stmt.executeUpdate(); 
+			rs = stmt.getGeneratedKeys();
 			
+			if(rs != null && rs.next()){
+                questionId=rs.getInt(1);
+            }
+			
+			saveToSecurityQuestionOptions(questionId,optionIds);
+           
 			connection.close();
 		}
 		catch(Exception e)
@@ -266,5 +285,24 @@ public SecurityQuestion findOne(Long id){
 		return securityQuestions;
 	}
 
+	public void saveToSecurityQuestionOptions(int questionId,Set<Integer> optionIds){
+		
+		for(Integer optionId:optionIds){
+			
+			try{
+			stmt=connection.prepareStatement("Insert into security_question_options (question_id,option_id) values(?,?)");
+			stmt.setInt(1,questionId);
+			stmt.setInt(2,optionId);
+			
+			stmt.executeUpdate();
+			stmt.close();
+	
+			}catch(Exception ex){
+				ex.printStackTrace();
+				logger.info("eeeeeeeeeeeeeeeeeeeeee"+ex);
+	
+			}
+		}
+	}
 } 
  
