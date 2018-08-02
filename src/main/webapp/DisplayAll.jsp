@@ -1,6 +1,9 @@
 </html>
 <head>
 <title>Display all Question</title>
+<meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="mystyle.css">
 	<link rel="stylesheet" type="text/css" href="Sample.css">
 </head>
 <div id="add">
@@ -32,38 +35,91 @@ table, th, td {
 </style>
 </p>
 </div>
-<%@ page import="com.lxisoft.wayout.web.*,com.lxisoft.wayout.domain.*,java.sql.*,java.util.*"%>
+<%@ page import="com.lxisoft.wayout.web.*,com.lxisoft.wayout.domain.*,com.lxisoft.wayout.model.*,java.sql.*,java.util.*"%>
 
 <%
-TreeSet<SecurityQuestion> secQuestions=(TreeSet<SecurityQuestion>)session.getAttribute("question");
 
-//Set<SecurityQuestion> secQuestions=Set<SecurityQuestion>)session.getAttribute("PageImport");
-//Collections.sort(secQuestions);
+
+QuestionsView questionsView=(QuestionsView)session.getAttribute("questionsView");
+
+
+String pageNo=request.getParameter("link");
+
+      if(pageNo!=null)
+        questionsView.setCurrentPageNo(Integer.parseInt(pageNo));
+
+      int currentPageNo=questionsView.getCurrentPageNo();
+      
+      int lastPageNo=questionsView.getLastPageNo();
+
+
+      List<SecurityQuestion> securityQuestionList=new ArrayList<SecurityQuestion>(new TreeSet<SecurityQuestion>(questionsView.getSecurityQuestionSet()));
+
+      Set<SecurityQuestion> secQuestions=new TreeSet<SecurityQuestion>();
+
+      if(currentPageNo!=lastPageNo || ((securityQuestionList.size())%5)==0)
+      {
+      for (int i=(currentPageNo-1)*5;i<currentPageNo+4 ;i++ ) {
+        
+          secQuestions.add(securityQuestionList.get(i));
+      }
+      }
+
+      else
+      {
+        for (int i=(currentPageNo-1)*5;i<(((currentPageNo-1)*5)+((securityQuestionList.size())%5)) ;i++ ) {
+        
+          secQuestions.add(securityQuestionList.get(i));
+      } 
+      }
+
 %>
 <table style="width:100%">
 <caption>Questions</caption>
     <tr>
-        <th>questionId</th>
-        <th>question</th>
-        <th>answer</th>
+        <center><th>questionId</th></center>
+        <center><th>question</th></center>
+        <center><th>answer</th></center>
     </tr>
-    <% for(SecurityQuestion secQuestion:secQuestions){
-    /*for(int i=secQuestions.size();i<=0;i--){
-   SecurityQuestion secQuestion=secQuestions.get(i);*/ %>
-
-    <tr>
-   
-      <td><center><%out.println(secQuestion.getQuestionId());%></center></td>
-      <td>  <center> <a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%out.println(secQuestion.getQuestion());%></a></center></td>
-       <td><center><%out.println(secQuestion.getAnswer());%></center></td>
+    
+   <% for(SecurityQuestion secQuestion:secQuestions)
+   { %>
+   <tr>
+      <td><center><%=secQuestion.getQuestionId()%></center></td>
+      <td>  <center> <a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%=secQuestion.getQuestion()%></a></center></td>
+       <td><center><%=secQuestion.getAnswer()%></center></td>
    </tr>
-   <%
-}
 
-%>
+<%}%>
 </table>
 
+<div class="text-center">
+      <ul class="my-pagination">
+      
+      <%if((currentPageNo>=1) && (lastPageNo!=1)){%>
+      <%if(currentPageNo!=1){%>
+      <li><a href="DisplayAll.jsp?link=<%out.println(currentPageNo-1);%>"><</a></li><%}%>
+      <%if(currentPageNo!=1){%>
+      <li><a href="DisplayAll.jsp?link=1">1</a></li><%}%>
+      <%if((currentPageNo-2)>=3){%>
+      <li>..</li><%}%>
+      <%if((currentPageNo-2)>1){%>
+      <li><a href="DisplayAll.jsp?link=<%out.println(currentPageNo-2);%>"><%out.println(currentPageNo-2);%></a></li><%}%>
+      <%if((currentPageNo-1)>1){%>
+      <li><a href="DisplayAll.jsp?link=<%out.println(currentPageNo-1);%>"><%out.println(currentPageNo-1);%></a></li><%}%>
+      <li><a class="active" href="DisplayAll.jsp?link=<%out.println(currentPageNo);%>"><%out.println(currentPageNo);%></a></li>
+      <%if((currentPageNo+1)<=lastPageNo){%>
+      <li><a href="DisplayAll.jsp?link=<%out.println(currentPageNo+1);%>"><%out.println(currentPageNo+1);%></a></li><%}%>
+      <%if((currentPageNo+2)<=lastPageNo){%>
+      <li><a href="DisplayAll.jsp?link=<%out.println(currentPageNo+2);%>"><%out.println(currentPageNo+2);%></a></li><%}%>
+      <%if((currentPageNo+2)<=lastPageNo){%>
+      <li>..</li><%}%>
+      <%if(currentPageNo!=lastPageNo){%>
+      <li><a href="DisplayAll.jsp?link=<%out.println(currentPageNo+1);%>">></a></li><%}%>
+      <%}%>
 
+    </ul>
+    </div>
   
 
 

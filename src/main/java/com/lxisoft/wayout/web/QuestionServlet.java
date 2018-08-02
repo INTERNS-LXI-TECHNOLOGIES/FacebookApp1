@@ -161,7 +161,7 @@ public class QuestionServlet extends HttpServlet{
 		*           if Undesired condition occurs 
        */
 
- 	public void doGet(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException{
+ 	/*public void doGet(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException{
  		try{
 
  			logger.info(">>>>>>>>>>>>>>entering the find all Method");
@@ -177,10 +177,62 @@ public class QuestionServlet extends HttpServlet{
  			e.printStackTrace();
 
  		}
+*/
+
+
+ 	
+ 	public void doGet(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException{
+ 		try{
+
+ 			logger.info(">>>>>>>>>>>>>>entering the find all Method");
+            
+            HttpSession session=request.getSession(); 
+
+            Object object=session.getAttribute("questionsView");
+
+		    if((object==null) || !(object instanceof Game))
+            {  
+              questionsView=new QuestionsView();
+            }
+             
+            //questionsView=(QuestionsView)object;
+             
+			Set<SecurityQuestion> questions=securityQuestionServiceImpl.findAllSecurityQuestion();
+
+			/*request.getSession().setAttribute("question",questions);*/
+
+            questionsView.setSecurityQuestionSet(questions);
+
+            questionsView.setLastPageNo(getPageSize());
+
+
+             session.setAttribute("questionsView",questionsView);
+
+
+			response.sendRedirect("DisplayAll.jsp");
+
+			logger.info(">>>>>>>>>>>>>>exiting the find all Method");
+
+ 		}
+ 		catch(Exception e){
+ 			e.printStackTrace();
+
+ 		}
 
 
 
  	}
+
+ 	public int getPageSize()
+   {
+
+    int size=(questionsView.getSecurityQuestionSet()).size();
+
+       if(size%5==0)
+          return (size/5);
+       else
+         return (size/5)+1;
+   }
  }
 
 
