@@ -1,3 +1,4 @@
+<html>
 <head>
 <title>Delete Question</title>
 	<link rel="stylesheet" type="text/css" href="Sample.css">

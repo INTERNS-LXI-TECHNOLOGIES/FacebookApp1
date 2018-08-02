@@ -67,6 +67,8 @@ public class QuestionEditServlet extends HttpServlet{
 
 
 		SecurityQuestion question=securityQuestionServiceImpl.findSecurityQuestion(questionId);
+		logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"+question+"XXXXXXXXXXXXXXXXXXXXXXXXX");
+		logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"+question.getAnswer()+"XXXXXXXXXXXXXXXXXXXXXXXXX");
 		request.getSession().setAttribute("question",question);
 		response.sendRedirect("Edit.jsp");
 

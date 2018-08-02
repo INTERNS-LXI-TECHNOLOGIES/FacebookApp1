@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>Edit Question</title>
-	<link rel="stylesheet" type="text/css" href="Sample.css">
+    <link rel="stylesheet" type="text/css" href="Sample.css">
 </head>
 <div id="add">
 <h1>Edit Question</h1>
@@ -10,56 +10,73 @@
 
 <style>
 .button{
-	background-color:cornflowerblue;
-	color:white;
+    background-color:cornflowerblue;
+    color:white;
 }
 .button:hover{
-	background-color:green;
+    background-color:green;
 }
 
 input[type=text] {
-    width: 100%;
+    width: 80%;
     padding: 12px 20px;
     margin: 10px 0;
-    display: inline-block;
+   
     border: 1px solid #ccc;
-    box-sizing: border-box;
+   color:black;
+    background-color: #FFFFFF;
+    font-size: 15px;
+    
 }
 
+</style>
 </style>
 </p>
 </div>
 <body>
-<%@ page import= "com.lxisoft.wayout.domain.*,com.lxisoft.wayout.web.*"%>
-<% SecurityQuestion securityQuestion=request.getSession.getAttribute("question");
-    Set<String>options=securityQuestion.getOptions();
-    for(String opt:options)
+<%@ page import= "com.lxisoft.wayout.domain.*,com.lxisoft.wayout.web.*,java.util.*"%>
+<% SecurityQuestion securityQuestion=(SecurityQuestion)request.getSession().getAttribute("question");
+    
+   String imageUrl=securityQuestion.getImageUrl();
+   String question=securityQuestion.getQuestion();
 
 %>
+    <label for="imageUrl"><b>imageUrl</b></label>
+    <input type="text" value="<%=imageUrl%>" name="imageUrl"  required></br></br>
+
+    <label for="question"><b>Question</b></label>
+    <input type="text" value="<%=question%>"  name="question"  required></br></br>
+
+
 
 <form action="edit" method="post">
     
 <div>
-    <label for="imageUrl"><b>imageUrl</b></label>
-    <input type="text" value="<%securityQuestion.getImageUrl()%>" name="imageUrl"  required></br></br>
+   <% 
+        int noOfOptions=securityQuestion.getOptions().size();
+        int count=0;
+        for( String option:securityQuestion.getOptions())
+        {
+            count++;
+            String optionName="option"+count;
+           
+    %>
+        <label for=<%=optionName%>><b><%=optionName%></b></label>
+        <input type="text" value="<%=option%>" name="<%=optionName%>" required></br></br>
+    <%
+        }
+       String answer=securityQuestion.getAnswer();
+       long id=securityQuestion.getQuestionId();
 
-    <label for="question"><b>Question</b></label>
-    <input type="text" value="<%securityQuestion.getQuestion()%>" name="Question"  required></br></br>
+    %>
+      
 
-    <label for="option 1"><b>option 1</b></label>
-    <input type="text" value="<%securityQuestion.getOption().get(0)%>" name="option1" required></br></br>
-
-    <label for="option 2"><b>option 2</b></label>
-    <input type="text" value="<%securityQuestion.getOption().get(1)%>"" name="option2" required></br></br>
-
-    <label for="option 3"><b>option 3</b></label>
-    <input type="text" value="<%securityQuestion.getOption().get(2)%>" name="option3" required></br></br>
 
    
     <label for="answer"><b>answer</b></label>
-    <input type="text" value="<%securityQuestion.getanswer()" name="answer" required></br></br>
+    <input type="text" value="<%=answer %>" name="answer" required></br></br>
 
-    <input type="hidden" value="<%securityQuestion.getId()%>" name="questionId"></br> 
+    <input type="hidden" value="<%=id%>" name="questionId"></br> 
 
     <input type="submit" value="Submit" class="button">
      <input type="reset" value="Reset" class="button">

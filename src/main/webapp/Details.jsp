@@ -53,8 +53,8 @@ Set<String> options=securityQuestion.getOptions();
 	<img src="<%=imgurl%>"  height="150" width="140"></br></br>
 	<%
 	out.println(""+securityQuestion.getQuestion());%></br></br>
-	<%for(String option:options)%>
-		<%out.println(option);%></br></br>
+	<%for(String option:options)
+		out.println(option);%></br></br>
 
 	<%out.println(""+securityQuestion.getAnswer());%></br></br>
 
