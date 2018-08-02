@@ -59,7 +59,7 @@ String pageNo=request.getParameter("link");
 
       if(currentPageNo!=lastPageNo || ((securityQuestionList.size())%5)==0)
       {
-      for (int i=(currentPageNo-1)*5;i<currentPageNo+4 ;i++ ) {
+      for (int i=(currentPageNo-1)*5;i<((currentPageNo-1)*5)+5 ;i++ ) {
         
           secQuestions.add(securityQuestionList.get(i));
       }
