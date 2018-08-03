@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 public class SecurityQuestionRepository{
 
 	/*
-	* Refernce for the datasource
+	* Reference for the datasource
 	*/
 
 	private DataSource dataSource;
@@ -79,6 +79,7 @@ public class SecurityQuestionRepository{
 
 	public void save(SecurityQuestion securityQuestion){
 		
+
 		
 		logger.info("============Entered into save method SecurityQuestionRepository===========");
 		PreparedStatement stmt;
@@ -140,44 +141,7 @@ public class SecurityQuestionRepository{
 			logger.info("============exception in save method SecurityQuestionRepository===========");
 			ex.printStackTrace();
 		}
-		/*try
-		{
- 
-			logger.info("============Entered into SecurityQuestionRepository/addSecurityQuestion()===========");
-			
-			connection=dataSource.getConnection();
-			
-			Set<String> options=securityQuestion.getOptions();
-			
-			for(String opt:options){
-				
-				System.out.println(opt);
-			}
-				for(String opt:options){
-			
-					stmt=connection.prepareStatement("Insert into question_option (opt) values(?)");
-					stmt.setString(1,opt);
-					stmt.executeUpdate();
-					stmt.close();
-			}
-			
-			logger.info("============question options inserted===========");
-			
-			stmt=connection.prepareStatement("INSERT INTO security_question (image_path,question,answer) VALUES (?,?,?)");
-			stmt.setString(1,securityQuestion.getImageUrl());
-			stmt.setString(2,securityQuestion.getQuestion());
-			stmt.setString(3,securityQuestion.getAnswer());
-			
-			stmt.executeUpdate(); 
-			
-			connection.close();
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		logger.info("============Exited from  SecurityQuestionRepository/addSecurityQuestion()===========");*/
-
+		
 	}
 
 
@@ -327,5 +291,24 @@ public SecurityQuestion findOne(Long id){
 		return securityQuestions;
 	}
 
+	public void saveToSecurityQuestionOptions(int questionId,Set<Integer> optionIds){
+		
+		for(Integer optionId:optionIds){
+			
+			try{
+			stmt=connection.prepareStatement("Insert into security_question_options (question_id,option_id) values(?,?)");
+			stmt.setInt(1,questionId);
+			stmt.setInt(2,optionId);
+			
+			stmt.executeUpdate();
+			stmt.close();
+	
+			}catch(Exception ex){
+				ex.printStackTrace();
+				logger.info("eeeeeeeeeeeeeeeeeeeeee"+ex);
+	
+			}
+		}
+	}
 } 
  

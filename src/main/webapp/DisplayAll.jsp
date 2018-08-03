@@ -1,13 +1,29 @@
-</html>
+
+
+
+<!DOCTYPE html>
 <head>
-<title>Display all Question</title>
-<meta charset="utf-8">
+  <title>DisplayAll</title>
+  <link rel="stylesheet" type="text/css" href="css/admin.css">
+
+    <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
+
   <link rel="stylesheet" type="text/css" href="bootstrap.css">
   <link rel="stylesheet" type="text/css" href="mystyle.css">
-	<link rel="stylesheet" type="text/css" href="Sample.css">
+  <link rel="stylesheet" type="text/css" href="Sample.css">
 </head>
+<body>
+
+
 <div id="add">
-<center><h1> Question</h1></center>
+
 <p align="left">
 <a href="AdminOptions.jsp"><img src="images/icons/home.jpg" width="50" height="50"></a></br></br>
 
@@ -59,7 +75,7 @@ String pageNo=request.getParameter("link");
 
       if(currentPageNo!=lastPageNo || ((securityQuestionList.size())%5)==0)
       {
-      for (int i=(currentPageNo-1)*5;i<currentPageNo+4 ;i++ ) {
+      for (int i=(currentPageNo-1)*5;i<((currentPageNo-1)*5)+5 ;i++ ) {
         
           secQuestions.add(securityQuestionList.get(i));
       }
@@ -74,24 +90,44 @@ String pageNo=request.getParameter("link");
       }
 
 %>
-<table style="width:80%;margin-top: 20px;margin-left: 10%" class="text-center">
-<caption>Questions</caption>
+  <div class="row">
+    <div class="col-sm-2"></div>
+  <div class="col-sm-8">
+  <table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
+  <thead>
     <tr>
-        <center><th>questionId</th></center>
-        <center><th>question</th></center>
-        <center><th>answer</th></center>
+      <th class="th-sm">QuestionId
+        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+      </th>
+      <th class="th-sm">Question
+        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+      </th>
+      <th class="th-sm">Answer
+        <i class="fa fa-sort float-right" aria-hidden="true"></i>
+      </th>
+      
+    </tr>
+  </thead>
+  <tbody>
+
+    <% for(SecurityQuestion secQuestion:secQuestions)
+   { %>
+
+    <tr>
+      <td><%=secQuestion.getQuestionId()%></td>
+      <td><a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%=secQuestion.getQuestion()%></a></td>
+      <td><%=secQuestion.getAnswer()%></td>
+      
     </tr>
     
-   <% for(SecurityQuestion secQuestion:secQuestions)
-   { %>
-   <tr>
-      <td><center><%=secQuestion.getQuestionId()%></center></td>
-      <td>  <center> <a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%=secQuestion.getQuestion()%></a></center></td>
-       <td><center><%=secQuestion.getAnswer()%></center></td>
-   </tr>
+  </tbody>
 
-<%}%>
-</table>
+  <%}%>
+  
+</table></br>
+</div>
+</div>
+
 
 <div class="text-center">
       <ul class="my-pagination">

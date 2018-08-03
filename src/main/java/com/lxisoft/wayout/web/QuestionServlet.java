@@ -195,7 +195,7 @@ public class QuestionServlet extends HttpServlet{
 
             Object object=session.getAttribute("questionsView");
 
-		    if((object==null) || !(object instanceof Game))
+		    if((object==null) || !(object instanceof QuestionsView))
             {  
               questionsView=new QuestionsView();
             }
