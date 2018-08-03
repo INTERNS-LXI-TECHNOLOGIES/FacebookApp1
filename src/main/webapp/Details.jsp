@@ -46,51 +46,70 @@ String imgurl=securityQuestion.getImageUrl();
 
 %>
 
-<p align="right">
-<a href="AdminOptions.jsp"><img src="images/icons/home.jpg" width="90" height="90"></a></br></br>
-<a href="edit?questionId=<%=securityQuestion.getQuestionId()%>"><img src="images/icons/edit3.jpg" width="90" height="90" title=editContact></a></br></br>
-<a href="delete?questionId=<%=securityQuestion.getQuestionId()%>"><img src="images/icons/remove1.jpg" width="90" height="90" title=deleteContact></a></br></br>
-</p>
-
-
 
 <!-- Card Light -->
   <div class="row">
-		<div class="col-sm-2"></div>
-			<div class="col-sm-5">
-   <div class="card">
+		<div class="col-sm-1"></div>
+			<div class="col-sm-8">
+				
+				<div class="card">
 
-  <!-- Card image -->
-  <div class="view overlay">
-    <img class="card-img-top" src="<%=imgurl%>" alt="Card image cap">
-    <a>
-      <div class="mask rgba-white-slight"></div>
-    </a>
-  </div>
+                      <!-- Card image -->
+                       <div class="view overlay">
+                           <img class="card-img-top" src="<%=imgurl%>" alt="Card image cap">
+                           <a>
+                           <div class="mask rgba-white-slight"></div>
+                           </a>
+                        </div>
 
-  <!-- Card content -->
-  <div class="card-body">
+                        <!-- Card content -->
+                          <div class="card-body">
 
     
-    <!-- Title -->
-    <h4 class="card-title">Details</h4>
-    <hr>
-    <!-- Text -->
-    <p class="card-text"><%
-	out.println(""+securityQuestion.getQuestion());%></br></br>
-	<%for(String option:options)
-		out.println(option);%></br></br>
+                         <!-- Title -->
+                             <h4 class="card-title">Details</h4>
+                              <hr>
+                         <!-- Text -->
+                              <p class="card-text"><%
+	                          out.println(""+securityQuestion.getQuestion());%></br></br>
+	                          <%for(String option:options)
+		                       out.println(option);%></br></br>
 
-	<%out.println(""+securityQuestion.getAnswer());%></br></br></p>
-    <!-- Link -->
-    <a href="#!" class="black-text d-flex justify-content-end"><h5>Read more <i class="fa fa-angle-double-right"></i></h5></a>
+	                           <%out.println(""+securityQuestion.getAnswer());%></br></br></p>
+                           <!-- Link -->
+                        <a href="#!" class="black-text d-flex justify-content-end"><h5>Read more <i class="fa fa-angle-double-right"></i></h5></a>
 
-  </div>
+                         </div>
 
-</div>
-<!-- Card Light -->
-</div>
-</div>
+                     </div>
+                     <!-- Card Light -->
+                     </div>
+
+			    <div class="col-sm-3">
+                      
+                      <div class="row">
+                           <div class="col-sm-12"><a href="AdminOptions.jsp"><img src="images/icons/home.jpg" width="90" height="90"></a></div>
+                      </div>
+                      
+                      <div class="row">
+
+                            <div class="col-sm-12"><a href="edit?questionId=<%=securityQuestion.getQuestionId()%>"><img src="images/icons/edit3.jpg" width="90" height="90" title=editContact></a></div>
+
+                      </div>
+
+                      <div class="row">
+
+                           <div class="col-sm-12"><a href="delete?questionId=<%=securityQuestion.getQuestionId()%>"><img src="images/icons/remove1.jpg" width="90" height="90" title=deleteContact></a></div>
+
+                      </div>
+
+                 </div>
+                 
+
+
+
+
+   
 
 	
 </body>
