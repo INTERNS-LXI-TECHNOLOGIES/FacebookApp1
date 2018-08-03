@@ -64,8 +64,14 @@ var x = setInterval(function() {
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
     // Output the result in an element with id="demo"
-    document.getElementById("timer").innerHTML = ""+ minutes + "m " + seconds + "s ";
-    if(hours==0 && minutes<5)
+    var timer;
+    if(isNaN(hours)||isNaN(minutes)||isNaN(seconds)) {
+        timer="Timer";
+    }
+    else
+        timer=""+ minutes + "m " + seconds + "s ";
+    document.getElementById("timer").innerHTML = timer;
+    if(hours==0 && minutes==0 && seconds<15)
     {
         document.getElementById("timer").style.color='red';
     }

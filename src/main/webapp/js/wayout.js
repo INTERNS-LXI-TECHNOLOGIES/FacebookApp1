@@ -39,3 +39,4 @@ function start(id) {
         expiryUrl : "play?doorId="+doorId+"\&isAccessDenied=true",
     });
 }
+window.onload=checkCookie;
