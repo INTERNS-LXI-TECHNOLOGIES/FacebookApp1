@@ -107,25 +107,35 @@ public class QuestionEditServlet extends HttpServlet{
 
 		String sId=request.getParameter("questionId");
 		long questionId=Long.parseLong(sId);
-		String question=request.getParameter("quetion");
-		String option1=request.getParameter("option1");
-		String option2=request.getParameter("option2");
-		String option3=request.getParameter("option3");
+		String question=request.getParameter("question");
 		String answer=request.getParameter("answer");
+		
+		String imageUrl=request.getParameter("imageUrl");
 
+		System.out.println("**********"+question);
+	
 		securityQuestion.setQuestion(question);
-			Set<String> options= new TreeSet<String>();
-			options.add(option1);
-			options.add(option2);
-			options.add(option3);
+		Set<String> options= new TreeSet<String>();
+		
+		while(request.getParameter("optionName")!=null){
+			String option=request.getParameter("optionName");
+			options.add(option);
+			}
+		
+		for(String o:options){
+			System.out.println("**********"+o);
+	
+		}
+		securityQuestion.setOptions(options);
+		securityQuestion.setAnswer(answer);
+		securityQuestion.setImageUrl(imageUrl);
+		securityQuestion.setQuestionId(questionId);
+
+
 			
-			securityQuestion.setOptions(options);
-			securityQuestion.setAnswer(answer);
-
-
 
 		securityQuestionServiceImpl.updateSecurityQuestion(securityQuestion);
-		response.sendRedirect("AdminOtions.jsp");
+		response.sendRedirect("AdminOptions.jsp");
 				logger.info(">>>>>>>>>>exiting the  try block of edit servlet");
 
 		}

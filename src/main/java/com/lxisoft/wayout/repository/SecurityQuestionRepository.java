@@ -158,9 +158,12 @@ public class SecurityQuestionRepository{
 		try
 		{
 			
+			Long id=securityQuestion.getQuestionId();
+			
 			connection=dataSource.getConnection();
 			stmt=connection.prepareStatement("delete from security_question where id=?");
-			stmt.setLong(1,securityQuestion.getQuestionId());
+			System.out.println("******"+id);
+			stmt.setLong(1,id);
 			
 			stmt.executeUpdate();
 			
@@ -178,8 +181,12 @@ public class SecurityQuestionRepository{
 	**/
 
 	public void update(SecurityQuestion securityQuestion){
-
+	//System.out.println(securityQuestion.getQuestion()+"*********");
+	//System.out.println(securityQuestion.getImageUrl()+"*********");
 		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion()===========");
+		System.out.println(securityQuestion.getQuestion()+"*********");
+	System.out.println(securityQuestion.getImageUrl()+"*********");
+	
  		delete(securityQuestion);
 		save(securityQuestion);		
 		logger.info("============Exited from  SecurityQuestionRepository/update()===========");
