@@ -186,7 +186,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 	   
 	   door.setOpeningHall(temp);
 	   
-	   if((game.getPrisoner().getCurrentLocation().getBackDoor())==null&&game.getPrisoner().getCurrentLocation().getHallId()!=0)
+	   if(game.getPrisoner().getCurrentLocation().getHallId()!=0)
 	   {
 		   game.getPrisoner().getCurrentLocation().setBackDoor(door);
 		   if(game.getPrisoner().getCurrentLocation().getDoors()!=null)
@@ -219,11 +219,13 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 	   			return game.getPrisoner().getCurrentLocation().getBackDoor();
 	   	}*/
        for(Door door:doors)
+       {
     	   
          if(doorId==(door.getDoorId()))
         	 
-         return door;
-        	 
+         	return door;
+        
+        }	 
        return game.getPrisoner().getCurrentLocation().getBackDoor(); //returns back door if there is no other door with this id
         	           
    }
