@@ -1,11 +1,8 @@
 
-
-
 <!DOCTYPE html>
 <head>
   <title>DisplayAll</title>
-  <link rel="stylesheet" type="text/css" href="css/admin.css">
-
+ 
     <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -22,35 +19,7 @@
 <body>
 
 
-<div id="add">
 
-<p align="left">
-<a href="AdminOptions.jsp"><img src="images/icons/home.jpg" width="50" height="50"></a></br></br>
-
-<style>
-.button{
-	background-color:cornflowerblue;
-	color:white;
-}
-.button:hover{
-	background-color:green;
-}
-
-input[type=text] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 10px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-table, th, td {
-    border: 1px solid black;
-}
-
-</style>
-</p>
-</div>
 <%@ page import="com.lxisoft.wayout.web.*,com.lxisoft.wayout.domain.*,com.lxisoft.wayout.model.*,java.sql.*,java.util.*"%>
 
 <%
@@ -90,43 +59,52 @@ String pageNo=request.getParameter("link");
       }
 
 %>
-  <div class="row">
-    <div class="col-sm-2"></div>
-  <div class="col-sm-8">
-  <table id="dtMaterialDesignExample" class="table table-striped" cellspacing="0" width="100%">
-  <thead>
-    <tr>
-      <th class="th-sm">QuestionId
-        <i class="fa fa-sort float-right" aria-hidden="true"></i>
-      </th>
-      <th class="th-sm">Question
-        <i class="fa fa-sort float-right" aria-hidden="true"></i>
-      </th>
-      <th class="th-sm">Answer
-        <i class="fa fa-sort float-right" aria-hidden="true"></i>
-      </th>
-      
-    </tr>
-  </thead>
-  <tbody>
 
+<!-- Editable table -->
+<div class="card">
+    <div class="col-sm-2"></div>
+  <div class="col-sm-12">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Questions</h3>
+    <div class="card-body">
+        <div id="table" class="table-editable">
+            <span class="table-add float-right mb-3 mr-2"><a href="AdminOptions.jsp"><img src="images/icons/back.jpg" width="10" height="10" class="text-success">
+            </a></span>
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+                <tr>
+                    <th class="text-center">QuestionId</th>
+                    <th class="text-center">ImagrUrl</th>
+                    <th class="text-center">Question</th>
+                    <th class="text-center">Answer</th>                    
+                    
+                    <th class="text-center">Remove</th>
+                </tr>
+  
     <% for(SecurityQuestion secQuestion:secQuestions)
    { %>
 
-    <tr>
-      <td><%=secQuestion.getQuestionId()%></td>
-      <td><a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%=secQuestion.getQuestion()%></a></td>
-      <td><%=secQuestion.getAnswer()%></td>
-      
-    </tr>
+                <tr>
+                    <td class="pt-3-half" contenteditable="true"><%=secQuestion.getQuestionId()%></td>
+                    <td class="pt-3-half" contenteditable="true"><%=secQuestion.getImageUrl()%></td>
+                    <td class="pt-3-half" contenteditable="true"><a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%=secQuestion.getQuestion()%></a></td>
+                    <td class="pt-3-half" contenteditable="true"><%=secQuestion.getAnswer()%></td>                    
+                    
+                    <td>
+                        <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                    </td>
+                </tr>
     
-  </tbody>
+  
 
   <%}%>
+
+         </table>
+         </br>
+         </br>
+        </div>
+    </div>
+</div>
+<!-- Editable table -->
   
-</table></br>
-</div>
-</div>
 
 
 <div class="text-center">
