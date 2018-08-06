@@ -181,14 +181,38 @@ public class SecurityQuestionRepository{
 	**/
 
 	public void update(SecurityQuestion securityQuestion){
-	//System.out.println(securityQuestion.getQuestion()+"*********");
-	//System.out.println(securityQuestion.getImageUrl()+"*********");
 		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion()===========");
-		System.out.println(securityQuestion.getQuestion()+"*********");
-	System.out.println(securityQuestion.getImageUrl()+"*********");
 	
- 		delete(securityQuestion);
-		save(securityQuestion);		
+		PreparedStatement stmt;
+		
+		Set<String> options=securityQuestion.getOptions();
+		
+				System.out.println("*************"+securityQuestion.getQuestionId());
+				System.out.println("*************"+securityQuestion.getQuestion());
+				System.out.println("*************"+securityQuestion.getAnswer());
+				System.out.println("*************"+securityQuestion.getImageUrl());
+				System.out.println("*************"+securityQuestion.getOptions());
+					
+			
+		try
+		{
+			connection=dataSource.getConnection();
+			stmt=connection.prepareStatement("update security_question sq JOIN security_question_options sqo ON sq.id=sqo.question_id JOIN question_option qo ON sqo.option_id=qo.id SET sq.question=?,sq.image_path=?,sq.answer=? where sq.id=?");
+			
+			stmt.setString(1,securityQuestion.getQuestion());
+			stmt.setString(2,securityQuestion.getImageUrl());
+			stmt.setString(3,securityQuestion.getAnswer());
+			stmt.setLong(4,securityQuestion.getQuestionId());
+			
+			connection.close();	
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+ 		//delete(securityQuestion);
+		//save(securityQuestion);		
 		logger.info("============Exited from  SecurityQuestionRepository/update()===========");
 		
 	}
