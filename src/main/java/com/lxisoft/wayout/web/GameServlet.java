@@ -407,7 +407,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 			*/
 			int d=0;
 			long doorId=0l;
-			if(hall.isExitHall()==false)
+			if((hall.isExitHall()==false)&&(hall.getHallId()>=(13/3)))
 			{
 				//loop for creating doors.
 				
