@@ -93,13 +93,13 @@ String pageNo=request.getParameter("link");
    { %>
 
                 <tr>
-                    <td class="pt-3-half" contenteditable="true"><%=secQuestion.getQuestionId()%></td>
+                    <td class="pt-3-half" contenteditable="false"><%=secQuestion.getQuestionId()%></td>
                     <td class="pt-3-half" contenteditable="true"><%=secQuestion.getImageUrl()%></td>
-                    <td class="pt-3-half" contenteditable="true"><a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%=secQuestion.getQuestion()%></a></td>
+                    <td class="pt-3-half" contenteditable="false"><a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%=secQuestion.getQuestion()%></a></td>
                     <td class="pt-3-half" contenteditable="true"><%=secQuestion.getAnswer()%></td>                    
                     
                     <td>
-                        <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Save</button></span>
+                        <span class="table-remove"><button type="button" <a href="" class="btn btn-default btn-rounded">Save</a></button></span>
                     </td>
 
                     
@@ -111,13 +111,12 @@ String pageNo=request.getParameter("link");
 
                 </tr>  
 
-  
-
          
 
 
 
 <!-- Central Modal Medium Info -->
+
 <div class="modal fade left" id="sideModalTLInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-notify modal-info " role="document">
         <!--Content-->
@@ -148,6 +147,8 @@ String pageNo=request.getParameter("link");
         <!--/.Content-->
     </div>
 </div>
+
+<!-- Central Modal Medium Info -->
 
 <%}%>
 

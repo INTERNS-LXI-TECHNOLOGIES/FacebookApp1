@@ -9,7 +9,7 @@
 <body>
 	<div class="container">
 		<div class="text-center no-padding">
-			<img src="images\done1.gif" style="width:700px;height:600px;" class="done">
+			<img src="images\done1.gif" style="width:800px;height:800px;border-radius:800px" class="done">
 			<%
 				response.setHeader("Refresh", "3;url=addQuestion");
 			%>

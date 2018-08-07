@@ -14,27 +14,18 @@
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Material Design Bootstrap -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
-</head>
-<body>
-<style>
-	body
-	{
-		background-color:White;
-	}
-	
-	input[type=text] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 10px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-	
-	
-</style>
-			
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.8/js/mdb.min.js"></script>
+
+</head>
 <body>
 
 <%@ page import="java.util.*,com.lxisoft.wayout.web.*,com.lxisoft.wayout.model.*,com.lxisoft.wayout.domain.*,java.sql.*,java.util.*"%>
@@ -99,15 +90,55 @@ String imgurl=securityQuestion.getImageUrl();
 
                       <div class="row">
 
-                           <div class="col-sm-12"><a href="delete?questionId=<%=securityQuestion.getQuestionId()%>"><img src="images/icons/remove1.jpg" width="90" height="90" title=deleteContact></a></div>
+                           <div class="col-sm-12">
+                           <span class="table-remove"><a href="" data-toggle="modal" data-target="#sideModalTLInfo"><img src="images/icons/remove1.jpg" width="90" height="90" title=deleteContact></a>
+                           </span></div>
 
                       </div>
 
                  </div>
+
+ <!-- Central Modal Medium Info -->
+
+<div class="modal fade left" id="sideModalTLInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info " role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading lead">Remove Info</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+                   <div class="text-center">
+                    <p>Do you want to delete this quetion now ?</p>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-outline-primary waves-effect" href="delete?questionId=<%=securityQuestion.getQuestionId()%>">Yes</a>
+                <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">No, thanks</a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
+<!-- Central Modal Medium Info -->
+
                  
 
 
-
+<script>
+$("#sideModalTLInfo").on('shown.bs.modal');
+</script>
 
    
 
