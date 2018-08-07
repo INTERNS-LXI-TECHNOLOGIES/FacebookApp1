@@ -12,6 +12,16 @@
   <!-- Material Design Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.13.0/umd/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.8/js/mdb.min.js"></script>
+
   <link rel="stylesheet" type="text/css" href="bootstrap.css">
   <link rel="stylesheet" type="text/css" href="mystyle.css">
   <link rel="stylesheet" type="text/css" href="Sample.css">
@@ -75,7 +85,7 @@ String pageNo=request.getParameter("link");
                     <th class="text-center">ImagrUrl</th>
                     <th class="text-center">Question</th>
                     <th class="text-center">Answer</th>                    
-                    
+                    <th class="text-center">Save</th>   
                     <th class="text-center">Remove</th>
                 </tr>
   
@@ -89,23 +99,65 @@ String pageNo=request.getParameter("link");
                     <td class="pt-3-half" contenteditable="true"><%=secQuestion.getAnswer()%></td>                    
                     
                     <td>
-                        <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                        <span class="table-remove"><button type="button" class="btn btn-danger btn-rounded btn-sm my-0">Save</button></span>
                     </td>
-                </tr>
-    
+
+                    
+                    <!-- Button trigger modal -->
+                     <td>
+                     <span class="table-remove"><button type="button" <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#sideModalTLInfo">Remove</a></button></span>
+                     </td>
+
+
+                </tr>  
+
   
 
-  <%}%>
+         
 
-         </table>
+
+
+<!-- Central Modal Medium Info -->
+<div class="modal fade left" id="sideModalTLInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-info " role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading lead">Remove Info</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+                   <div class="text-center">
+                    <p>Do you want to delete this quetion now ?</p>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <a type="button" class="btn btn-outline-primary waves-effect" href="delete?questionId=<%=secQuestion.getQuestionId()%>">Yes</a>
+                <a type="button" class="btn btn-outline-primary waves-effect" data-dismiss="modal">No, thanks</a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
+<%}%>
+
+</table>
          </br>
          </br>
         </div>
     </div>
 </div>
 <!-- Editable table -->
-  
-
 
 <div class="text-center">
       <ul class="my-pagination">
@@ -134,7 +186,12 @@ String pageNo=request.getParameter("link");
 
     </ul>
     </div>
+    </div>
   
+<script>
+$("#sideModalTLInfo").on('shown.bs.modal');
+</script>
 
+</body>
 
 </html>
