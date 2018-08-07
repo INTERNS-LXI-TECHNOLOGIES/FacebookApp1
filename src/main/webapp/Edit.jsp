@@ -39,40 +39,37 @@ input[type=text] {
     
    String imageUrl=securityQuestion.getImageUrl();
    String question=securityQuestion.getQuestion();
+   String answer=securityQuestion.getAnswer();
+   long id=securityQuestion.getQuestionId();
+
 
 %>
+
+
+<form action="edit" method="post">
+<div>
     <label for="imageUrl"><b>imageUrl</b></label>
     <input type="text" value="<%=imageUrl%>" name="imageUrl"  required></br></br>
 
     <label for="question"><b>Question</b></label>
     <input type="text" value="<%=question%>"  name="question"  required></br></br>
 
-
-
-<form action="edit" method="post">
-    
-<div>
    <% 
-        int noOfOptions=securityQuestion.getOptions().size();
         int count=0;
-        for( String option:securityQuestion.getOptions())
+		Set<String> options=securityQuestion.getOptions();
+        for( String opt:options)
         {
             count++;
             String optionName="option"+count;
            
     %>
-        <label for=<%=optionName%>><b><%=optionName%></b></label>
-        <input type="text" value="<%=option%>" name="<%=optionName%>" required></br></br>
+        <label for="optionName"><b><%=optionName%></b></label>
+        <input type="text" value="<%=opt%>" name="optionName" required></br></br>
     <%
         }
-       String answer=securityQuestion.getAnswer();
-       long id=securityQuestion.getQuestionId();
-
+     
     %>
       
-
-
-   
     <label for="answer"><b>answer</b></label>
     <input type="text" value="<%=answer %>" name="answer" required></br></br>
 
@@ -81,9 +78,8 @@ input[type=text] {
     <input type="submit" value="Submit" class="button">
      <input type="reset" value="Reset" class="button">
 
-  
-
 </div>
 </form>
+
 </body>
 </html>

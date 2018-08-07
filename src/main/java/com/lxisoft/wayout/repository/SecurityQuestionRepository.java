@@ -187,23 +187,43 @@ public class SecurityQuestionRepository{
 		
 		Set<String> options=securityQuestion.getOptions();
 		
-				System.out.println("*************"+securityQuestion.getQuestionId());
-				System.out.println("*************"+securityQuestion.getQuestion());
-				System.out.println("*************"+securityQuestion.getAnswer());
-				System.out.println("*************"+securityQuestion.getImageUrl());
-				System.out.println("*************"+securityQuestion.getOptions());
-					
+		for(String o:options){
 			
+			System.out.println("*********************"+o);
+		}
+		
+	/*	String[] optionsArray=options.toArray(new String[0]);
+		
+		for(int i=0;i<optionsArray.length;i++){
+			
+			System.out.println("**********"+optionsArray[i]);
+		}
+			*/
 		try
 		{
+			System.out.println("**********inside try");
+			
 			connection=dataSource.getConnection();
-			stmt=connection.prepareStatement("update security_question sq JOIN security_question_options sqo ON sq.id=sqo.question_id JOIN question_option qo ON sqo.option_id=qo.id SET sq.question=?,sq.image_path=?,sq.answer=? where sq.id=?");
 			
-			stmt.setString(1,securityQuestion.getQuestion());
-			stmt.setString(2,securityQuestion.getImageUrl());
-			stmt.setString(3,securityQuestion.getAnswer());
-			stmt.setLong(4,securityQuestion.getQuestionId());
 			
+			for(String option:options){
+				
+				System.out.println("**********before query");
+		
+				stmt=connection.prepareStatement("update security_question sq JOIN security_question_options sqo ON sq.id=sqo.question_id JOIN question_option qo ON sqo.option_id=qo.id SET sq.question=?,sq.image_path=?,sq.answer=?,qo.opt=? where sq.id=?");
+			
+				stmt.setString(1,securityQuestion.getQuestion());
+				stmt.setString(2,securityQuestion.getImageUrl());
+				stmt.setString(3,securityQuestion.getAnswer());
+				stmt.setString(4,option);	
+				stmt.setLong(5,securityQuestion.getQuestionId());
+				
+				stmt.executeUpdate();
+				
+				
+				System.out.println("**********after query");
+			
+			}
 			connection.close();	
 		}
 		catch(Exception e)

@@ -112,27 +112,16 @@ public class QuestionEditServlet extends HttpServlet{
 		
 		String imageUrl=request.getParameter("imageUrl");
 
-		System.out.println("**********"+question);
-	
+		String[] optionArray=request.getParameterValues("optionName");
+		Set<String> options= new TreeSet<String>(Arrays.asList(optionArray));
+		
+		System.out.println("**********"+answer+"***"+imageUrl+"***"+questionId);
+		
 		securityQuestion.setQuestion(question);
-		Set<String> options= new TreeSet<String>();
-		
-		while(request.getParameter("optionName")!=null){
-			String option=request.getParameter("optionName");
-			options.add(option);
-			}
-		
-		for(String o:options){
-			System.out.println("**********"+o);
-	
-		}
 		securityQuestion.setOptions(options);
 		securityQuestion.setAnswer(answer);
 		securityQuestion.setImageUrl(imageUrl);
 		securityQuestion.setQuestionId(questionId);
-
-
-			
 
 		securityQuestionServiceImpl.updateSecurityQuestion(securityQuestion);
 		response.sendRedirect("AdminOptions.jsp");
