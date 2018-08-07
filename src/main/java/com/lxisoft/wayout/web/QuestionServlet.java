@@ -11,6 +11,20 @@ import org.apache.log4j.Logger;
 import javax.naming.*;
 import java.util.*;
 import com.lxisoft.wayout.service.impl.*;
+import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.time.format.DateTimeFormatter;  
+import java.time.LocalDateTime; 
+import javax.servlet.http.HttpServlet;
 /**
 *@author Neeraja
 *servlet class to add questions
@@ -18,7 +32,7 @@ import com.lxisoft.wayout.service.impl.*;
 *@version 1.0
 *
 */ 
-
+@MultipartConfig
 public class QuestionServlet extends HttpServlet{
 
      
@@ -66,65 +80,98 @@ public class QuestionServlet extends HttpServlet{
 	 */
 
  	public void doPost(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException{
+		
+		logger.info("-----------entering the  insert question doPost--------------");
+		
+		//---------------------------------------------------------------------------
 
- 			AddQuestionModel addQuestionModel=new AddQuestionModel();
+		response.setContentType("text/html;charset=UTF-8");
+        PrintWriter Writer = response.getWriter();
+		try{
+		
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");  
+		LocalDateTime now = LocalDateTime.now(); 
+		String dateTime=dtf.format(now);
+		dateTime=dateTime.trim().replaceAll("\\s+","");
+		String dt=dateTime.trim().replaceAll("\\:+","");
+		
+		logger.info("-----------entering the  insert question doPost start image process--------------");
+		
+		final Part photoPart= request.getPart("photos");
+		final String fileName=getFileName(photoPart);
+        String fl=fileName.substring(fileName.length()-4,fileName.length());
+        OutputStream out = null;
+        InputStream fileContent = null;
+        String path1=(getServletContext().getRealPath("")
+		+File.separator+"images"+File.separator+"questionimages"+File.separator+"img"+dt+fl);
+        File file=new File(path1);
+        String originalPath="images/questionimages/img"+dt+fl;
+        out = new FileOutputStream(file);
+        fileContent = photoPart.getInputStream();
+        int read = 0;
+        final byte[] bytes = new byte[1024];
+
+        while ((read = fileContent.read(bytes)) != -1) 
+        {
+            out.write(bytes, 0, read);
+        } 
+		logger.info("-----------insert question doPost end image process--------------");
+	
+	
+	//-------------------------------------------------------------------------------------------
+	
+	
+ 		AddQuestionModel addQuestionModel=new AddQuestionModel();
  		logger.info("entering the method");
- 		try{
+ 		logger.info("-----------entering the  insert question doPost setting question object--------------");
+		addQuestionModel.setQuestion(request.getParameter("question"));
+		addQuestionModel.setImageUrl(originalPath);    //request.getParameter("imageUrl")
+		String sNoOfOptions=request.getParameter("noOfOptions");
+		if(sNoOfOptions!=null)
+		{
 
- 			logger.info(">>>>>>>>>>entering the  try block");
+			addQuestionModel.setNoOfOption(Integer.parseInt(request.getParameter("noOfOptions")));
+			request.getSession().setAttribute("model",addQuestionModel);
+			response.sendRedirect("AddQuestion.jsp");
+		}
+		else
+		{
+
+			SecurityQuestion securityQuestion=new SecurityQuestion();
+			Set<String> options= new TreeSet<String>();
+			addQuestionModel=(AddQuestionModel)request.getSession().getAttribute("model");
+				
+			int noOfOptions=addQuestionModel.getNoOfOption();
 			
-
-			addQuestionModel.setQuestion(request.getParameter("question"));
-			addQuestionModel.setImageUrl(request.getParameter("imageUrl"));
-			String sNoOfOptions=request.getParameter("noOfOptions");
-			if(sNoOfOptions!=null)
+			addQuestionModel.setOptions(new String[noOfOptions]);
+			for(int i=0;i<noOfOptions;i++)
 			{
-
-				addQuestionModel.setNoOfOption(Integer.parseInt(request.getParameter("noOfOptions")));
-				request.getSession().setAttribute("model",addQuestionModel);
-				response.sendRedirect("AddQuestion.jsp");
+				
+				//addQuestionModel.options[i]=request.getParameter("option"+(i+1));
+				addQuestionModel.setOptionsOf(request.getParameter("option"+(i+1)), i);
+				options.add(request.getParameter("option"+(i+1)));
 			}
-			else
-			{
-
-				SecurityQuestion securityQuestion=new SecurityQuestion();
-				Set<String> options= new TreeSet<String>();
-				addQuestionModel=(AddQuestionModel)request.getSession().getAttribute("model");
-
+			
+			securityQuestion.setQuestion(addQuestionModel.getQuestion());
 				
-				int noOfOptions=addQuestionModel.getNoOfOption();
-				
-				addQuestionModel.setOptions(new String[noOfOptions]);
-				for(int i=0;i<noOfOptions;i++)
-				{
-					
-					//addQuestionModel.options[i]=request.getParameter("option"+(i+1));
-					addQuestionModel.setOptionsOf(request.getParameter("option"+(i+1)), i);
-					options.add(request.getParameter("option"+(i+1)));
-				}
-				
-				securityQuestion.setQuestion(addQuestionModel.getQuestion());
+			securityQuestion.setOptions(options);
+			securityQuestion.setAnswer(request.getParameter("answer"));
 
-				
-				securityQuestion.setOptions(options);
-				securityQuestion.setAnswer(request.getParameter("answer"));
-
-				securityQuestion.setImageUrl(addQuestionModel.getImageUrl());
+			securityQuestion.setImageUrl(addQuestionModel.getImageUrl());
 	 
-				securityQuestionServiceImpl.addSecurityQuestion(securityQuestion);
-				/**
-				*redirecting to another page
-				*
-				*/
-				addQuestionModel=null;
-				request.getSession().removeAttribute("model");
-				response.sendRedirect("RedirectingPage.jsp");
+			securityQuestionServiceImpl.addSecurityQuestion(securityQuestion);
+			/**
+			*redirecting to another page
+			*
+			*/
+			addQuestionModel=null;
+			request.getSession().removeAttribute("model");
+			logger.info("-----------entering the  insert question doPost end of setting question object--------------");
+			response.sendRedirect("RedirectingPage.jsp");
 
-			}
+		}
+		
 		/*	String answer=request.getParameter("answer");
-
-			
-
 			securityQuestion.setQuestion(question);
 			Set<String> options= new TreeSet<String>();
 			options.add(option1);
@@ -145,12 +192,9 @@ public class QuestionServlet extends HttpServlet{
 
  		}
  		catch(Exception e){
+			logger.warn("----------Exception in doPost() of QuestionServlet class--------");
  			e.printStackTrace();
-
  		}
-
-
-
  	}
  	/**
        * Get method to find all questions from the database
@@ -195,7 +239,7 @@ public class QuestionServlet extends HttpServlet{
 
             Object object=session.getAttribute("questionsView");
 
-		    if((object==null) || !(object instanceof QuestionsView))
+		    if((object==null) || !(object instanceof Game))
             {  
               questionsView=new QuestionsView();
             }
@@ -238,6 +282,24 @@ public class QuestionServlet extends HttpServlet{
        else
          return (size/5)+1;
    }
+   
+   private String getFileName(final Part part)
+    {
+        final String partHeader=part.getHeader("content-disposition");
+        for(String content:partHeader.split(";"))
+        {
+            if(content.trim().startsWith("filename"))
+            {
+                String x=content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
+                return x;
+            }
+        }
+        return null;
+    }
+	
+	public String getServletInfo() {
+        return "Short description";
+    }
  }
 
 
