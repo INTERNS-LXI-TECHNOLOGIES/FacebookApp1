@@ -124,7 +124,7 @@ public class GameConfigurationRepository
 		try
 		{
 			connection = dataSource.getConnection();
-			ps = connection.prepareStatement("insert into game_configuration(keys_count,halls_count,question_time,game_time,game_mode)values('"+gameConfiguration.getKeysCount()+"','"+gameConfiguration.getHallsCount()+"','"+gameConfiguration.getQuestionTime()+"','"+gameConfiguration.getGameTime()+"','"+gameConfiguration.getGameMode()+"'");
+			ps = connection.prepareStatement("insert into game_configuration(keys_count,halls_count,question_time,game_time,game_mode) values('"+gameConfiguration.getKeysCount()+"','"+gameConfiguration.getHallsCount()+"','"+gameConfiguration.getQuestionTime()+"','"+gameConfiguration.getGameTime()+"','"+gameConfiguration.getGameMode()+"')");
 			a = ps.executeUpdate();
 			log.info("-----GameConfigurationRepository insert ended---------");
 		}

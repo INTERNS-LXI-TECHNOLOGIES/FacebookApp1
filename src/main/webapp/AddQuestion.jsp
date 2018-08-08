@@ -32,7 +32,7 @@
                     <input type="text" id="materialLoginFormQuestion" placeholder="Question" class="form-control" name="question"  required>
                     <label for="materialLoginFormQuestion"></label>
                   </div>
-                      <select class="mdb-select colorful-select dropdown-primary" id="select-input" onchange="displayOptions()">
+                      <select class="mdb-select colorful-select dropdown-primary" id="select-input" onchange="displayOptions()" name="noOfOptions">
                         <option value="" disabled selected>Number of options</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -75,7 +75,9 @@
                         <label for="option8"></label>
                   </div>
                   <div class="md-form" id="answer">
-                        <input type="text" placeholder="Answer" class="form-control" name="question" required>
+
+                        <input type="text" placeholder="Answer" class="form-control" name="answer" required>
+
                         <label for="answer"></label>
                   </div>
                 <label class="btn-bs-file btn btn-info">
