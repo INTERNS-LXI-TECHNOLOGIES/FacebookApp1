@@ -124,7 +124,7 @@ public class QuestionEditServlet extends HttpServlet{
 		securityQuestion.setQuestionId(questionId);
 
 		securityQuestionServiceImpl.updateSecurityQuestion(securityQuestion);
-		response.sendRedirect("AdminOptions.jsp");
+		response.sendRedirect("done.jsp");
 				logger.info(">>>>>>>>>>exiting the  try block of edit servlet");
 
 		}

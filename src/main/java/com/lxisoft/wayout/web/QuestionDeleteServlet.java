@@ -69,7 +69,7 @@ public class QuestionDeleteServlet extends HttpServlet{
 		securityQuestionServiceImpl.deleteSecurityQuestion(question);
 
 		request.getSession().setAttribute("question",question);
-		response.sendRedirect("Delete.jsp");
+		response.sendRedirect("done.jsp");
 		logger.info("exiting the try block of the delete method");
 		}
 		catch(Exception e){
