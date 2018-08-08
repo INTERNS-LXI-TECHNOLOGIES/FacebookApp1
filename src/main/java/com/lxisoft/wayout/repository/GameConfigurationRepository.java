@@ -9,14 +9,44 @@ import com.lxisoft.wayout.model.GameConfiguration;
 import javax.naming.*;
 import javax.sql.DataSource;
 
+
+/**
+*@author Ruhail
+*servlet class to take data for game configuration repository; 
+*
+*@version 1.0
+*@since 08-08-2018
+*/ 
 public class GameConfigurationRepository
 {
+	/**
+	*Connection reference
+	*/ 
 	Connection connection;
+	/**
+	*DataSource reference
+	*/ 
 	DataSource dataSource;
+	/**
+	*Contaxt reference
+	*/ 
 	Context context;
+	/**
+	*PreparedStatement reference
+	*/ 
 	PreparedStatement ps;
+	/**
+	*ResultSet reference
+	*/ 
 	ResultSet rs;
+	/**
+	*Logger reference
+	*/ 
 	private static final Logger log = Logger.getLogger(GameConfigurationRepository.class.getName()); 
+	
+	/**
+	 * constructor for setting up database connection lookup.
+	 */
 	public GameConfigurationRepository()
 	{
 		log.info("-----GameConfigurationRepository costructor started---------");
@@ -31,6 +61,11 @@ public class GameConfigurationRepository
 		}
 		log.info("-----GameConfigurationRepository costructor ended---------");
 	}
+	/**
+	 * method for selecting one raw from game_configuration table
+	 *@param gameConfiguration
+	 *@return 1 or 0
+	 */
 	public int findOne(GameConfiguration gameConfiguration)
 	{
 		log.info("-----GameConfigurationRepository findOne started---------");
@@ -54,6 +89,11 @@ public class GameConfigurationRepository
 			return 0;
 		}
 	}
+	/**
+	 * method for updating one raw in game_configuration table
+	 *@param gameConfiguration
+	 *@return a
+	 */
 	public int update(GameConfiguration gameConfiguration)
 	{
 		log.info("-----GameConfigurationRepository update started------------------");
@@ -72,6 +112,11 @@ public class GameConfigurationRepository
 		}
 		return a;
 	}
+	/**
+	 * method for inserting one raw to game_configuration table
+	 *@param gameConfiguration
+	 *@return a
+	 */
 	public int insert(GameConfiguration gameConfiguration)
 	{
 		log.info("-----GameConfigurationRepository insert started---------");
