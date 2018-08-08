@@ -149,7 +149,8 @@ public class QuestionServlet extends HttpServlet{
 			addQuestionModel=null;
 			request.getSession().removeAttribute("model");
 			logger.info("-----------entering the  insert question doPost end of setting question object--------------");
-			response.sendRedirect("RedirectingPage.jsp");
+			
+			response.sendRedirect("done.jsp?redirectPageUrl=addQuestion");
 
 		}
  		catch(Exception e){
