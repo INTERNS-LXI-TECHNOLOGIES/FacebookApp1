@@ -80,8 +80,8 @@
                   </div>
                 <label class="btn-bs-file btn btn-info">
                 Browse question image
-                <input type="file" name="image" accept="image/*/>
-            </label>
+                <input type="file" name="image" accept="image/*">
+                </label>
                   <!-- Sign in button -->
                   <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Add question</button>
                 </form>
