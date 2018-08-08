@@ -1,22 +1,17 @@
 package com.lxisoft.wayout.service;
 import com.lxisoft.wayout.model.GameConfiguration;
-import java.util.logging.*;
-import com.lxisoft.wayout.repository.GameConfigurationRepository;
 
-public class GameConfigurationService 
+/**
+*@author Ruhail
+*servlet class to take data for game configuration repository; 
+*
+*@version 1.0
+*@since 08-08-2018
+*/
+public interface GameConfigurationService
 {
-	private static final Logger log = Logger.getLogger(GameConfigurationService.class.getName()); 
-	GameConfigurationRepository repo=new GameConfigurationRepository();
-	public void configureGame(GameConfiguration gameConfiguration)
-	{
-		int res=repo.findOne(gameConfiguration);
-		if(res==1)
-		{
-			repo.update(gameConfiguration);
-		}
-		else
-		{
-			repo.insert(gameConfiguration);
-		}
-	}
+	/**
+	*abstract method 
+	*/ 
+	public void configureGame(GameConfiguration gameConfiguration);
 }
