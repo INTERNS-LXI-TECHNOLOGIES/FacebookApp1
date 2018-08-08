@@ -12,16 +12,13 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
   <link href="css/admin.css" rel="stylesheet">
   </head>
-  <body>
+  <body class="dark-grey">
 
 <div class="container-fluid">
   <div class="row">
-<div class="col-sm-3"></div>
-  <div class="col-sm-6">
+<div class="col-lg-4"></div>
+  <div class="col-lg-4">
 <div class="card">
-      
-      
-
   <h5 class="card-header info-color white-text text-center py-4">
     <strong>Sign in</strong>
   </h5>
