@@ -26,15 +26,14 @@
 %>
 
 <!-- Material form login -->
-<div class="col-sm-6"></div>
-     <div class="col-sm-4">
+<div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6 text-centre"> 
 <div class="card">
-      
-      
-
-  <h5 class="card-header info-color white-text text-center py-4">
-    <strong>Edit Form</strong>
-  </h5>
+     
+           <h5 class="card-header info-color white-text text-center py-4">
+           <strong>Edit Form</strong>
+           </h5>
 
   <!--Card content-->
   <div class="card-body px-lg-5 pt-0">
@@ -55,7 +54,7 @@
       <label class="btn-bs-file btn btn-info">
                 Browse question image
                 <input type="file" name="image" accept="image/*">
-        </label>
+      </label>
 
       <!-- Question -->
 
@@ -112,7 +111,8 @@
                 <input type="submit" value="Save" class="btn btn-outline-primary waves-effect">
                 <a href="addQuestion" class="btn btn-outline-primary waves-effect">Cancel</a>
             </div>
-
+         
+         </div>
       
     </form>
     <!-- Form -->
@@ -122,6 +122,7 @@
 </div>
 </div>
 <!-- Material form login -->
+
 </body>
 </html>
   
