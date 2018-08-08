@@ -19,6 +19,8 @@
     
    String imageUrl=securityQuestion.getImageUrl();
    String question=securityQuestion.getQuestion();
+   String answer=securityQuestion.getAnswer();
+   long id=securityQuestion.getQuestionId();
 
 %>
 
@@ -66,17 +68,13 @@
       <div class="md-form">
          
          <%=optionName%></br></br>
-         <input type="text" id="materialLoginForm" class="form-control"  value="<%=option%>" name="<%=optionName%>" required>
+         <input type="text" id="materialLoginForm" class="form-control"  value="<%=option%>" name="optionName" required>
         
       </div>       
      
       <%
         }
-       String answer=securityQuestion.getAnswer();
-       long id=securityQuestion.getQuestionId();
       %>
-
-       
 
       <!-- Answer-->
 

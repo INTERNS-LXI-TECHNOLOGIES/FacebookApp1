@@ -1,5 +1,5 @@
 body {
-    padding-bottom: 30px;
+    padding-bottom: 1.87rem;
 }
 .active-cyan-2 input[type=text]:focus:not([readonly]) {
     border-bottom: 1px solid #4285f4;
@@ -56,4 +56,80 @@ body {
 }
 .card-body {
     min-height: 200px;
+}
+a img {
+    height: 4.69rem;
+    width: 4.69rem;
+    margin: 1.85rem 0.625rem;
+}
+.question {
+    padding: 1.56rem 0.625rem;
+}/*
+.question h4 {
+    color: #4285f4;
+}*/
+.question-image img{
+    height: auto;
+    width: 100%;
+    max-height: 31.25rem;
+}
+.option-answer {
+    height: auto;
+    vertical-align: middle;
+    padding: 1.25rem 2.5rem;
+    font-size: 140%;
+}
+.answer {
+    display: block;
+    vertical-align: middle;
+    padding: 1.25rem;
+    word-wrap: break-word;
+}
+.options {
+    display: block;
+        padding: 1.25rem;
+    word-wrap: break-word;
+}
+.option-answer h5 {
+    color: #4285f4;
+    font-size: 120%;
+}
+.light-grey {
+    background-color: #fcfcfc;
+}
+.info-color {
+    background-color: #4285f4!important;
+}
+.card {
+    margin-top: 1.2rem;
+}
+select {
+    border-color: #ced4da;
+    color: #495057;
+    border-width: 0px 0px 1px 0px;
+    width: 100%;
+}
+.btn-bs-file{
+    position:relative;
+}
+.btn-bs-file input[type="file"]{
+    position: absolute;
+    top: -9999999;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    width:0;
+    height:0;
+    outline: none;
+    cursor: inherit;
+}
+.btn-info {
+    background-color: #4285f4!important; 
+}
+.btn-outline-info.active, .btn-outline-info:active, .btn-outline-info:active:focus, .btn-outline-info:focus, .btn-outline-info:hover {
+    color: #4285f4!important;
+    border-color: #4285f4!important;
+}
+.btn-outline-info {
+        color: #4285f4!important;
+    border-color: #4285f4!important;
 }

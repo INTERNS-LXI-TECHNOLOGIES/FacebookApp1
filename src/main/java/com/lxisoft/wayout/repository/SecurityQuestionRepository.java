@@ -181,15 +181,12 @@ public class SecurityQuestionRepository{
 	**/
 
 	public void update(SecurityQuestion securityQuestion){
-	//System.out.println(securityQuestion.getQuestion()+"*********");
-	//System.out.println(securityQuestion.getImageUrl()+"*********");
 		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion()===========");
-		System.out.println(securityQuestion.getQuestion()+"*********");
-	System.out.println(securityQuestion.getImageUrl()+"*********");
 	
- 		delete(securityQuestion);
-		save(securityQuestion);		
-		logger.info("============Exited from  SecurityQuestionRepository/update()===========");
+		delete(securityQuestion);
+		save(securityQuestion);
+		
+ 		logger.info("============Exited from  SecurityQuestionRepository/update()===========");
 		
 	}
 	/**
