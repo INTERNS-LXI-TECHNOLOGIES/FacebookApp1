@@ -22,8 +22,6 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.8/js/mdb.min.js"></script>
   
-  <script src="js/editPopup.js"></script>
-
   <link rel="stylesheet" type="text/css" href="bootstrap.css">
   <link rel="stylesheet" type="text/css" href="mystyle.css">
   <link rel="stylesheet" type="text/css" href="Sample.css">
@@ -101,13 +99,13 @@ String pageNo=request.getParameter("link");
                     <td class="pt-3-half" contenteditable="false"><%=secQuestion.getAnswer()%></td>                    
                     
                     <td>
-                        <span class="table-remove"><button type="button" <a href="edit?questionId=<%=secQuestion.getQuestionId()%>" class="btn btn-default btn-rounded">Edit</a></button></span>
+                        <span class="table-remove"><button type="button"> <a href="edit?questionId=<%=secQuestion.getQuestionId()%>">Edit</a></button></span>
                     </td>
 
                     
                     <!-- Button trigger modal -->
                      <td>
-                     <span class="table-remove"><button type="button" <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#sideModalTLInfo">Remove</a></button></span>
+                     <span class="table-remove"><button type="button"> <a href="" data-toggle="modal" data-target="#sideModalTLInfo">Remove</a></button></span>
                      </td>
 
 

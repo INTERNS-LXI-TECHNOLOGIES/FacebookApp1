@@ -19,8 +19,7 @@
     
    String imageUrl=securityQuestion.getImageUrl();
    String question=securityQuestion.getQuestion();
-   String answer=securityQuestion.getAnswer();
-   long id=securityQuestion.getQuestionId();
+   
 
 %>
 
@@ -39,7 +38,7 @@
   <div class="card-body px-lg-5 pt-0">
 
     <!-- Form -->
-    <form class="text-center" style="color: #757575;" action="edit" method=post>
+    <form class="text-center" style="color: #757575;" action="edit" method="post">
 
       
 
@@ -74,6 +73,8 @@
      
       <%
         }
+        String answer=securityQuestion.getAnswer();
+        long id=securityQuestion.getQuestionId();
       %>
 
       <!-- Answer-->
@@ -93,8 +94,8 @@
                
 
       <div class="modal-footer justify-content-center">
-                <a type="submit" class="btn btn-outline-primary waves-effect">Save</a>
-                <a type="button" class="btn btn-outline-primary waves-effect">Cancel</a>
+                <input type="submit" value="Save" class="btn btn-outline-primary waves-effect">
+                <a href="addQuestion" class="btn btn-outline-primary waves-effect">Cancel</a>
             </div>
 
       

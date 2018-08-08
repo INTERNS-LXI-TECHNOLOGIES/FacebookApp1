@@ -97,7 +97,7 @@ public class QuestionServlet extends HttpServlet{
 		
 		logger.info("-----------entering the  insert question doPost start image process--------------");
 		
-		final Part photoPart= request.getPart("photos");
+		final Part photoPart= request.getPart("image");
 		final String fileName=getFileName(photoPart);
         String fl=fileName.substring(fileName.length()-4,fileName.length());
         OutputStream out = null;
@@ -124,51 +124,23 @@ public class QuestionServlet extends HttpServlet{
  		AddQuestionModel addQuestionModel=new AddQuestionModel();
  		logger.info("entering the method");
  		logger.info("-----------entering the  insert question doPost setting question object--------------");
-		addQuestionModel.setQuestion(request.getParameter("question"));
-		addQuestionModel.setImageUrl(originalPath);    //request.getParameter("imageUrl")
-		String sNoOfOptions=request.getParameter("noOfOptions");
-		if(sNoOfOptions!=null)
-		{
-
-			addQuestionModel.setNoOfOption(Integer.parseInt(request.getParameter("noOfOptions")));
-			request.getSession().setAttribute("model",addQuestionModel);
-			response.sendRedirect("AddQuestion.jsp");
-		}
-		else
-		{
-
+		Integer noOfOptions=Integer.parseInt(request.getParameter("noOfOptions"));
+		
+		
 			SecurityQuestion securityQuestion=new SecurityQuestion();
 			Set<String> options= new TreeSet<String>();
-			addQuestionModel=(AddQuestionModel)request.getSession().getAttribute("model");
-				
-			int noOfOptions=addQuestionModel.getNoOfOption();
+			//addQuestionModel=(AddQuestionModel)request.getSession().getAttribute("model");
 			
-			addQuestionModel.setOptions(new String[noOfOptions]);
+			
+			securityQuestion.setImageUrl(originalPath);
+			securityQuestion.setQuestion(request.getParameter("question"));
+			securityQuestion.setAnswer(request.getParameter("answer"));
 			for(int i=0;i<noOfOptions;i++)
 			{
-				
-				//addQuestionModel.options[i]=request.getParameter("option"+(i+1));
-				addQuestionModel.setOptionsOf(request.getParameter("option"+(i+1)), i);
 				options.add(request.getParameter("option"+(i+1)));
 			}
-			
-			securityQuestion.setQuestion(addQuestionModel.getQuestion());
-				
 			securityQuestion.setOptions(options);
-			securityQuestion.setAnswer(request.getParameter("answer"));
-
-			securityQuestion.setImageUrl(addQuestionModel.getImageUrl());
 			
-		//
-			
-				System.out.println("*************"+securityQuestion.getQuestionId());
-				System.out.println("*************"+securityQuestion.getQuestion());
-				System.out.println("*************"+securityQuestion.getAnswer());
-				System.out.println("*************"+securityQuestion.getImageUrl());
-				//System.out.println("*************"+securityQuestion.getOptions());
-				
-		//
-	 
 			securityQuestionServiceImpl.addSecurityQuestion(securityQuestion);
 			/**
 			*redirecting to another page
@@ -180,27 +152,6 @@ public class QuestionServlet extends HttpServlet{
 			response.sendRedirect("RedirectingPage.jsp");
 
 		}
-		
-		/*	String answer=request.getParameter("answer");
-			securityQuestion.setQuestion(question);
-			Set<String> options= new TreeSet<String>();
-			options.add(option1);
-			options.add(option2);
-			options.add(option3);
-			
-			securityQuestion.setOptions(options);
-			securityQuestion.setAnswer(answer);
- 
-			securityQuestionServiceImpl.addSecurityQuestion(securityQuestion);*/
-			/**
-			*redirecting to another page
-			*
-			*/
-			/*response.sendRedirect("RedirectingPage.jsp");*/
-			logger.info(">>>>>>>>>>>>>>>>>>>>exiting from the try block");
-
-
- 		}
  		catch(Exception e){
 			logger.warn("----------Exception in doPost() of QuestionServlet class--------");
  			e.printStackTrace();
@@ -219,27 +170,7 @@ public class QuestionServlet extends HttpServlet{
 		* @throws ServletException 
 		*           if Undesired condition occurs 
        */
-
- 	/*public void doGet(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException{
- 		try{
-
- 			logger.info(">>>>>>>>>>>>>>entering the find all Method");
-
-			Set<SecurityQuestion> questions=securityQuestionServiceImpl.findAllSecurityQuestion();
-
-			request.getSession().setAttribute("question",questions);
-			response.sendRedirect("DisplayAll.jsp");
-			logger.info(">>>>>>>>>>>>>>exiting the find all Method");
-
- 		}
- 		catch(Exception e){
- 			e.printStackTrace();
-
- 		}
-*/
-
-
- 	
+	   
  	public void doGet(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException{
  		try{
 
