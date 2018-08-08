@@ -97,11 +97,14 @@ a img {
 .light-grey {
     background-color: #fcfcfc;
 }
+.dark-grey {
+    background-color: #dce3ef;
+}
 .info-color {
     background-color: #4285f4!important;
 }
 .card {
-    margin-top: 1.2rem;
+    margin-top: 4.5rem;
 }
 select {
     border-color: #ced4da;
@@ -136,3 +139,4 @@ select {
 #option1,#option2,#option3,#option4,#option5,#option6,#option7,#option8 {
     display: none;
 }
+
