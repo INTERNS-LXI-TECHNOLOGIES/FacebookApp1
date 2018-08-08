@@ -158,6 +158,16 @@ public class QuestionServlet extends HttpServlet{
 			securityQuestion.setAnswer(request.getParameter("answer"));
 
 			securityQuestion.setImageUrl(addQuestionModel.getImageUrl());
+			
+		//
+			
+				System.out.println("*************"+securityQuestion.getQuestionId());
+				System.out.println("*************"+securityQuestion.getQuestion());
+				System.out.println("*************"+securityQuestion.getAnswer());
+				System.out.println("*************"+securityQuestion.getImageUrl());
+				//System.out.println("*************"+securityQuestion.getOptions());
+				
+		//
 	 
 			securityQuestionServiceImpl.addSecurityQuestion(securityQuestion);
 			/**

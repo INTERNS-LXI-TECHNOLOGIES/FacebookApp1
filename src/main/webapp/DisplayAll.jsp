@@ -1,8 +1,11 @@
 
+
+
 <!DOCTYPE html>
 <head>
   <title>DisplayAll</title>
- 
+  <link rel="stylesheet" type="text/css" href="css/admin.css">
+
     <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -29,7 +32,35 @@
 <body>
 
 
+<div id="add">
 
+<p align="left">
+<a href="AdminOptions.jsp"><img src="images/icons/home.jpg" width="50" height="50"></a></br></br>
+
+<style>
+.button{
+	background-color:cornflowerblue;
+	color:white;
+}
+.button:hover{
+	background-color:green;
+}
+
+input[type=text] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+table, th, td {
+    border: 1px solid black;
+}
+
+</style>
+</p>
+</div>
 <%@ page import="com.lxisoft.wayout.web.*,com.lxisoft.wayout.domain.*,com.lxisoft.wayout.model.*,java.sql.*,java.util.*"%>
 
 <%
@@ -69,9 +100,7 @@ String pageNo=request.getParameter("link");
       }
 
 %>
-
-<!-- Editable table -->
-<div class="card">
+  <div class="row">
     <div class="col-sm-2"></div>
   <div class="col-sm-12">
     <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Questions</h3>
