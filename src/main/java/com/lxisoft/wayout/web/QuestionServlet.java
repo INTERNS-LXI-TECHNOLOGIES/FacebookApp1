@@ -97,7 +97,7 @@ public class QuestionServlet extends HttpServlet{
 		
 		logger.info("-----------entering the  insert question doPost start image process--------------");
 		
-		final Part photoPart= request.getPart("photos");
+		final Part photoPart= request.getPart("image");
 		final String fileName=getFileName(photoPart);
         String fl=fileName.substring(fileName.length()-4,fileName.length());
         OutputStream out = null;
