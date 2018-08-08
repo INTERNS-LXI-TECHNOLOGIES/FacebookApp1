@@ -21,6 +21,8 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.8/js/mdb.min.js"></script>
+  
+  <script src="js/editPopup.js"></script>
 
   <link rel="stylesheet" type="text/css" href="bootstrap.css">
   <link rel="stylesheet" type="text/css" href="mystyle.css">
@@ -85,7 +87,7 @@ String pageNo=request.getParameter("link");
                     <th class="text-center">ImagrUrl</th>
                     <th class="text-center">Question</th>
                     <th class="text-center">Answer</th>                    
-                    <th class="text-center">Save</th>   
+                    <th class="text-center">Edit</th>   
                     <th class="text-center">Remove</th>
                 </tr>
   
@@ -94,12 +96,12 @@ String pageNo=request.getParameter("link");
 
                 <tr>
                     <td class="pt-3-half" contenteditable="false"><%=secQuestion.getQuestionId()%></td>
-                    <td class="pt-3-half" contenteditable="true"><%=secQuestion.getImageUrl()%></td>
+                    <td class="pt-3-half" contenteditable="false"><%=secQuestion.getImageUrl()%></td>
                     <td class="pt-3-half" contenteditable="false"><a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%=secQuestion.getQuestion()%></a></td>
-                    <td class="pt-3-half" contenteditable="true"><%=secQuestion.getAnswer()%></td>                    
+                    <td class="pt-3-half" contenteditable="false"><%=secQuestion.getAnswer()%></td>                    
                     
                     <td>
-                        <span class="table-remove"><button type="button" <a href="" class="btn btn-default btn-rounded">Save</a></button></span>
+                        <span class="table-remove"><button type="button" <a href="edit?questionId=<%=secQuestion.getQuestionId()%>" class="btn btn-default btn-rounded">Edit</a></button></span>
                     </td>
 
                     
