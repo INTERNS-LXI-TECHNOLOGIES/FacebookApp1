@@ -10,12 +10,14 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
+  <link href="css/admin.css" rel="stylesheet">
   </head>
   <body>
 
-<!-- Material form login -->
-<div class="col-sm-6"></div>
-     <div class="col-sm-4">
+<div class="container-fluid">
+  <div class="row">
+<div class="col-sm-3"></div>
+  <div class="col-sm-6">
 <div class="card">
       
       
@@ -75,5 +77,7 @@
 </div>
 </div>
 <!-- Material form login -->
+</div>
+</div>
 </body>
 </html>

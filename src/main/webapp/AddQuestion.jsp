@@ -75,7 +75,9 @@
                         <label for="option8"></label>
                   </div>
                   <div class="md-form" id="answer">
-                        <input type="text" placeholder="Answer" class="form-control" name="answer"  required>
+
+                        <input type="text" placeholder="Answer" class="form-control" name="answer" required>
+
                         <label for="answer"></label>
                   </div>
                 <label class="btn-bs-file btn btn-info">
