@@ -10,6 +10,8 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" type="text/css" href="css/admin.css">
   </head>
   <body>
 
@@ -40,7 +42,20 @@
     <!-- Form -->
     <form class="text-center" style="color: #757575;" action="edit" method="post">
 
-      
+     <!-- ImageUrl -->
+
+      <div class="md-form">
+        
+
+        ImageUrl</br></br>
+        <input type="text" id="materialLoginForm" class="form-control" value="<%=imageUrl%>" name="imageUrl" required>
+        
+      </div> 
+
+      <label class="btn-bs-file btn btn-info">
+                Browse question image
+                <input type="file" name="image" accept="image/*">
+        </label>
 
       <!-- Question -->
 
@@ -87,7 +102,7 @@
 
        <input type="hidden" value="<%=id%>" name="questionId"></br> 
 
-
+       
 
       <div class="d-flex justify-content-around">
         <div>

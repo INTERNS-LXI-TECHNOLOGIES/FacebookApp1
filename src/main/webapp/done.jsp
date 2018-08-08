@@ -4,6 +4,7 @@
 <title>Home</title>
 <link rel="stylesheet" type="text/css" href="bootstrap.css">
 <link rel="stylesheet" type="text/css" href="mystyle.css">
+<link rel="stylesheet" type="text/css" href="css/admin.css">
 <meta charset="UTF-8">
 </head>
 <body>
