@@ -32,7 +32,7 @@
                     <input type="text" id="materialLoginFormQuestion" placeholder="Question" class="form-control" name="question"  required>
                     <label for="materialLoginFormQuestion"></label>
                   </div>
-                      <select class="mdb-select colorful-select dropdown-primary" id="select-input" onchange="displayOptions()">
+                      <select class="mdb-select colorful-select dropdown-primary" id="select-input" onchange="displayOptions()" name="noOfOptions">
                         <option value="" disabled selected>Number of options</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -43,39 +43,39 @@
                         <option value="8">8</option>
                     </select>
                     <div class="md-form" id="option1">
-                        <input type="text" placeholder="option1" class="form-control" name="option1"  required>
+                        <input type="text" placeholder="option1" class="form-control" name="option1">
                         <label for="option1"></label>
                   </div>
                   <div class="md-form" id="option2">
-                        <input type="text" placeholder="option2" class="form-control" name="option2"  required>
+                        <input type="text" placeholder="option2" class="form-control" name="option2">
                         <label for="option2"></label>
                   </div>
                   <div class="md-form" id="option3">
-                        <input type="text" placeholder="option3" class="form-control" name="option3"  required>
+                        <input type="text" placeholder="option3" class="form-control" name="option3">
                         <label for="option3"></label>
                   </div>
                   <div class="md-form" id="option4">
-                        <input type="text" placeholder="option4" class="form-control" name="option4"  required>
+                        <input type="text" placeholder="option4" class="form-control" name="option4">
                         <label for="option4"></label>
                   </div>
                   <div class="md-form" id="option5">
-                        <input type="text" placeholder="option5" class="form-control" name="option5"  required>
+                        <input type="text" placeholder="option5" class="form-control" name="option5">
                         <label for="option5"></label>
                   </div>
                   <div class="md-form" id="option6">
-                        <input type="text" placeholder="option6" class="form-control" name="option6"  required>
+                        <input type="text" placeholder="option6" class="form-control" name="option6">
                         <label for="option6"></label>
                   </div>
                   <div class="md-form" id="option7">
-                        <input type="text" placeholder="option7" class="form-control" name="option7"  required>
+                        <input type="text" placeholder="option7" class="form-control" name="option7">
                         <label for="option7"></label>
                   </div>
                   <div class="md-form" id="option8">
-                        <input type="text" placeholder="option8" class="form-control" name="option8"  required>
+                        <input type="text" placeholder="option8" class="form-control" name="option8">
                         <label for="option8"></label>
                   </div>
                   <div class="md-form" id="answer">
-                        <input type="text" placeholder="Answer" class="form-control" name="question"  required>
+                        <input type="text" placeholder="Answer" class="form-control" name="answer"  required>
                         <label for="answer"></label>
                   </div>
                 <label class="btn-bs-file btn btn-info">

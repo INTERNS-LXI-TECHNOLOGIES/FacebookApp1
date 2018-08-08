@@ -44,10 +44,10 @@ public class GameConfigurationServlet extends HttpServlet
 		try
 		{
 			log.info("------doPost() method started--------");
-			Integer keysCount = Integer.parseInt(request.getParameter("keysCount"));
-			Integer hallsCount = Integer.parseInt(request.getParameter("hallsCount"));
-			Integer questionTime = Integer.parseInt(request.getParameter("questionTime"));
-			Integer gameTime = Integer.parseInt(request.getParameter("gameTime"));
+			int keysCount = Integer.parseInt(request.getParameter("keysCount"));
+			int hallsCount = Integer.parseInt(request.getParameter("hallsCount"));
+			int questionTime = Integer.parseInt(request.getParameter("questionTime"));
+			int gameTime = Integer.parseInt(request.getParameter("gameTime"));
 			String gameMode = request.getParameter("gameMode");
 		
 			GameConfiguration gameConfiguration = new GameConfiguration();

@@ -119,6 +119,16 @@
 	<url-pattern>/play</url-pattern>
 </servlet-mapping>
 
+<servlet>
+	<servlet-name>GameConfiguration</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.GameConfigurationServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>GameConfiguration</servlet-name>
+	<url-pattern>/configureGame</url-pattern>
+</servlet-mapping>
+
 
 </web-app>
 
