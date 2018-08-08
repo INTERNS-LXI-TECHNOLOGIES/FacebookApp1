@@ -133,3 +133,6 @@ select {
         color: #4285f4!important;
     border-color: #4285f4!important;
 }
+#option1,#option2,#option3,#option4,#option5,#option6,#option7,#option8 {
+    display: none;
+}
