@@ -1,11 +1,11 @@
 package com.lxisoft.wayout.model;
-
+import java.util.*;
 /**
 * This UserModel class is used to set and get the variables.
 *@author Deepthi E
 *@author Balagopal V
 */
-public class UserModel
+public class UserModel implements Comparable<UserModel>
 {
 /**
 * The variable userName is used to hold a String value userName.
@@ -45,4 +45,7 @@ public String getPassword()
 {
 return password;
 }
+public int compareTo(UserModel userModel){  
+	return this.userName.compareTo(userModel.userName);  
+}  
 }
