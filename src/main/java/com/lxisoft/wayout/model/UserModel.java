@@ -1,5 +1,11 @@
 package com.lxisoft.wayout.model;
+
 import java.util.*;
+
+
+import java.util.logging.*;
+
+
 /**
 * This UserModel class is used to set and get the variables.
 *@author Deepthi E
@@ -7,6 +13,8 @@ import java.util.*;
 */
 public class UserModel implements Comparable<UserModel>
 {
+	
+private final static Logger logger = Logger.getLogger(UserModel.class.getName());
 /**
 * The variable userName is used to hold a String value userName.
 * The variable password is used to hold a String value password.
@@ -19,7 +27,9 @@ private String userName,password;
 */
 public void setUsername(String userName)
 {
+logger.fine("Entered into the method setUsername "+logger.getName());
 this.userName=userName;
+logger.fine("Exit from the method setUsername "+logger.getName());
 }
 /**
 *Retrieve the value of userName.
@@ -27,6 +37,7 @@ this.userName=userName;
 */
 public String getUsername()
 {
+logger.fine("Entered into the method getUsername "+logger.getName());
 return userName;
 }
 /**
@@ -35,7 +46,9 @@ return userName;
 */
 public void setPassword(String password)
 {
+logger.fine("Entered into the method setPassword "+logger.getName());
 this.password=password;
+logger.fine("Exit from the method setPassword "+logger.getName());
 }
 /**
 *Retrieve the value of password.
@@ -43,9 +56,11 @@ this.password=password;
 */
 public String getPassword()
 {
+logger.fine("Entered into the method getPassword "+logger.getName());
 return password;
 }
-public int compareTo(UserModel userModel){  
+public int compareTo(UserModel userModel)
+{  
 	return this.userName.compareTo(userModel.userName);  
 }  
 }

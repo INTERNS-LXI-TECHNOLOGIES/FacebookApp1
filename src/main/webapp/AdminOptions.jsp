@@ -22,7 +22,7 @@
 			<div class="col-sm-8 text-centre">
 				<form class="form-inline md-form form-sm active-cyan active-cyan-2" action="search" method="GET">
 				    <i class="fa fa-search" aria-hidden="true"></i>
-				    <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search by id" aria-label="Search">
+				    <input class="form-control form-control-sm ml-3 w-75" type="text" name="questionId" placeholder="Search by id" aria-label="Search">
 				</form>
 			</div>
 		</div>
@@ -85,5 +85,6 @@
 		<div class="col-lg-1"></div>
 	</div>
 	</div>
+	<% session.invalidate(); %>
 </body>
 </html>

@@ -1,85 +1,135 @@
-<html>
+<!DOCTYPE html>
 <head>
-<title>Edit Question</title>
-    <link rel="stylesheet" type="text/css" href="Sample.css">
-</head>
-<div id="add">
+  <title>DisplayAll</title>
+ 
+    <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" type="text/css" href="css/admin.css">
+  </head>
+  <body>
 
-<p align="left">
-<a href="AdminOptions.jsp"><img src="images/icons/home.jpg" width="50" height="50"></a></br></br>
-
-<style>
-.button{
-    background-color:cornflowerblue;
-    color:white;
-}
-.button:hover{
-    background-color:green;
-}
-
-input[type=text] {
-    width: 80%;
-    padding: 12px 20px;
-    margin: 10px 0;
-   
-    border: 1px solid #ccc;
-   color:black;
-    background-color: #FFFFFF;
-    font-size: 15px;
-    
-}
-
-</style>
-</style>
-</p>
-</div>
-<body>
 <%@ page import= "com.lxisoft.wayout.domain.*,com.lxisoft.wayout.web.*,java.util.*"%>
+
 <% SecurityQuestion securityQuestion=(SecurityQuestion)request.getSession().getAttribute("question");
     
    String imageUrl=securityQuestion.getImageUrl();
    String question=securityQuestion.getQuestion();
-   String answer=securityQuestion.getAnswer();
-   long id=securityQuestion.getQuestionId();
-
+   
 
 %>
 
+<!-- Material form login -->
+<div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6 text-centre"> 
+<div class="card">
+     
+           <h5 class="card-header info-color white-text text-center py-4">
+           <strong>Edit Form</strong>
+           </h5>
 
-<form action="edit" method="post">
-<div>
-    <label for="imageUrl"><b>imageUrl</b></label>
-    <input type="text" value="<%=imageUrl%>" name="imageUrl"  required></br></br>
+  <!--Card content-->
+  <div class="card-body px-lg-5 pt-0">
 
-    <label for="question"><b>Question</b></label>
-    <input type="text" value="<%=question%>"  name="question"  required></br></br>
+    <!-- Form -->
+    <form class="text-center" style="color: #757575;" action="edit" method="post">
 
-   <% 
+     <!-- ImageUrl -->
+
+      <div class="md-form">
+        
+
+        ImageUrl</br></br>
+        <input type="text" id="materialLoginForm" class="form-control" value="<%=imageUrl%>" name="imageUrl" required>
+        
+      </div> 
+
+      <label class="btn-bs-file btn btn-info">
+                Browse question image
+                <input type="file" name="image" accept="image/*">
+      </label>
+
+      <!-- Question -->
+
+      <div class="md-form">
+
+         Question</br></br>
+         <input type="text" id="materialLoginForm" class="form-control"  value="<%=question%>" name="question" required>
+        
+      </div>
+
+
+      <% 
+        int noOfOptions=securityQuestion.getOptions().size();
         int count=0;
-		Set<String> options=securityQuestion.getOptions();
-        for( String opt:options)
+        for( String option:securityQuestion.getOptions())
         {
             count++;
             String optionName="option"+count;
            
-    %>
-        <label for="optionName"><b><%=optionName%></b></label>
-        <input type="text" value="<%=opt%>" name="optionName" required></br></br>
-    <%
-        }
+      %>
+
+      <!-- Options-->
+
+      <div class="md-form">
+         
+         <%=optionName%></br></br>
+         <input type="text" id="materialLoginForm" class="form-control"  value="<%=option%>" name="optionName" required>
+        
+      </div>       
      
-    %>
+      <%
+        }
+        String answer=securityQuestion.getAnswer();
+        long id=securityQuestion.getQuestionId();
+      %>
+
+      <!-- Answer-->
+
+      <div class="md-form">
+         Answer</br></br>
+         <input type="text" id="materialLoginForm" class="form-control"  value="<%=answer %>" name="answer" required>
+        
+      </div> 
+
+       <input type="hidden" value="<%=id%>" name="questionId"></br> 
+
+       
+
+      <div class="d-flex justify-content-around">
+        <div>
+               
+
+      <div class="modal-footer justify-content-center">
+                <input type="submit" value="Save" class="btn btn-outline-primary waves-effect">
+                <a href="addQuestion" class="btn btn-outline-primary waves-effect">Cancel</a>
+            </div>
+         
+         </div>
       
-    <label for="answer"><b>answer</b></label>
-    <input type="text" value="<%=answer %>" name="answer" required></br></br>
+    </form>
+    <!-- Form -->
 
-    <input type="hidden" value="<%=id%>" name="questionId"></br> 
-
-    <input type="submit" value="Submit" class="button">
-     <input type="reset" value="Reset" class="button">
+  </div>
 
 </div>
-</form>
+</div>
+<!-- Material form login -->
 
 </body>
 </html>
+  
+
+
+   
+    
+
+  
+

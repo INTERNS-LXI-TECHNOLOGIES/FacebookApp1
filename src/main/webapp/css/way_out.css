@@ -4,6 +4,7 @@ html,body {
 body {
 	font-family: sans-serif,serif;
 	font-style: Arial;
+	color: #273a5b!important;
 }
 .cover {
 	background-image: url("../images/prison4.jpg");
@@ -292,6 +293,11 @@ img.arrow {
 	font-size: 30px;
 	color: #d18410;
 }
+.hall-name {
+	margin-top: 7px;
+	font-size: 30px;
+	color: #273a5b;
+}
 .option-color {
 	color: #e3e5e8;
 }
@@ -304,4 +310,9 @@ img.arrow {
 }
 #no-hall {
 	display: none;
+}
+p {
+	margin-top: 0.5rem!important;
+	margin-bottom: 0.5rem!important;
+	font-size: 1.2rem;
 }

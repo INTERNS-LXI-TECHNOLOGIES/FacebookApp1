@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <head>
 	<title>game</title>
-	<link rel="stylesheet" type="text/css" href="css\way_out.css">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
 	<script src="js/my-countdownTimer.js"></script>
 	<script src="js/wayout.js"></script>
 	<script src="js/bxslider-initializer.js"></script>
+	<link rel="stylesheet" type="text/css" href="css\way_out.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
 </head>
@@ -43,47 +42,59 @@
 				<div class="bxslider">
 					<%
 						String pictureName;
-						for(Door door: doors)
-						{
-							pictureName=(door.isOpen())?"images/doors/room-modified-open.jpg":"images/doors/room-modified.jpg";
-					
-							if(door.isAccessDenied()) {%>
-							  <div>
-								 <div>
-									<a href="play?doorId=<%=door.getDoorId()%>&isAccessDenied=true%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
-						  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
-						  			<p class="text-center hall-name"><%=hallName+":door "+(door.getDoorId()+1)%></p>
-								</div>
-							  	<img src="<%=pictureName%>" onclick="noAccess()" id="div-image" title="Door with id =<%=door.getDoorId()%>"></div>
-							<%}
-							else if(door.getOpeningHall()==null) {%>
-							  <div>
-							  	<div>
-									<a href="play?doorId=<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
-						  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
-						  			<p class="text-center hall-name"><%=hallName+":door "+(door.getDoorId()+1)%></p>
-								</div>
-							  	<img src="<%=pictureName%>" onclick="noOpen()" id="div-image" title="Door with id =<%=door.getDoorId()%>"></div>
-							<%}
-							else if(door.isOpen()) {%>
-							  <div>
-							  	<div>
-									<a href="play?doorId=<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
-						  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
-						  			<p class="text-center hall-name"><%=hallName+":door "+(door.getDoorId()+1)%></p>
-								</div>
-							  	<img src="<%=pictureName%>" onclick="window.location='play?doorId=<%=door.getDoorId()%>'" id="div-image" title="Door with id =<%=door.getDoorId()%>"></div>
-							<%}
-							else {%>
-							  <div>
-							  	<div>
-									<a href="play?doorId=<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
-						  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
-						  			<p class="text-center hall-name"><%=hallName+":door "+(door.getDoorId()+1)%></p>
-								</div>
-							  	<img src="<%=pictureName%>" id="div-image" onclick="popupWarningWindow(<%=door.getDoorId()%>)"></div>
-							<%}
+						if(doors!=null) {
+
+							for(Door door: doors)
+							{
+								pictureName=(door.isOpen())?"images/doors/room-modified-open.jpg":"images/doors/room-modified.jpg";
+						
+								if(door.isAccessDenied()) {%>
+								  <div>
+									 <div>
+										<a href="play?doorId=<%=door.getDoorId()%>&isAccessDenied=true"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+							  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
+							  			<p class="text-center hall-name"><%=hallName+":door "+(door.getDoorId()+1)%></p>
+									</div>
+								  	<img src="<%=pictureName%>" onclick="noAccess()" id="div-image" title="Door with id =<%=door.getDoorId()%>"></div>
+								<%}
+								else if(door.getOpeningHall()==null) {%>
+								  <div>
+								  	<div>
+										<a href="play?doorId=<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+							  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
+							  			<p class="text-center hall-name"><%=hallName+":door "+(door.getDoorId()+1)%></p>
+									</div>
+								  	<img src="<%=pictureName%>" onclick="noOpen()" id="div-image" title="Door with id =<%=door.getDoorId()%>"></div>
+								<%}
+								else if(door.isOpen()) {%>
+								  <div>
+								  	<div>
+										<a href="play?doorId=<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+							  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
+							  			<p class="text-center hall-name"><%=hallName+":door "+(door.getDoorId()+1)%></p>
+									</div>
+								  	<img src="<%=pictureName%>" onclick="window.location='play?doorId=<%=door.getDoorId()%>'" id="div-image" title="Door with id =<%=door.getDoorId()%>"></div>
+								<%}
+								else {%>
+								  <div>
+								  	<div>
+										<a href="play?doorId=<%=door.getDoorId()%>"><img src="images/key-icon1.png" class="img-responsive super-key float-right" alt="key"></a>
+							  			<p class="float-right key-number"><%=model.getNumberOfKeys()%></p>
+							  			<p class="text-center hall-name"><%=hallName+":door "+(door.getDoorId()+1)%></p>
+									</div>
+								  	<img src="<%=pictureName%>" id="div-image" onclick="popupWarningWindow(<%=door.getDoorId()%>)"></div>
+								<%}
+							 }
 						 }
+						 if(doors==null){%>
+
+					 		<div>
+							  	<div>
+						  			<p class="text-center hall-name"><%=hallName%>:no doors</p>
+								</div>
+							  	<img src="images/no-door.png" id="div-image"></div>
+
+						<%}	 
 						 if(model.getPrisoner().getCurrentLocation().getBackDoor()!=null) {%>
 
 						  <div>
