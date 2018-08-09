@@ -1,11 +1,8 @@
 
-
-
 <!DOCTYPE html>
 <head>
   <title>DisplayAll</title>
-  <link rel="stylesheet" type="text/css" href="css/admin.css">
-
+ 
     <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -24,7 +21,7 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.8/js/mdb.min.js"></script>
-
+  
   <link rel="stylesheet" type="text/css" href="bootstrap.css">
   <link rel="stylesheet" type="text/css" href="mystyle.css">
   <link rel="stylesheet" type="text/css" href="Sample.css">
@@ -32,35 +29,7 @@
 <body>
 
 
-<div id="add">
 
-<p align="left">
-<a href="AdminOptions.jsp"><img src="images/icons/home.jpg" width="50" height="50"></a></br></br>
-
-<style>
-.button{
-	background-color:cornflowerblue;
-	color:white;
-}
-.button:hover{
-	background-color:green;
-}
-
-input[type=text] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 10px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-table, th, td {
-    border: 1px solid black;
-}
-
-</style>
-</p>
-</div>
 <%@ page import="com.lxisoft.wayout.web.*,com.lxisoft.wayout.domain.*,com.lxisoft.wayout.model.*,java.sql.*,java.util.*"%>
 
 <%
@@ -100,7 +69,9 @@ String pageNo=request.getParameter("link");
       }
 
 %>
-  <div class="row">
+
+<!-- Editable table -->
+<div class="card">
     <div class="col-sm-2"></div>
   <div class="col-sm-12">
     <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Questions</h3>
@@ -114,7 +85,7 @@ String pageNo=request.getParameter("link");
                     <th class="text-center">ImagrUrl</th>
                     <th class="text-center">Question</th>
                     <th class="text-center">Answer</th>                    
-                    <th class="text-center">Save</th>   
+                    <th class="text-center">Edit</th>   
                     <th class="text-center">Remove</th>
                 </tr>
   
@@ -123,18 +94,18 @@ String pageNo=request.getParameter("link");
 
                 <tr>
                     <td class="pt-3-half" contenteditable="false"><%=secQuestion.getQuestionId()%></td>
-                    <td class="pt-3-half" contenteditable="true"><%=secQuestion.getImageUrl()%></td>
+                    <td class="pt-3-half" contenteditable="false"><%=secQuestion.getImageUrl()%></td>
                     <td class="pt-3-half" contenteditable="false"><a href="search?questionId=<%=secQuestion.getQuestionId()%>"><%=secQuestion.getQuestion()%></a></td>
-                    <td class="pt-3-half" contenteditable="true"><%=secQuestion.getAnswer()%></td>                    
+                    <td class="pt-3-half" contenteditable="false"><%=secQuestion.getAnswer()%></td>                    
                     
                     <td>
-                        <span class="table-remove"><button type="button" <a href="" class="btn btn-default btn-rounded">Save</a></button></span>
+                        <span class="table-remove"><button type="button"> <a href="edit?questionId=<%=secQuestion.getQuestionId()%>">Edit</a></button></span>
                     </td>
 
                     
                     <!-- Button trigger modal -->
                      <td>
-                     <span class="table-remove"><button type="button" <a href="" class="btn btn-default btn-rounded" data-toggle="modal" data-target="#sideModalTLInfo">Remove</a></button></span>
+                     <span class="table-remove"><button type="button"> <a href="" data-toggle="modal" data-target="#sideModalTLInfo">Remove</a></button></span>
                      </td>
 
 

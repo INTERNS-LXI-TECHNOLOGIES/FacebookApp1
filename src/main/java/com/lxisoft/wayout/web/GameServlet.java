@@ -186,7 +186,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 	   
 	   door.setOpeningHall(temp);
 	   
-	   if(game.getPrisoner().getCurrentLocation().getHallId()!=0)
+	   if(game.getPrisoner().getCurrentLocation().getHallId()!=0 && (game.getPrisoner().getCurrentLocation().getBackDoor()==door || game.getPrisoner().getCurrentLocation().getBackDoor()==null))
 	   {
 		   game.getPrisoner().getCurrentLocation().setBackDoor(door);
 		   if(game.getPrisoner().getCurrentLocation().getDoors()!=null)
@@ -218,14 +218,16 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 	   		if(game.getPrisoner().getCurrentLocation().getBackDoor().getDoorId()==doorId)
 	   			return game.getPrisoner().getCurrentLocation().getBackDoor();
 	   	}*/
-       for(Door door:doors)
-       {
-    	   
-         if(doorId==(door.getDoorId()))
-        	 
-         	return door;
-        
-        }	 
+	   	if(doors!=null) {
+	       for(Door door:doors)
+	       {
+	    	   
+	         if(doorId==(door.getDoorId()))
+	        	 
+	         	return door;
+	        
+	        }
+	    }	 
        return game.getPrisoner().getCurrentLocation().getBackDoor(); //returns back door if there is no other door with this id
         	           
    }
@@ -241,8 +243,9 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
    {
 	   log.info("_____________________________ start_________________________"+door.getDoorId());
 	   
+	   List<Door> doors=door.getOpeningHall().getDoors();
+	   Hall currentHall=game.getPrisoner().getCurrentLocation();
 	   if(door.getOpeningHall()!=null&&door.getOpeningHall().getDoors()!=null) {
-		   List<Door> doors=door.getOpeningHall().getDoors();
 
 		   long i;
 
@@ -407,7 +410,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 			*/
 			int d=0;
 			long doorId=0l;
-			if((hall.isExitHall()==false)&&(hall.getHallId()>=(13/3)))
+			if((hall.isExitHall()==false)&&(hall.getHallId()<(13/3)))
 			{
 				//loop for creating doors.
 				
