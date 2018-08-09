@@ -1,5 +1,5 @@
 //Import required java libraries
-package com.lxisoft.wayout.model;
+package com.lxisoft.wayout.domain;
 
 import java.util.*;
 
@@ -17,7 +17,7 @@ import java.util.logging.*;
 public class User implements Comparable<User>
 {
 	
-	private final static Logger logger = Logger.getLogger(UserModel.class.getName());
+	private final static Logger logger = Logger.getLogger(User.class.getName());
 	/**
 	 * The variable userName is used to hold a String value userName.
 
@@ -95,8 +95,8 @@ public class User implements Comparable<User>
 		
 		return role;
 	}
-	public int compareTo(UserModel userModel)
+	public int compareTo(User user)
 	{  
-		return this.userName.compareTo(userModel.getUsername);  
+		return this.userName.compareTo(user.getUsername());  
 	}  
 	}
