@@ -132,10 +132,7 @@
 		</div>
 		</div>
 
-<!-- 		<audio id="myAudio">
-		  <source src="horse.ogg" type="audio/ogg">
-		  <source src="horse.mp3" type="audio/mpeg">
-		  Your browser does not support the audio element.
-		</audio> -->
+		<audio id="warning-sound" src="audio/windows_xp_error.ogg">
+		</audio>
 </body>
 </html>
