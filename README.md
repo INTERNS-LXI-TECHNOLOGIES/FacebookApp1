@@ -1,4 +1,4 @@
-# FacebookApp1
+# WayOut
 developing app to integrate with facebook
 ## Development
 
