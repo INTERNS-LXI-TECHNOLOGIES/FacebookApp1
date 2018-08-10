@@ -63,7 +63,7 @@ public class GameConfigurationRepository
 	}
 	/**
 	 * method for selecting one raw from game_configuration table
-	 *@param gameConfiguration
+	 *@param gameConfiguration instance of GameConfiguration.
 	 *@return 1 or 0
 	 */
 	public int findOne(GameConfiguration gameConfiguration)
@@ -91,7 +91,7 @@ public class GameConfigurationRepository
 	}
 	/**
 	 * method for updating one raw in game_configuration table
-	 *@param gameConfiguration
+	 *@param gameConfiguration instance of GameConfiguration.
 	 *@return a
 	 */
 	public int update(GameConfiguration gameConfiguration)
@@ -114,7 +114,7 @@ public class GameConfigurationRepository
 	}
 	/**
 	 * method for inserting one raw to game_configuration table
-	 *@param gameConfiguration
+	 *@param gameConfiguration instance of GameConfiguration.
 	 *@return a
 	 */
 	public int insert(GameConfiguration gameConfiguration)
