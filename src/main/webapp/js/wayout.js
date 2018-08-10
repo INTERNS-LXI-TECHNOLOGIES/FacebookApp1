@@ -22,6 +22,10 @@ function popupWarningWindow(id) {
     document.getElementById('warning-message').style.display='block';
 }
 function noAccess() {
+/*    var audio = new Audio('../audio/windows_xp_error.mp3');
+    audio.play();*/
+    var audio=document.getElementById('warning-sound');
+    audio.play();
     document.getElementById('warning').style.display='block';
 }
 function noOpen() {

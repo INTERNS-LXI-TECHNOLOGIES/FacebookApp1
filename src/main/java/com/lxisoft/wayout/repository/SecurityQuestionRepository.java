@@ -79,68 +79,64 @@ public class SecurityQuestionRepository{
 
 	public void save(SecurityQuestion securityQuestion){
 		
-
-		
 		logger.info("============Entered into save method SecurityQuestionRepository===========");
-		PreparedStatement stmt;
 		Set<String> options = new TreeSet<String>();
-		String question = securityQuestion.getQuestion();
-		String answer = securityQuestion.getAnswer();
-		String imagePath = securityQuestion.getImageUrl();
 		options = securityQuestion.getOptions();
+		//long id=securityQuestion.getQuestionId();
+		
+		Set<Integer> optionIds=new TreeSet<Integer>();
+		
 		try
 		{
-			logger.info("============Entered into try of save method SecurityQuestionRepository===========");
-			ResultSet rs1,rs2,rs3;
+			Long id=securityQuestion.getQuestionId();
+			
 			connection=dataSource.getConnection();
-			stmt=connection.prepareStatement("insert into security_question(question,image_path,answer) values('"+question+"','"+imagePath+"','"+answer+"')");
-			int a = stmt.executeUpdate();
-			if(a>0)
-			{
-				stmt = connection.prepareStatement("select id from security_question order by id desc limit 1");
-				rs1 = stmt.executeQuery();
-				if(rs1.next())
-				{
-					int q_id = Integer.parseInt(rs1.getString("id"));
-					for(String s:options)
-					{
-						int o_id;
-						int b;
-						stmt = connection.prepareStatement("select * from question_option where opt='"+s+"'");
-						rs2 = stmt.executeQuery();
-						if(rs2.next())
-						{
-							o_id = Integer.parseInt(rs2.getString("id"));
-							stmt = connection.prepareStatement("insert into security_question_options(question_id,option_id) values('"+q_id+"','"+o_id+"')");
-							int c = stmt.executeUpdate();
-						}
-						else
-						{
-							stmt=connection.prepareStatement("insert into question_option(opt) values('"+s+"')");
-							b = stmt.executeUpdate();
-							if(b>0)
-							{
-								stmt = connection.prepareStatement("select id from question_option order by id desc limit 1");
-								rs3 = stmt.executeQuery();
-								if(rs3.next())
-								{
-									o_id = Integer.parseInt(rs3.getString("id"));
-									stmt = connection.prepareStatement("insert into security_question_options(question_id,option_id) values('"+q_id+"','"+o_id+"')");
-									int c = stmt.executeUpdate();
-								}
-							}
-						}
-					}
+			stmt=connection.prepareStatement("insert into security_question (image_path,question,answer) values(?,?,?)",stmt.RETURN_GENERATED_KEYS);
+			
+			stmt.setString(1,securityQuestion.getImageUrl());
+			stmt.setString(2,securityQuestion.getQuestion());
+			stmt.setString(3,securityQuestion.getAnswer());
+			
+			stmt.executeUpdate();
+			
+			ResultSet rs=stmt.getGeneratedKeys();
+			rs.next();
+			int questionId=rs.getInt(1);
+			
+			System.out.println("************questionId id"+questionId);
+		
+			stmt.close();
+			
+			for(String option:options){
+				
+				stmt=connection.prepareStatement("insert into question_option (opt) values(?)",stmt.RETURN_GENERATED_KEYS);
+			
+				stmt.setString(1,option);
+				
+				stmt.executeUpdate();
+				
+				ResultSet rs1=stmt.getGeneratedKeys();
+				while(rs1.next()){
+					
+					optionIds.add(rs1.getInt(1));
 				}
+			
+			for(Integer i:optionIds){
+				System.out.println("************option id set"+i);
 			}
+			stmt.close();
+			
+			}
+			
+			saveToSecurityQuestionOptions(questionId,optionIds);
+			
 			connection.close();
-			logger.info("============completed save method SecurityQuestionRepository===========");
 		}
-		catch(Exception ex)
+		catch(Exception e)
 		{
-			logger.info("============exception in save method SecurityQuestionRepository===========");
-			ex.printStackTrace();
+			e.printStackTrace();
 		}
+		
 		
 	}
 
@@ -180,15 +176,61 @@ public class SecurityQuestionRepository{
 	* @param securityQuestion securityQuestion to be updated
 	**/
 
-	public void update(SecurityQuestion securityQuestion){
+		public void update(SecurityQuestion securityQuestion){
 		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion()===========");
 	
-		delete(securityQuestion);
-		save(securityQuestion);
+		PreparedStatement stmt;
+		
+		Set<String> options=securityQuestion.getOptions();
+		Object[] optionArray=options.toArray();
+			try
+			{
+				connection=dataSource.getConnection();
+				
+				stmt=connection.prepareStatement("update security_question set question=?,image_path=?,answer=? where id=?");
+			
+				stmt.setString(1,securityQuestion.getQuestion());
+				stmt.setString(2,securityQuestion.getImageUrl());
+				stmt.setString(3,securityQuestion.getAnswer());
+				stmt.setLong(4,securityQuestion.getQuestionId());
+				
+				stmt.executeUpdate();
+				stmt.close();
+				
+				stmt=connection.prepareStatement("select qo.id,qo.opt,sqo.question_id from question_option qo, security_question_options sqo WHERE qo.id =sqo.option_id and sqo.question_id=?");
+				
+				stmt.setLong(1,securityQuestion.getQuestionId());
+				
+				System.out.println("resultSet after select");
+					
+				ResultSet resultSet=stmt.executeQuery();
+				int i=0;
+					while(resultSet.next())
+					{
+						stmt=connection.prepareStatement("UPDATE question_option qo, security_question_options sqo SET qo.opt=? WHERE qo.id =sqo.option_id and sqo.option_id=? and sqo.question_id=?");
+				
+						stmt.setObject(1,optionArray[i]);
+						stmt.setInt(2,resultSet.getInt("id"));
+						stmt.setLong(3,resultSet.getLong("question_id"));
+					
+						stmt.executeUpdate();
+						stmt.close();
+						i++;
+					}	
+					
+					stmt.close();	
+					connection.close();	
+			}
+			
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		
  		logger.info("============Exited from  SecurityQuestionRepository/update()===========");
 		
 	}
+
 	/**
 	* to find SecurityQuestion by using an unique key
 	* @param id id of securityQuestion
@@ -273,15 +315,6 @@ public SecurityQuestion findOne(Long id){
 				
 				}				
 				
-			for(SecurityQuestion securityquestion:securityQuestions){
-				System.out.println("*************"+securityquestion.getQuestionId());
-				System.out.println("*************"+securityquestion.getQuestion());
-				System.out.println("*************"+securityquestion.getAnswer());
-				System.out.println("*************"+securityquestion.getImageUrl());
-				System.out.println("*************"+securityquestion.getOptions());
-					
-			}
-					
 			connection.close();
 			
 		}
