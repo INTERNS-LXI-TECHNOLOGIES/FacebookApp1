@@ -82,6 +82,7 @@ public class SecurityQuestionRepository{
 		logger.info("============Entered into save method SecurityQuestionRepository===========");
 		Set<String> options = new TreeSet<String>();
 		options = securityQuestion.getOptions();
+		//long id=securityQuestion.getQuestionId();
 		
 		Set<Integer> optionIds=new TreeSet<Integer>();
 		
@@ -175,15 +176,61 @@ public class SecurityQuestionRepository{
 	* @param securityQuestion securityQuestion to be updated
 	**/
 
-	public void update(SecurityQuestion securityQuestion){
+		public void update(SecurityQuestion securityQuestion){
 		logger.info("============Entered into SecurityQuestionRepository/updateSecurityQuestion()===========");
 	
-		delete(securityQuestion);
-		save(securityQuestion);
+		PreparedStatement stmt;
+		
+		Set<String> options=securityQuestion.getOptions();
+		Object[] optionArray=options.toArray();
+			try
+			{
+				connection=dataSource.getConnection();
+				
+				stmt=connection.prepareStatement("update security_question set question=?,image_path=?,answer=? where id=?");
+			
+				stmt.setString(1,securityQuestion.getQuestion());
+				stmt.setString(2,securityQuestion.getImageUrl());
+				stmt.setString(3,securityQuestion.getAnswer());
+				stmt.setLong(4,securityQuestion.getQuestionId());
+				
+				stmt.executeUpdate();
+				stmt.close();
+				
+				stmt=connection.prepareStatement("select qo.id,qo.opt,sqo.question_id from question_option qo, security_question_options sqo WHERE qo.id =sqo.option_id and sqo.question_id=?");
+				
+				stmt.setLong(1,securityQuestion.getQuestionId());
+				
+				System.out.println("resultSet after select");
+					
+				ResultSet resultSet=stmt.executeQuery();
+				int i=0;
+					while(resultSet.next())
+					{
+						stmt=connection.prepareStatement("UPDATE question_option qo, security_question_options sqo SET qo.opt=? WHERE qo.id =sqo.option_id and sqo.option_id=? and sqo.question_id=?");
+				
+						stmt.setObject(1,optionArray[i]);
+						stmt.setInt(2,resultSet.getInt("id"));
+						stmt.setLong(3,resultSet.getLong("question_id"));
+					
+						stmt.executeUpdate();
+						stmt.close();
+						i++;
+					}	
+					
+					stmt.close();	
+					connection.close();	
+			}
+			
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
 		
  		logger.info("============Exited from  SecurityQuestionRepository/update()===========");
 		
 	}
+
 	/**
 	* to find SecurityQuestion by using an unique key
 	* @param id id of securityQuestion
@@ -268,15 +315,6 @@ public SecurityQuestion findOne(Long id){
 				
 				}				
 				
-			for(SecurityQuestion securityquestion:securityQuestions){
-				System.out.println("*************"+securityquestion.getQuestionId());
-				System.out.println("*************"+securityquestion.getQuestion());
-				System.out.println("*************"+securityquestion.getAnswer());
-				System.out.println("*************"+securityquestion.getImageUrl());
-				System.out.println("*************"+securityquestion.getOptions());
-					
-			}
-					
 			connection.close();
 			
 		}
