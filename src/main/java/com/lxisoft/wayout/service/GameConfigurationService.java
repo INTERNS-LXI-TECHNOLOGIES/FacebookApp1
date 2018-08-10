@@ -12,6 +12,7 @@ public interface GameConfigurationService
 {
 	/**
 	*abstract method 
+	@param gameConfiguration instance of GameConfiguration.
 	*/ 
 	public void configureGame(GameConfiguration gameConfiguration);
 }

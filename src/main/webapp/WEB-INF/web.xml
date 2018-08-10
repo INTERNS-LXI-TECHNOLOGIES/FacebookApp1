@@ -67,6 +67,7 @@
 			<form-login-page>/AdminLogin.jsp</form-login-page>
 			<form-error-page>/Error.jsp</form-error-page>
 		</form-login-config>
+		<realm-name>way_out</realm-name>
 </login-config>
 
 
