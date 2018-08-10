@@ -30,6 +30,7 @@ public void addUser(User user);
 * to get an user
 *@param username this is the username of the user
 *
+*@return User
 **/
 public User findOne(String username);
 
