@@ -32,7 +32,7 @@ public class GameConfiguration
 	private String gameMode;
 	/**
 	 * setter for keys count
-	 * @param keysCount 
+	 * @param keysCount for number of super keys
 	 */
 	public void setKeysCount(Integer keysCount)
 	{
@@ -48,7 +48,7 @@ public class GameConfiguration
 	}
 	/**
 	 * setter for halls count
-	 * @param hallsCount 
+	 * @param hallsCount for number of halls in prison
 	 */
 	public void setHallsCount(Integer hallsCount)
 	{
@@ -64,7 +64,7 @@ public class GameConfiguration
 	}
 	/**
 	 * setter for  question time
-	 * @param questionTime 
+	 * @param questionTime for appearing question in window
 	 */
 	public void setQuestionTime(Integer questionTime)
 	{
@@ -80,7 +80,7 @@ public class GameConfiguration
 	}
 	/**
 	 * setter for  game time
-	 * @param gameTime 
+	 * @param gameTime for game time limit
 	 */
 	public void setGameTime(Integer gameTime)
 	{
@@ -96,7 +96,7 @@ public class GameConfiguration
 	}
 	/**
 	 * setter for  game mode
-	 * @param gameMode 
+	 * @param gameMode for game mode.
 	 */
 	public void setGameMode(String gameMode)
 	{
