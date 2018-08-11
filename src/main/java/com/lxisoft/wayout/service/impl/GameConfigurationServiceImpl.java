@@ -16,7 +16,7 @@ public class GameConfigurationServiceImpl implements GameConfigurationService
 	GameConfigurationRepository repo=new GameConfigurationRepository();
 	/**
 	*Mthod for calling repository class methods for certain table manipulation
-	@param gameConfiguration
+	@param gameConfiguration instance of GameConfiguration.
 	*/ 
 	public void configureGame(GameConfiguration gameConfiguration)
 	{

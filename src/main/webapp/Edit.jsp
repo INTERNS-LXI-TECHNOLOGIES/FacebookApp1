@@ -109,7 +109,7 @@
 
       <div class="modal-footer justify-content-center">
                 <input type="submit" value="Save" class="btn btn-outline-primary waves-effect">
-                <a href="addQuestion" class="btn btn-outline-primary waves-effect">Cancel</a>
+                <a href='<%=request.getHeader("referer")%>' class="btn btn-outline-primary waves-effect">Cancel</a>
             </div>
          
          </div>

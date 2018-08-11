@@ -70,8 +70,8 @@ public class QuestionEditServlet extends HttpServlet{
 		logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"+question+"XXXXXXXXXXXXXXXXXXXXXXXXX");
 		logger.info("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"+question.getAnswer()+"XXXXXXXXXXXXXXXXXXXXXXXXX");
 		request.getSession().setAttribute("question",question);
-		response.sendRedirect("Edit.jsp");
-
+		request.getRequestDispatcher("Edit.jsp").forward(request,response);
+		//response.sendRedirect("Edit.jsp");
 		logger.info(">>>>>>>>>>exiting the  try block of the method to get the single questionto edit");
 		}
 		catch(Exception e){

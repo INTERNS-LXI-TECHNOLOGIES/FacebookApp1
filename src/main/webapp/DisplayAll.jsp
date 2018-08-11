@@ -22,9 +22,12 @@
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.8/js/mdb.min.js"></script>
   
-  <link rel="stylesheet" type="text/css" href="bootstrap.css">
-  <link rel="stylesheet" type="text/css" href="mystyle.css">
-  <link rel="stylesheet" type="text/css" href="Sample.css">
+  <!-- <link rel="stylesheet" type="text/css" href="bootstrap.css"> -->
+  <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+  <link rel="stylesheet" type="text/css" href="css/admin.css">
+  <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+  <link rel="stylesheet" type="text/css" href="css/button.css">
+  <!-- <link rel="stylesheet" type="text/css" href="Sample.css"> -->
 </head>
 <body>
 
@@ -77,7 +80,7 @@ String pageNo=request.getParameter("link");
     <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Questions</h3>
     <div class="card-body">
         <div id="table" class="table-editable">
-            <span class="table-add float-right mb-3 mr-2"><a href="AdminOptions.jsp"><img src="images/icons/back.jpg" width="10" height="10" class="text-success">
+            <span class="table-add float-right mb-3 mr-2"><a href="AdminOptions.jsp"><img src="images/icons/home-blue.png" width="10" height="10" class="text-success">
             </a></span>
             <table class="table table-bordered table-responsive-md table-striped text-center">
                 <tr>
@@ -105,7 +108,7 @@ String pageNo=request.getParameter("link");
                     
                     <!-- Button trigger modal -->
                      <td>
-                     <span class="table-remove"><button type="button"> <a href="" data-toggle="modal" data-target="#sideModalTLInfo">Remove</a></button></span>
+                     <span class="table-remove"><button type="button" class="remove-button"> <a href="" data-toggle="modal" data-target="#sideModalTLInfo">Remove</a></button></span>
                      </td>
 
 
@@ -160,7 +163,7 @@ String pageNo=request.getParameter("link");
 </div>
 <!-- Editable table -->
 
-<div class="text-center">
+<div class="text-center pagination-div">
       <ul class="my-pagination">
       
       <%if((currentPageNo>=1) && (lastPageNo!=1)){%>

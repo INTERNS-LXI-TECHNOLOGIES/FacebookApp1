@@ -14,7 +14,7 @@ import java.util.logging.*;
 
 */
 
-public class User implements Comparable<User>
+public class UserModel implements Comparable<UserModel>
 {
 	
 	private final static Logger logger = Logger.getLogger(UserModel.class.getName());
@@ -97,6 +97,6 @@ public class User implements Comparable<User>
 	}
 	public int compareTo(UserModel userModel)
 	{  
-		return this.userName.compareTo(userModel.getUsername);  
+		return this.userName.compareTo(userModel.getUsername());  
 	}  
 	}
