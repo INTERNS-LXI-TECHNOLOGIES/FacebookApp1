@@ -32,7 +32,7 @@ public class User implements Comparable<User>
 	 *@param userName variable used to pass the value of userName.
 	 
 	 */
-	public void setUsername(String userName)
+	public void setUserName(String userName)
 	{
 		logger.fine("Entered into the method setUsername "+logger.getName());
 	
@@ -42,9 +42,10 @@ public class User implements Comparable<User>
 	}
 	/**
 	 *Retrieve the value of userName.
+	 
 	 *@return userName variable used to return the String value userName.
 	 */
-	public String getUsername()
+	public String getUserName()
 	{
 		logger.fine("Entered into the method getUsername "+logger.getName());
 		
@@ -52,6 +53,7 @@ public class User implements Comparable<User>
 	}
 	/**
 	 *Set the value of password.
+	 
 	 *@param password variable used to pass the value of password.
 	 */
 	public void setPassword(String password)
@@ -64,6 +66,7 @@ public class User implements Comparable<User>
 	}
 	/**
 	 *Retrieve the value of password.
+	 
 	 *@return password variable used to return the String value password.
 	 */
 	public String getPassword()
@@ -74,6 +77,7 @@ public class User implements Comparable<User>
 	}
 	/**
 	 *Set the value of role.
+	 
 	 *@param role variable used to pass the value of role.
 	 */
 	public void setRole(String role)
@@ -87,6 +91,7 @@ public class User implements Comparable<User>
 	}
 	/**
 	 *Retrieve the value of role.
+	 
 	 *@return role variable used to return the String value role.
 	 */
 	public String getRole()
