@@ -106,10 +106,14 @@ public void addNewUser(User user){
 }
 
 public User findOneUser(String username){
+	logger.info("============entering  findOneUser method in UserRepository===========");
+	PreparedStatement stmt;
 	ResultSet rs;
 	try{
-stmt=connection.prepareStatement("select users.username,users.password,user_roles.role from users inner join user_roles where users.username='"+username+"' && user_roles.username='"+username+"';");
-rs=stmt.executeQuery();
+		logger.info("============entering try block of FindOneUser method in UserRepository===========");
+		connection=dataSource.getConnection();
+		stmt=connection.prepareStatement("select users.username,users.password,user_roles.role from users inner join user_roles where users.username='"+username+"' && user_roles.username='"+username+"';");
+		rs=stmt.executeQuery();
 	while(rs.next()){
 		String t_username=rs.getString(1);
 		String password=rs.getString(2);
@@ -118,48 +122,74 @@ rs=stmt.executeQuery();
 		user.setUsername(t_username);
 		user.setPassword(password);
 		user.setRole(role);
-		
+		logger.info("============exiting try block of updateUser method in UserRepository===========");
 	}
+	connection.close();
 
 }
 catch(Exception e){
 	e.printStackTrace();
 }
+logger.info("============exiting findOneUser method in UserRepository===========");
 return user;
+
 
 
 
 }
 
 public void updateUser(User user,String oldUsername){
+	logger.info("============entering updateUser method in UserRepository===========");
+	System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.."+oldUsername);
+	PreparedStatement stmt1;
+	PreparedStatement stmt2;
 	try{
+		logger.info("============entering try block of the updateUser method in UserRepository===========");
+
+		connection=dataSource.getConnection();
 		String username=user.getUsername();
 		String password=user.getPassword();
-		stmt=connection.prepareStatement("update users set username='"+user.getUsername()+"',password='"+user.getPassword()+"'where username='"+oldUsername+"';update user_roles set username='"+user.getUsername()+"', role='user' where username='"+oldUsername+"';" );
-		ResultSet rs=stmt.executeQuery();
-
+		stmt1=connection.prepareStatement("update users set username='"+user.getUsername()+"',password='"+user.getPassword()+"'where username='"+oldUsername+"';" );
+		stmt2=connection.prepareStatement("update user_roles set username='"+user.getUsername()+"', role='admin' where username='"+oldUsername+"';");
+		int a=stmt1.executeUpdate();
+		int b=stmt2.executeUpdate();
+		connection.close();
+		logger.info("============exiting try block of the updateUser method in UserRepository===========");
 	}
 	catch(Exception e){
 		e.printStackTrace();
 	}
+	logger.info("============exiting  updateUser method in UserRepository===========");
 
 
 }
 
 public void delete(User user){
+	logger.info("============entering updateUser method in UserRepository===========");
+	PreparedStatement stmt;
+	ResultSet rs;
 	try{
+		logger.info("============entering try block of updateUser method in UserRepository===========");
+		connection=dataSource.getConnection();
 		stmt=connection.prepareStatement("delete from users where username='"+user.getUsername()+"';delete from user_roles where username='"+user.getUsername()+"';");
-		ResultSet rs=stmt.executeQuery();
+		rs=stmt.executeQuery();
+		logger.info("============exiting try block of updateUser method in UserRepository===========");
 	}
 	catch(Exception e){
 		e.printStackTrace();
 	}
+	logger.info("============exiting updateUser method in UserRepository===========");
 }
 
-public TreeSet<User> findAllUser(){;
+public TreeSet<User> findAllUser(){
+	logger.info("============entering findAllUser method in UserRepository===========");
+
 	TreeSet<User> userset=new TreeSet<User>();
+	PreparedStatement stmt;
 		try{
-			stmt=connection.prepareStatement("select usres.username,users.password,user_roles.role from users inner join user_roles on users.username=user_roles.username;");
+			logger.info("============entering try block of findAllUser method in UserRepository===========");
+			connection=dataSource.getConnection();
+			stmt=connection.prepareStatement("select users.username,users.password,user_roles.role from users inner join user_roles on users.username=user_roles.username;");
 			ResultSet rs2=stmt.executeQuery();
 			
 			while(rs2.next()){
@@ -174,12 +204,18 @@ public TreeSet<User> findAllUser(){;
 
 
 		}
+		connection.close();
+		logger.info("============exiting try block of findAllUser method in UserRepository===========");
 
 	}
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		return userset;
+		logger.info("============exiting findAllUser method in UserRepository===========");
 
+		return userset;
+		
 	}
+
+	
 }

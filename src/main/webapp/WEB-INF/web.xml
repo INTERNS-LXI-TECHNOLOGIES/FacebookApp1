@@ -82,6 +82,36 @@
 </servlet-mapping>
 
 <servlet>
+	<servlet-name>UserAddServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.UserAddServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>UserAddServlet</servlet-name>
+	<url-pattern>/addUser</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>UserEditServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.UserEditServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>UserEditServlet</servlet-name>
+	<url-pattern>/editUser</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>UserDeleteServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.UserDeleteServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>UserDeleteServlet</servlet-name>
+	<url-pattern>/deleteUser</url-pattern>
+</servlet-mapping>
+
+<servlet>
 	<servlet-name>QuestionSearchServlet</servlet-name>
 	<servlet-class>com.lxisoft.wayout.web.QuestionSearchServlet</servlet-class>
 </servlet>

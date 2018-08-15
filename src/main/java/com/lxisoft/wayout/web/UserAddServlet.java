@@ -1,4 +1,4 @@
-package com.lxiosft.wayout.web;
+package com.lxisoft.wayout.web;
 /**
 *@author Neeraja.M
 *
@@ -94,7 +94,7 @@ public class UserAddServlet extends HttpServlet
 	 * @throws ServletException 
 	 *           if Undesired condition occurs 
 	 */
-	public void doget(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException{
+	public void doGet(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException{
 		
 		String username=request.getParameter("username");
 		//String username=request.getParameter("username");
@@ -103,7 +103,7 @@ public class UserAddServlet extends HttpServlet
 		//user.setUsername(username);
 		//user.setPassword(password);
 		request.getSession().setAttribute("user",user);
-		response.sendRedirect("User.jsp");
+		response.sendRedirect("user.jsp");
 
 
 

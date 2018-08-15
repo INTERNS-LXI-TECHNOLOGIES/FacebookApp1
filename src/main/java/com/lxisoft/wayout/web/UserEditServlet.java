@@ -1,4 +1,4 @@
-package com.lxiosft.wayout.web;
+package com.lxisoft.wayout.web;
 /**
 *@author Neeraja.M
 *
@@ -97,12 +97,13 @@ public class UserEditServlet extends HttpServlet
 		try{
 			String username=request.getParameter("username");
 			String password=request.getParameter("password");
-			String oldUsername=request.getParameter("oldusername");
+			String oldUsername=request.getParameter("oldUsername");
+			
 
 			user.setUsername(username);
 			user.setPassword(password);
 			userServiceImpl.editUser(user, oldUsername);
-			response.sendRedirect("done.jsp?page=AdminOptions.jsp");
+			response.sendRedirect("done.jsp?redirectPageUrl=AdminOptions.jsp");
 
 		}
 		catch(Exception e){

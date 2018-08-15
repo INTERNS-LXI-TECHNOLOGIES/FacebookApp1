@@ -46,12 +46,12 @@ String oldUsername=username;
     <center>
 
     <label for="username"><b>username</b></label>
-    <input type="text" value="username" name="username"  required></br></br>
+    <input type="text" value="<%=username%>" name="username"  required></br></br>
 
     <label for="password"><b>password</b></label>
-    <input type="text" value="password"  name="password"  required></br></br>
+    <input type="text" value="<%=password%>"  name="password"  required></br></br>
 
-    <input type=hidden value="oldUsername" name="oldUsername" required></br>
+    <input type=hidden value="<%=oldUsername%>" name="oldUsername" required></br>
 
     <input type="submit" value="Submit" class="button">
     <input type="Reset" value="Cancel" class="button">
