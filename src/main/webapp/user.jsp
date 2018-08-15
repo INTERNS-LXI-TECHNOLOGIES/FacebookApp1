@@ -44,23 +44,22 @@ input[type=text] {
 <%@ page import= "com.lxisoft.wayout.domain.*,com.lxisoft.wayout.model.*,java.util.*,java.sql.*"%>
 <%User user=(User)session.getAttribute("user");%>
  <form action="userEdit.jsp" method="post">
-    <input type="hidden" value="<%user.getUsername()%>" name="username">
-    <input type="hidden" value="<%user.getPassword()%>" name="password">
+    <input type="hidden" value="<%=user.getUsername()%>" name="username">
+    <input type="hidden" value="<%=user.getPassword()%>" name="password">
 
-<input type="image" src="images/icons/edit1.jpg" alt="Edit Form" />
+<input type="image" src="images/icons/edit1.jpg" width="80" height="80" title=editUser alt="Edit Form" />
 </form>
 
 
 <div class="row">
 
-   <div class="col-sm-12"><a href="UserEdit.jsp"><img src="images/icons/remove1.jpg" width="90" height="90" title=deleteUser></a></div>
+   <div class="col-sm-12"><a href="UserDelete.jsp"><img src="images/icons/remove1.jpg" width="90" height="90" title=deleteUser></a></div>
 
 </div>
 <%out.println("username:"+user.getUsername());%></br></br>
 <%out.println("password:"+user.getPassword());%>
 
 
-<input type="image" src="images/login.jpg" alt="Submit Form" />
 
 
 </body>

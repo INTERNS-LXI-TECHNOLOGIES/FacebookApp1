@@ -1,4 +1,4 @@
-package com.lxiosft.wayout.web;
+package com.lxisoft.wayout.web;
 /**
 *@author Neeraja.M
 *
