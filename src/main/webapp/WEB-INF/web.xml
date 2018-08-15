@@ -160,6 +160,25 @@
 	<url-pattern>/configureGame</url-pattern>
 </servlet-mapping>
 
+<servlet>
+	<servlet-name>Adminview</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.AdminServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>Adminview</servlet-name>
+	<url-pattern>/UsersConfiguration</url-pattern>//UsersConfiguration
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>DeleteUser</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.AdminDeleteServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>DeleteUser</servlet-name>
+	<url-pattern>/DeleteUser</url-pattern>
+</servlet-mapping>
 
 </web-app>
 
