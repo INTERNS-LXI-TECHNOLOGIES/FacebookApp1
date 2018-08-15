@@ -189,7 +189,9 @@ public TreeSet<User> findAllUser(){
 		try{
 			logger.info("============entering try block of findAllUser method in UserRepository===========");
 			connection=dataSource.getConnection();
+
 			stmt=connection.prepareStatement("select users.username,users.password,user_roles.role from users inner join user_roles on users.username=user_roles.username;");
+
 			ResultSet rs2=stmt.executeQuery();
 			
 			while(rs2.next()){
