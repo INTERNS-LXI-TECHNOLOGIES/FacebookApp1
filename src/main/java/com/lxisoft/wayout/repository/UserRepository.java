@@ -195,6 +195,7 @@ public TreeSet<User> findAllUser(){
 			ResultSet rs2=stmt.executeQuery();
 			
 			while(rs2.next()){
+				User user=new User();
 				String username=rs2.getString(1);
 				String password=rs2.getString(2);
 				String role=rs2.getString(3);

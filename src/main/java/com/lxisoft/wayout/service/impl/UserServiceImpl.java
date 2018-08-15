@@ -66,6 +66,7 @@ public void deleteUser(User user){
 
 public TreeSet<User> findAllUser(){
 TreeSet<User> allUsers=(TreeSet<User>)userRepository.findAllUser();
+
 return allUsers;
 }
 
