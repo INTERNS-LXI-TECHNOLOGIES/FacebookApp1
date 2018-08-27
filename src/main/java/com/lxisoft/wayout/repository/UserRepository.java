@@ -59,7 +59,7 @@ public class UserRepository{
 	*
 	**/
 
-	private Logger logger=Logger.getLogger(SecurityQuestionRepository.class.getName());
+	private Logger logger=Logger.getLogger(UserRepository.class.getName());
 
 	/**
 	*an intial block that give basic database connection
@@ -81,7 +81,8 @@ public class UserRepository{
 
 public void addNewUser(User user){
 	logger.info("============Entered into addNewUser method in UserRepository===========");
-	PreparedStatement stmt;
+	PreparedStatement stmt1;
+	PreparedStatement stmt2;
 	String username=user.getUsername();
 	String password=user.getPassword();
 	String userRole=user.getRole();
@@ -91,8 +92,10 @@ public void addNewUser(User user){
 			logger.info("============Entered into try block of save method UserRepository===========");
 			//ResultSet rs1;
 			connection=dataSource.getConnection();
-			stmt=connection.prepareStatement("insert into users(username,password) values('"+username+"','"+password+"'); insert into user_roles(username,userrole)values('"+username+"','"+userRole+"');");
-			int a = stmt.executeUpdate();
+			stmt1=connection.prepareStatement("insert into users(username,password) values('"+username+"','"+password+"');");
+			stmt2=connection.prepareStatement("insert into user_roles(username,role)values('"+username+"','"+userRole+"');");
+			int a = stmt1.executeUpdate();
+			int b= stmt2.executeUpdate();
 			//stmt=connection.prepareStatement("insert into user_roles(username,userrole)values('"+username+"','"+userRole+"');");
 			//int rs1=stmt.executeUpdate();
 			connection.close();

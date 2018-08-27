@@ -61,16 +61,19 @@ public class UserEditServlet extends HttpServlet
 		public void doGet(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException
 	{
 		try{
-			logger.info("======================UserEditServlet/doPost() starting==============");
+			logger.info("======================UserEditServlet/doGet() starting==============");
 			String username=request.getParameter("username");
 			User user=userServiceImpl.findOne(username);
 			request.getSession().setAttribute("user",user);
+			//request.getRequestDispatcher("AdminOptions.jsp").forward(request,response);
 			response.sendRedirect("UserEdit.jsp");
+			logger.info("======================UserEditServlet/doGet() try block ending==============");
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
 
+		logger.info("======================UserEditServlet/doGet() ending==============");
 
 	}
 
@@ -94,23 +97,30 @@ public class UserEditServlet extends HttpServlet
 
 	public void doPost(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException
 	{
+		logger.info("======================UserEditServlet/doPost() starting==============");
 		try{
+
+			logger.info("======================UserEditServlet/doPost() try block starting==============");
 			String username=request.getParameter("username");
 			String password=request.getParameter("password");
 			String oldUsername=request.getParameter("oldUsername");
-			
-
-			user.setUsername(username);
-			user.setPassword(password);
+			//request.setRemoteUser(username);
+			//request.setRemoteUser(username);
+			//user.setUsername(username);
+			//user.setPassword(password);
 			userServiceImpl.editUser(user, oldUsername);
-			response.sendRedirect("done.jsp?redirectPageUrl=AdminOptions.jsp");
+			User updatedUser=userServiceImpl.findOne("username");
+			request.getSession().setAttribute("user",updatedUser);
+			logger.info("======================UserEditServlet/doPost() try block ending==============");
+
+			request.getRequestDispatcher("done.jsp?page=admin").forward(request,response);
 
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
 
-
+		logger.info("======================UserEditServlet/doPost() starting==============");
 
 	}
 }

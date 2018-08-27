@@ -29,8 +29,15 @@
 		<p align="right">
 		<%@ page import="java.util.*,com.lxisoft.wayout.web.*,com.lxisoft.wayout.model.*,com.lxisoft.wayout.domain.*,java.sql.*,java.util.*"%>
 		<%String username=request.getRemoteUser();	%>
+		
+
 		<a href="addUser?username=<%=request.getRemoteUser()%>"><img src="images/icons/profile.jpg" width="50" height="50"></a></br></br>
 		</p>
+		<p align="left">
+			<form action="addUser.jsp" method="post">
+				<input type="submit" value="Add new user">
+			</form> 
+	</p>
 		<div class="row">
 		<div class="col-lg-1"></div>
 			<div class="col-lg-5">

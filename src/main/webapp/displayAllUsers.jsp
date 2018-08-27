@@ -1,5 +1,37 @@
 <html>
 <body>
+    <head>
+<title>display All User</title>
+    <link rel="stylesheet" type="text/css" href="Sample.css">
+</head>
+<div id="add">
+
+<p align="left">
+<a href="AdminOptions.jsp"><img src="images/icons/home.jpg" width="50" height="50"></a></br></br>
+
+<style>
+.button{
+    background-color:cornflowerblue;
+    color:white;
+}
+.button:hover{
+    background-color:green;
+}
+
+input[type=text] {
+    width: 80%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    font-size: 15px;
+    color:black;
+    
+}
+
+</style>
+
 <%@ page import="com.lxisoft.wayout.model.*,com.lxisoft.wayout.domain.*,java.util.*"%>
 
     <%
@@ -14,7 +46,8 @@
    
     <%  out.print("name :");
         out.println(user.getUsername());
-        out.print("role : ");        
+    %></br>
+      <%  out.print("role : ");        
         out.println(user.getRole());
 
         String value;

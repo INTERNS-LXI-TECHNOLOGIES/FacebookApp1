@@ -53,7 +53,7 @@ input[type=text] {
 
 <div class="row">
 
-   <div class="col-sm-12"><a href="UserDelete.jsp"><img src="images/icons/remove1.jpg" width="90" height="90" title=deleteUser></a></div>
+   <div class="col-sm-12"><a href="userDelete.jsp?username=<%=user.getUsername()%>"><img src="images/icons/remove1.jpg" width="90" height="90" title=deleteUser></a></div>
 
 </div>
 <%out.println("username:"+user.getUsername());%></br></br>

@@ -21,8 +21,9 @@ public interface AdminService
 
 
 	/**
-	*method to promote user as given role
+	*
 	*@param user
+	*method to promote user as given role
 	*
 	**/
 

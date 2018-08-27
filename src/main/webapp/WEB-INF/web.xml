@@ -108,7 +108,7 @@
 
 <servlet-mapping>
 	<servlet-name>UserDeleteServlet</servlet-name>
-	<url-pattern>/deleteUser</url-pattern>
+	<url-pattern>/admin/deleteUser</url-pattern>
 </servlet-mapping>
 
 <servlet>

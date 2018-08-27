@@ -64,7 +64,7 @@ public class UserAddServlet extends HttpServlet
 		 String username=request.getParameter("username");
 		 String password=request.getParameter("password");
 
-		 String userrole="user";
+		 String userrole=request.getParameter("role");
 		 user.setUsername(username);
 		 user.setPassword(password);
 		 
@@ -73,7 +73,8 @@ public class UserAddServlet extends HttpServlet
 		 userServiceImpl.addUser(user);
 
 		logger.info("======================UserAddServlet/doPost() ending==============");
-		response.sendRedirect("AdminLogin.jsp");
+		request.getRequestDispatcher("AdminOptions.jsp").forward(request,response);
+		//response.sendRedirect("admin");
 		
 	}
 

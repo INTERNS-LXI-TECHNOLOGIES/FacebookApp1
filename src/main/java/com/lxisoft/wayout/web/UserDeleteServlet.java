@@ -32,13 +32,20 @@ public class UserDeleteServlet extends HttpServlet
 	{
 
 		logger.info("===============UserDeleteServlet/doget() starting==============");
+		
 		try{
+
 			UserServiceImpl userServiceImpl=new UserServiceImpl();
 			String username=request.getParameter("username");
 			User user=userServiceImpl.findOne(username);
 			request.getSession().removeAttribute("userToDelete");
 			userServiceImpl.deleteUser(user);
-			request.getRequestDispatcher("../done.jsp?page=UsersConfiguration").forward(request,response);
+			request.getRequestDispatcher("../done.jsp?page=../admin").forward(request,response);
+			if(request.getRemoteUser().equals(username))
+				{
+					request.getSession().invalidate();
+				}
+
 			}
 			catch(Exception e)
 			{

@@ -32,11 +32,11 @@ input[type=text] {
 </style>
 </p>
 </div>
-
+<% String username=request.getParameter("username");%>
 <body>
-    <form action="deleteUser" method="post">
+    <form action="admin/deleteUser" method="get">
         <h1><%out.println("do you want to this account");%></h1>
-
+        <input type="hidden" value="<%=username%>" name="username">
         <input align="center" type="submit" value="Submit" class="button">
     </form>
     <form action="user.jsp" method="post">

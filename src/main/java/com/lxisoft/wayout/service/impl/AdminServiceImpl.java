@@ -47,8 +47,9 @@ private AdminRepository adminRepository=new AdminRepository();
 private static final Logger log=Logger.getLogger(SecurityQuestionServiceImpl.class.getName());
 
 /**
-*implementation for update SecurityQuestion method
+*
 *@param user
+*implementation for update SecurityQuestion method
 **/
 public void promoteUser(User user)
 	{
