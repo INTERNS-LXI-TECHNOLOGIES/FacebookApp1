@@ -1,6 +1,7 @@
 package com.lxisoft.wayout.repository;
 
 /**import required java**/
+
 import java.io.*;
 import java.util.*;
 import java.sql.*;
@@ -20,7 +21,6 @@ import javax.sql.DataSource;
 **/
 
 public class UserRepository{
-
 
 	/*
 	* Reference for the datasource
@@ -149,6 +149,7 @@ public void updateUser(User user,String oldUsername){
 		connection=dataSource.getConnection();
 		String username=user.getUsername();
 		String password=user.getPassword();
+
 		stmt1=connection.prepareStatement("update users set username='"+user.getUsername()+"',password='"+user.getPassword()+"'where username='"+oldUsername+"';" );
 		stmt2=connection.prepareStatement("update user_roles set username='"+user.getUsername()+"', role='admin' where username='"+oldUsername+"';");
 		int a=stmt1.executeUpdate();
@@ -167,12 +168,20 @@ public void updateUser(User user,String oldUsername){
 public void delete(User user){
 	logger.info("============entering updateUser method in UserRepository===========");
 	PreparedStatement stmt;
-	ResultSet rs;
 	try{
 		logger.info("============entering try block of updateUser method in UserRepository===========");
 		connection=dataSource.getConnection();
-		stmt=connection.prepareStatement("delete from users where username='"+user.getUsername()+"';delete from user_roles where username='"+user.getUsername()+"';");
-		rs=stmt.executeQuery();
+		Statement statement=connection.createStatement();
+		
+		statement.execute("delete from users where username='"+user.getUsername()+"';");
+		
+		statement.execute("delete from user_roles where username='"+user.getUsername()+"';");
+		connection.close();
+		/*stmt=connection.prepareStatement(" delete from user_roles where username='sooraj';delete from users where username='sooraj';");
+		stmt.execute();
+		stmt=connection.prepareStatement("delete from users where username='"+user.getUsername()+"'; delete from user_roles where username='"+user.getUsername()+"';");
+		stmt.execute();*/
+
 		logger.info("============exiting try block of updateUser method in UserRepository===========");
 	}
 	catch(Exception e){

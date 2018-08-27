@@ -36,7 +36,8 @@ public class AdminServlet extends HttpServlet
 
 			TreeSet<User>mainSet=userServiceImpl.findAllUser();
 			request.getSession().setAttribute("users",mainSet);
-			response.sendRedirect("displayAllUsers.jsp");
+			 request.getRequestDispatcher("../displayAllUsers.jsp").forward(request,response);
+			//response.sendRedirect("displayAllUsers.jsp");
 		}
 		catch(Exception e)
 		{
@@ -55,22 +56,32 @@ public class AdminServlet extends HttpServlet
 
 	public void doPost(HttpServletRequest request,HttpServletResponse response)
 	{
-		logger.info("===============AddUserServlet/doPost() starting==============");
+		logger.info("===============AdminServlet/doPost() starting==============");
 		try
 		{
-			User user=(User) request.getSession().getAttribute("updateUser");
 
-			request.getSession().removeAttribute("updateUser");
-		
+			String username=request.getParameter("username");
+			logger.info("}}}}}}}}}}}}}}}}}}}}}}}}}}username to promoteUser"+username);
 			AdminServiceImpl adminServiceImpl=new AdminServiceImpl();
+			UserServiceImpl userServiceImpl=new UserServiceImpl();
+			User user=userServiceImpl.findOne(username);
+			String operation=request.getParameter("operation");
+			if(operation.equals("promote"))
+			{
 				user.setRole("admin");
+			}
+			else
+			{
+				user.setRole("user");
+			}
 			adminServiceImpl.promoteUser(user);
-			response.sendRedirect("AdminView");
+			request.getRequestDispatcher("../done.jsp?page=UsersConfiguration").forward(request,response);
+			//response.sendRedirect("done.jsp?page=UsersConfiguration");
 		}
 		catch(Exception e)
 		{
 			logger.warn(e);
 		}
-		logger.info("===============AddUserServlet/doPost() Ending==============");	
+		logger.info("===============AdminServlet/doPost() Ending==============");	
 	}	
 }

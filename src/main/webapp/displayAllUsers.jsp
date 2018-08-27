@@ -4,22 +4,46 @@
 
     <%
 
+
         TreeSet<User>users=(TreeSet<User>) request.getSession().getAttribute("users");
 
         for(User user:users)
-        { %>
+        { 
+    %>
 
    
-           <%  out.println(user.getUsername()); %></br></br>
+    <%  out.print("name :");
+        out.println(user.getUsername());
+        out.print("role : ");        
+        out.println(user.getRole());
 
-       <% }
+        String value;
+             if(user.getRole().equals("admin"))
+            {
+                value="demote";
+            }
+            else
+            {
+                value="promote";
+            }
 
 
-             %>
+     %></br></br>
+
+      
             <form action="UsersConfiguration" method="post">
-                <input type="submit" value="promote">
+                <input type="hidden" value="<%=user.getUsername()%>" name="username">
+                <input type="submit" value="<%=value%>" name="operation">
             </form>
-           
+             <form action="RemoveUser" method="get">
+                <input type="hidden" value="<%=user.getUsername()%>" name="username">
+                <input type="submit" value="delete">
+            </form>
+        <%
+
+        }
+
+        %>
    
 </body>
 

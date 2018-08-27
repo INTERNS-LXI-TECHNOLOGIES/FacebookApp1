@@ -42,7 +42,7 @@
 		<web-resource-collection>
 		<web-resource-name>protected pages</web-resource-name>
 		
-				<url-pattern>/AdminOptions.jsp</url-pattern>
+				<url-pattern>/admin/*</url-pattern>
 				 
 				<http-method>GET</http-method>
 				<http-method>POST</http-method>
@@ -167,17 +167,27 @@
 
 <servlet-mapping>
 	<servlet-name>Adminview</servlet-name>
-	<url-pattern>/UsersConfiguration</url-pattern>//UsersConfiguration
+	<url-pattern>/admin/UsersConfiguration</url-pattern>
 </servlet-mapping>
 
 <servlet>
 	<servlet-name>DeleteUser</servlet-name>
-	<servlet-class>com.lxisoft.wayout.web.AdminDeleteServlet</servlet-class>
+	<servlet-class>com.lxisoft.wayout.web.UserDeleteServlet</servlet-class>
 </servlet>
 
 <servlet-mapping>
 	<servlet-name>DeleteUser</servlet-name>
-	<url-pattern>/DeleteUser</url-pattern>
+	<url-pattern>/admin/RemoveUser</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>admin</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.AdminLoginServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>admin</servlet-name>
+	<url-pattern>/admin</url-pattern>
 </servlet-mapping>
 
 </web-app>

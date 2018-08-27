@@ -86,13 +86,13 @@
 
 				</div>
 		<!-- Card -->
-		<form action="UsersConfiguration" method="get">
+		<form action="admin/UsersConfiguration" method="get">
 			<input type="submit" value="UsersConfiguration">
 		</form>
 		</div>
 		<div class="col-lg-1"></div>
 	</div>
 	</div>
-	<% session.invalidate(); %>
+	
 </body>
 </html>
