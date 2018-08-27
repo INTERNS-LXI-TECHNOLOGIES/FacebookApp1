@@ -35,7 +35,7 @@ input[type=text] {
 
 <body>
     <form action="deleteUser" method="post">
-        <h1><%out.println("do you want to delete your account");%></h1>
+        <h1><%out.println("do you want to this account");%></h1>
 
         <input align="center" type="submit" value="Submit" class="button">
     </form>
