@@ -82,6 +82,8 @@ public class AdminRepository{
 			connection=dataSource.getConnection();
 			Statement statement=connection.createStatement();
 			statement.execute("update user_roles set role='"+user.getRole()+"' where username='"+user.getUsername()+"';");
+			connection.close();
+			//statement.execute("update user_roles set role='"+user.getRole()+"' where username='"+user.getUsername()+"';");
 		}
 		catch(Exception ex)
 		{
