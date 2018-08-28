@@ -75,8 +75,9 @@ public class AdminServlet extends HttpServlet
 				user.setRole("user");
 			}
 			adminServiceImpl.promoteUser(user);
-			request.getRequestDispatcher("../done.jsp?page=UsersConfiguration").forward(request,response);
-			//response.sendRedirect("done.jsp?page=UsersConfiguration");
+			request.getRequestDispatcher("../done2.jsp?page=../admin/UsersConfiguration").forward(request,response);
+			//response.sendRedirect("../done.jsp?page=admin/UsersConfiguration");
+			response.sendRedirect("../done2.jsp?page=../admin/UsersConfiguration");
 		}
 		catch(Exception e)
 		{

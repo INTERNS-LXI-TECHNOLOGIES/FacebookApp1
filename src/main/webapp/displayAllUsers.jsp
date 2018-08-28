@@ -7,7 +7,7 @@
 <div id="add">
 
 <p align="left">
-<a href="AdminOptions.jsp"><img src="images/icons/home.jpg" width="50" height="50"></a></br></br>
+<a href="../admin"><img src="../images/icons/home.jpg" width="50" height="50"></a></br></br>
 
 <style>
 .button{
@@ -38,6 +38,9 @@ input[type=text] {
 
 
         TreeSet<User>users=(TreeSet<User>) request.getSession().getAttribute("users");
+        
+        request.getSession().removeAttribute("users");
+
 
         for(User user:users)
         { 
@@ -68,7 +71,7 @@ input[type=text] {
                 <input type="hidden" value="<%=user.getUsername()%>" name="username">
                 <input type="submit" value="<%=value%>" name="operation">
             </form>
-             <form action="RemoveUser" method="get">
+             <form action="deleteUser" method="get">
                 <input type="hidden" value="<%=user.getUsername()%>" name="username">
                 <input type="submit" value="delete">
             </form>

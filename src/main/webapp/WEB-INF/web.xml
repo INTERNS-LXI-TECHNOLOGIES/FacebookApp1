@@ -171,16 +171,6 @@
 </servlet-mapping>
 
 <servlet>
-	<servlet-name>DeleteUser</servlet-name>
-	<servlet-class>com.lxisoft.wayout.web.UserDeleteServlet</servlet-class>
-</servlet>
-
-<servlet-mapping>
-	<servlet-name>DeleteUser</servlet-name>
-	<url-pattern>/admin/RemoveUser</url-pattern>
-</servlet-mapping>
-
-<servlet>
 	<servlet-name>admin</servlet-name>
 	<servlet-class>com.lxisoft.wayout.web.AdminLoginServlet</servlet-class>
 </servlet>

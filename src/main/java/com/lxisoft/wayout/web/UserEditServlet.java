@@ -106,8 +106,8 @@ public class UserEditServlet extends HttpServlet
 			String oldUsername=request.getParameter("oldUsername");
 			//request.setRemoteUser(username);
 			//request.setRemoteUser(username);
-			//user.setUsername(username);
-			//user.setPassword(password);
+			user.setUsername(username);
+			user.setPassword(password);
 			userServiceImpl.editUser(user, oldUsername);
 			User updatedUser=userServiceImpl.findOne("username");
 			request.getSession().setAttribute("user",updatedUser);
