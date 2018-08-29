@@ -42,7 +42,47 @@
 		<web-resource-collection>
 		<web-resource-name>protected pages</web-resource-name>
 		
-				<url-pattern>/AdminOptions.jsp</url-pattern>
+				<url-pattern>/admin/*</url-pattern>
+				 
+				<http-method>GET</http-method>
+				<http-method>POST</http-method>
+		
+		</web-resource-collection>
+	
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+</security-constraint>
+
+<security-constraint>
+		<web-resource-collection>
+		<web-resource-name>admins and users protected pages</web-resource-name>
+		
+				<url-pattern>/admin/*</url-pattern>
+				 
+				<http-method>GET</http-method>
+				<http-method>POST</http-method>
+		
+		</web-resource-collection>
+	
+		<auth-constraint>
+			<role-name>user</role-name>
+			<role-name>admin</role-name>
+		</auth-constraint>
+</security-constraint>
+
+
+<security-role>
+	
+	<role-name>admin</role-name>
+
+</security-role>
+
+<security-constraint>
+		<web-resource-collection>
+		<web-resource-name>adminsprotected pages</web-resource-name>
+		
+				<url-pattern>/admin/secured/*</url-pattern>
 				 
 				<http-method>GET</http-method>
 				<http-method>POST</http-method>
@@ -70,6 +110,40 @@
 		<realm-name>way_out</realm-name>
 </login-config>
 
+<error-page>
+	<error-code>401</error-code>
+	<location>/error401.jsp</location>
+</error-page>
+
+<error-page>
+	<error-code>403</error-code>
+	<location>/error403.jsp</location>
+</error-page>
+
+<error-page>
+	<error-code>404</error-code>
+	<location>/error404.jsp</location>
+</error-page>
+
+<error-page>
+	<error-code>408</error-code>
+	<location>/error408.jsp</location>
+</error-page>
+
+<error-page>
+	<error-code>500</error-code>
+	<location>/error500.jsp</location>
+</error-page>
+
+<error-page>
+	<error-code>503 </error-code>
+	<location>/error503.jsp</location>
+</error-page>
+
+<error-page>
+  <exception-type>Exception</exception-type>
+  <location>/exceptionerror.jsp</location>
+</error-page>
 
 <servlet>
 	<servlet-name>QuestionServlet</servlet-name>
@@ -79,6 +153,36 @@
 <servlet-mapping>
 	<servlet-name>QuestionServlet</servlet-name>
 	<url-pattern>/addQuestion</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>UserAddServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.UserAddServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>UserAddServlet</servlet-name>
+	<url-pattern>/addUser</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>UserEditServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.UserEditServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>UserEditServlet</servlet-name>
+	<url-pattern>/editUser</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>UserDeleteServlet</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.UserDeleteServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>UserDeleteServlet</servlet-name>
+	<url-pattern>/admin/deleteUser</url-pattern>
 </servlet-mapping>
 
 <servlet>
@@ -130,6 +234,25 @@
 	<url-pattern>/configureGame</url-pattern>
 </servlet-mapping>
 
+<servlet>
+	<servlet-name>modify</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.AdminServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>modify</servlet-name>
+	<url-pattern>/admin/secured/modify</url-pattern>
+</servlet-mapping>
+
+<servlet>
+	<servlet-name>admin</servlet-name>
+	<servlet-class>com.lxisoft.wayout.web.AdminLoginServlet</servlet-class>
+</servlet>
+
+<servlet-mapping>
+	<servlet-name>admin</servlet-name>
+	<url-pattern>/admin</url-pattern>
+</servlet-mapping>
 
 </web-app>
 

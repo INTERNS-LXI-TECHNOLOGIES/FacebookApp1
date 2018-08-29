@@ -24,34 +24,36 @@ public class User implements Comparable<User>
 	 * The variable password is used to hold a String value password.
 	 */
 	 
-	private String userName,password,role;
+	private String username,password,role;
 
 	/**
 	 *Set the value of userName.
 	 
-	 *@param userName variable used to pass the value of userName.
+	 *@param username variable used to pass the value of userName.
 	 
 	 */
-	public void setUsername(String userName)
+	public void setUsername(String username)
 	{
 		logger.fine("Entered into the method setUsername "+logger.getName());
 	
-		this.userName=userName;
+		this.username=username;
 	
 		logger.fine("Exit from the method setUsername "+logger.getName());
 	}
 	/**
 	 *Retrieve the value of userName.
+	 
 	 *@return userName variable used to return the String value userName.
 	 */
 	public String getUsername()
 	{
 		logger.fine("Entered into the method getUsername "+logger.getName());
 		
-		return userName;
+		return username;
 	}
 	/**
 	 *Set the value of password.
+	 
 	 *@param password variable used to pass the value of password.
 	 */
 	public void setPassword(String password)
@@ -64,6 +66,7 @@ public class User implements Comparable<User>
 	}
 	/**
 	 *Retrieve the value of password.
+	 
 	 *@return password variable used to return the String value password.
 	 */
 	public String getPassword()
@@ -74,6 +77,7 @@ public class User implements Comparable<User>
 	}
 	/**
 	 *Set the value of role.
+	 
 	 *@param role variable used to pass the value of role.
 	 */
 	public void setRole(String role)
@@ -87,6 +91,7 @@ public class User implements Comparable<User>
 	}
 	/**
 	 *Retrieve the value of role.
+	 
 	 *@return role variable used to return the String value role.
 	 */
 	public String getRole()
@@ -97,6 +102,6 @@ public class User implements Comparable<User>
 	}
 	public int compareTo(User user)
 	{  
-		return this.userName.compareTo(user.getUsername());  
+		return this.username.compareTo(user.getUsername());  
 	}  
 	}

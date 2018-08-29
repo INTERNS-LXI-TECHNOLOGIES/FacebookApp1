@@ -15,12 +15,12 @@
 <body>
 	<div class="container">
 		<div class="text-center no-padding">
+			<%=request.getContextPath()%>
 			<img src="images\done1.gif" style="width:600px;height:350px;margin-top:100px" class="done">
 			<%
-				String pageUrl=request.getParameter("redirectPageUrl");
+				String pageUrl=request.getParameter("page");
 				response.setHeader("Refresh", "3;url="+pageUrl);
 			%>
-
 		</div>
 	</div>
 

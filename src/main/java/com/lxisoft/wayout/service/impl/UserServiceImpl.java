@@ -55,6 +55,8 @@ public User findOne(String username){
 }
 
 public void editUser(User user,String oldUsername){
+	System.out.println("(((((((((((((((((((((("+oldUsername);
+
 	userRepository.updateUser(user,oldUsername);
 }
 
@@ -64,6 +66,7 @@ public void deleteUser(User user){
 
 public TreeSet<User> findAllUser(){
 TreeSet<User> allUsers=(TreeSet<User>)userRepository.findAllUser();
+
 return allUsers;
 }
 
