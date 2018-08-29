@@ -40,7 +40,8 @@ public class UserDeleteServlet extends HttpServlet
 			User user=userServiceImpl.findOne(username);
 			request.getSession().removeAttribute("userToDelete");
 			userServiceImpl.deleteUser(user);
-			request.getRequestDispatcher("done.jsp?page=/UsersConfiguration").forward(request,response);//UsersConfiguration
+			response.sendRedirect("../done2.jsp?page=../admin/UsersConfiguration");
+			//request.getRequestDispatcher("../done2.jsp?page=admin/UsersConfiguration").forward(request,response);//UsersConfiguration
 			if(request.getRemoteUser().equals(username))
 				{
 					request.getSession().invalidate();

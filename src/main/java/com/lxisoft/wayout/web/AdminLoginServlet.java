@@ -42,5 +42,36 @@ public class AdminLoginServlet extends HttpServlet
 			logger.warn(e);
 		}
 		logger.info("===============AdminLoginServlet/doGet() Ending==============");	
-	}	
+	}
+
+
+	/*
+	*method is to manupulate data to display all users in displayAllUsers.jp
+	*/
+
+
+	public void doPost(HttpServletRequest request,HttpServletResponse response)
+	{
+		logger.info("===============AddUserServlet/doGet() starting==============");
+		try
+		{
+			UserServiceImpl userServiceImpl=new UserServiceImpl();
+
+			TreeSet<User>mainSet=userServiceImpl.findAllUser();
+			request.getSession().setAttribute("users",mainSet);
+			logger.info(">>>>>>>>>>>>>>"+request);
+
+			request.getRequestDispatcher("displayAllUsers.jsp").forward(request,response);
+			//response.sendRedirect("displayAllUsers.jsp");
+		}
+		catch(Exception e)
+		{
+			logger.warn(e);
+			e.printStackTrace();
+		}
+		logger.info("===============AddUserServlet/doGet() Ending==============");
+		
+	}
+
+
 }

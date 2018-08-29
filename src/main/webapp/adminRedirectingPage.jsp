@@ -14,15 +14,15 @@
 </head>
 <body>
 	<div class="container">
-		<%=request.getContextPath()%>
 		<div class="text-center no-padding">
-			<img src="images\done1.gif" style="width:600px;height:350px;margin-top:100px" class="done">
-			<%
-				String pageUrl=request.getParameter("page");
-				
-			%>
+			
+			<form action="../FacebookApp1/admin" method="get">
+				<input type="submit" value="home">
+			</form>
 
-			<%=request.getContextPath()%>
+			<form action="../FacebookApp1/admin" method="post">
+				<input type="submit" value="modify another user">
+			</form>
 
 
 		</div>

@@ -21,32 +21,39 @@ public class AdminServlet extends HttpServlet
 	
  	static Logger logger=Logger.getLogger(AdminServlet.class.getName());
 
- 	/**
- 	*USED TO SHOW ALL AVAILABLE USERS
- 	*
+ 	/*
+ 	*method is used to delete an admin or user
  	*/
-
-
 	public void doGet(HttpServletRequest request,HttpServletResponse response)
 	{
-		logger.info("===============AddUserServlet/doGet() starting==============");
-		try
-		{
-			UserServiceImpl userServiceImpl=new UserServiceImpl();
 
-			TreeSet<User>mainSet=userServiceImpl.findAllUser();
-			request.getSession().setAttribute("users",mainSet);
-			 request.getRequestDispatcher("../displayAllUsers.jsp").forward(request,response);
-			//response.sendRedirect("displayAllUsers.jsp");
-		}
-		catch(Exception e)
-		{
-			logger.warn(e);
-			e.printStackTrace();
-		}
-		logger.info("===============AddUserServlet/doGet() Ending==============");
+		logger.info("===============AdminServlet/doget() starting==============");
+		
+		try{
+
+			UserServiceImpl userServiceImpl=new UserServiceImpl();
+			String username=request.getParameter("username");
+			User user=userServiceImpl.findOne(username);
+			request.getSession().removeAttribute("userToDelete");
+			userServiceImpl.deleteUser(user);
+			//response.sendRedirect("../done2.jsp?page=../admin/UsersConfiguration");
+			request.getRequestDispatcher("../../done.jsp?page=adminRedirectingPage.jsp").forward(request,response);//UsersConfiguration
+			if(request.getRemoteUser().equals(username))
+				{
+					request.getSession().invalidate();
+				}
+
+			}
+			catch(Exception e)
+			{
+				logger.warn(e);
+				e.printStackTrace();
+			}
+		logger.info("===============AdminServlet/doGet() Ending==============");	
 		
 	}
+
+
 
 
 	/**
@@ -75,9 +82,9 @@ public class AdminServlet extends HttpServlet
 				user.setRole("user");
 			}
 			adminServiceImpl.promoteUser(user);
-			request.getRequestDispatcher("../done2.jsp?page=../admin/UsersConfiguration").forward(request,response);
+			//request.getRequestDispatcher("../done2.jsp?page=../admin/UsersConfiguration").forward(request,response);
 			//response.sendRedirect("../done.jsp?page=admin/UsersConfiguration");
-			response.sendRedirect("../done2.jsp?page=../admin/UsersConfiguration");
+			response.sendRedirect("../../done.jsp?page=adminRedirectingPage.jsp");
 		}
 		catch(Exception e)
 		{
