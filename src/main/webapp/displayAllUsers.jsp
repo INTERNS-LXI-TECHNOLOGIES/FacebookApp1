@@ -7,7 +7,7 @@
 <div id="add">
 
 <p align="left">
-<a href="../admin"><img src="../images/icons/home.jpg" width="50" height="50"></a></br></br>
+<a href="admin"><img src="images/icons/home.jpg" width="50" height="50"></a></br></br>
 
 <style>
 .button{
@@ -26,7 +26,7 @@ input[type=text] {
     background-color: #FFFFFF;
     border-radius: 3px;
     font-size: 15px;
-    color:black;
+    color:black; 
     
 }
 
@@ -67,11 +67,15 @@ input[type=text] {
      %></br></br>
 
       
-            <form action="UsersConfiguration" method="post">
+            <form action="admin/secured/modify" method="post">
                 <input type="hidden" value="<%=user.getUsername()%>" name="username">
                 <input type="submit" value="<%=value%>" name="operation">
             </form>
-             <form action="secure/deleteUser" method="get">
+
+            
+
+             <form action="admin/secured/modify" method="get">
+
                 <input type="hidden" value="<%=user.getUsername()%>" name="username">
                 <input type="submit" value="delete">
             </form>

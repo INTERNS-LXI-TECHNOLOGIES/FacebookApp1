@@ -55,6 +55,46 @@
 		</auth-constraint>
 </security-constraint>
 
+<security-constraint>
+		<web-resource-collection>
+		<web-resource-name>admins and users protected pages</web-resource-name>
+		
+				<url-pattern>/admin/*</url-pattern>
+				 
+				<http-method>GET</http-method>
+				<http-method>POST</http-method>
+		
+		</web-resource-collection>
+	
+		<auth-constraint>
+			<role-name>user</role-name>
+			<role-name>admin</role-name>
+		</auth-constraint>
+</security-constraint>
+
+
+<security-role>
+	
+	<role-name>admin</role-name>
+
+</security-role>
+
+<security-constraint>
+		<web-resource-collection>
+		<web-resource-name>adminsprotected pages</web-resource-name>
+		
+				<url-pattern>/admin/secured/*</url-pattern>
+				 
+				<http-method>GET</http-method>
+				<http-method>POST</http-method>
+		
+		</web-resource-collection>
+	
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+</security-constraint>
+
 
 <security-role>
 	
@@ -182,13 +222,13 @@
 </servlet-mapping>
 
 <servlet>
-	<servlet-name>Adminview</servlet-name>
+	<servlet-name>modify</servlet-name>
 	<servlet-class>com.lxisoft.wayout.web.AdminServlet</servlet-class>
 </servlet>
 
 <servlet-mapping>
-	<servlet-name>Adminview</servlet-name>
-	<url-pattern>/admin/UsersConfiguration</url-pattern>
+	<servlet-name>modify</servlet-name>
+	<url-pattern>/admin/secured/modify</url-pattern>
 </servlet-mapping>
 
 <servlet>

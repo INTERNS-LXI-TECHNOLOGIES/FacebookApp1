@@ -94,8 +94,8 @@
 
 				</div>
 		<!-- Card -->
-		<form action="admin/UsersConfiguration" method="get">
-			<input type="submit" value="UsersConfiguration">
+		<form action="admin" method="post">
+			<input type="submit" value="Users Configuration">
 		</form>
 		</div>
 		<div class="col-lg-1"></div>
