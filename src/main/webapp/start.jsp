@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-	<title>start(testing)</title>
+	<title>start</title>
 	<link rel="stylesheet" type="text/css" href="css\way_out.css">
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
@@ -21,7 +21,7 @@
 		</div>
 		<div class="row">
 			<div class="col-sm-12 move text-center">
-				<a href="story.html"><img src="images/lock.png" id="change-lock"></a>
+				<a href="story.jsp"><img src="images/lock.png" id="change-lock"></a>
 			</div>
 		</div>
 		<div class="row">

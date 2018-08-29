@@ -324,7 +324,7 @@ public void doGet(HttpServletRequest request, HttpServletResponse response)throw
 		  if((game.getPrisoner().getCurrentLocation().isExitHall()))
 		    {
                  // forward to jsp page with request parameters 
-		           request.getRequestDispatcher("win.html").forward(request,response); 
+		           request.getRequestDispatcher("win.jsp").forward(request,response); 
 		           return;
 		    }         
    

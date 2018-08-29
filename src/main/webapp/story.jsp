@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-	<title>question</title>
+	<title>story</title>
 
 	<link rel="stylesheet" type="text/css" href="assets\css\app.css">
 	<link rel="stylesheet" type="text/css" href="assets\css\normalize.css">
