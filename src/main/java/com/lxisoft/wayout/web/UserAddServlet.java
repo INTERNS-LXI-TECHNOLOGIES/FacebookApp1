@@ -73,8 +73,8 @@ public class UserAddServlet extends HttpServlet
 		 userServiceImpl.addUser(user);
 
 		logger.info("======================UserAddServlet/doPost() ending==============");
-		request.getRequestDispatcher("AdminOptions.jsp").forward(request,response);
-		//response.sendRedirect("admin");
+		//request.getRequestDispatcher("../../AdminOptions.jsp").forward(request,response);
+		response.sendRedirect("../../AdminOptions.jsp");
 		
 	}
 
@@ -96,7 +96,7 @@ public class UserAddServlet extends HttpServlet
 	 *           if Undesired condition occurs 
 	 */
 	public void doGet(HttpServletRequest request,HttpServletResponse response)throws IOException, ServletException{
-		
+		logger.info("======================entering the do get method of userAddServlet");
 		String username=request.getParameter("username");
 		//String username=request.getParameter("username");
 		//String password=request.getParameter("password");
@@ -104,7 +104,8 @@ public class UserAddServlet extends HttpServlet
 		//user.setUsername(username);
 		//user.setPassword(password);
 		request.getSession().setAttribute("user",user);
-		response.sendRedirect("user.jsp");
+		logger.info("======================exiting the do get method of userAddServlet");
+		response.sendRedirect("../../user.jsp");
 
 
 

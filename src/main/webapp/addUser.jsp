@@ -37,7 +37,7 @@ input[type=text] {
 </div>
 <body>
 <%@ page import= "com.lxisoft.wayout.domain.*,com.lxisoft.wayout.model.*,java.util.*"%>
-<form action="addUser" method="post">
+<form action="admin/secure/addUser" method="post">
      <input type="text" placeholder="name" name="username" required></br></br>
     <label for="name"></label>
     <input type="text" placeholder="password" name="password" required=""></br></br>

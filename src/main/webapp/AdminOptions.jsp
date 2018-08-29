@@ -31,9 +31,10 @@
 		<%String username=request.getRemoteUser();	%>
 		
 
-		<a href="addUser?username=<%=request.getRemoteUser()%>"><img src="images/icons/profile.jpg" width="50" height="50"></a></br></br>
+		<a href="admin/secure/addUser?username=<%=request.getRemoteUser()%>"><img src="images/icons/profile.jpg" width="50" height="50"></a></br></br>
 		</p>
 		<p align="left">
+			
 			<form action="addUser.jsp" method="post">
 				<input type="submit" value="Add new user">
 			</form> 

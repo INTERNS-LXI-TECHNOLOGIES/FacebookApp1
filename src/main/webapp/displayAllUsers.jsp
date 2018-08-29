@@ -71,7 +71,7 @@ input[type=text] {
                 <input type="hidden" value="<%=user.getUsername()%>" name="username">
                 <input type="submit" value="<%=value%>" name="operation">
             </form>
-             <form action="deleteUser" method="get">
+             <form action="secure/deleteUser" method="get">
                 <input type="hidden" value="<%=user.getUsername()%>" name="username">
                 <input type="submit" value="delete">
             </form>

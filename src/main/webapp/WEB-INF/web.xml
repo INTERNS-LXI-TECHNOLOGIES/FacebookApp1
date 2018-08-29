@@ -51,6 +51,7 @@
 	
 		<auth-constraint>
 			<role-name>admin</role-name>
+			<role-name>user</role-name>
 		</auth-constraint>
 </security-constraint>
 
@@ -59,7 +60,27 @@
 	
 	<role-name>admin</role-name>
 
+
 </security-role>
+
+
+<security-constraint>
+		<web-resource-collection>
+		<web-resource-name>protected pages</web-resource-name>
+		
+				<url-pattern>/admin/secured/*</url-pattern>
+				 
+				<http-method>GET</http-method>
+				<http-method>POST</http-method>
+		
+		</web-resource-collection>
+	
+		<auth-constraint>
+			<role-name>admin</role-name>
+		</auth-constraint>
+</security-constraint>
+
+
 
 <login-config>
 	<auth-method>FORM</auth-method>
@@ -88,7 +109,7 @@
 
 <servlet-mapping>
 	<servlet-name>UserAddServlet</servlet-name>
-	<url-pattern>/addUser</url-pattern>
+	<url-pattern>/admin/secure/addUser</url-pattern>
 </servlet-mapping>
 
 <servlet>
@@ -98,7 +119,7 @@
 
 <servlet-mapping>
 	<servlet-name>UserEditServlet</servlet-name>
-	<url-pattern>/editUser</url-pattern>
+	<url-pattern>/admin/secure/editUser</url-pattern>
 </servlet-mapping>
 
 <servlet>
@@ -108,7 +129,7 @@
 
 <servlet-mapping>
 	<servlet-name>UserDeleteServlet</servlet-name>
-	<url-pattern>/admin/deleteUser</url-pattern>
+	<url-pattern>/admin/secure/deleteUser</url-pattern>
 </servlet-mapping>
 
 <servlet>
