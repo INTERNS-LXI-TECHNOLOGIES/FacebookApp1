@@ -62,7 +62,7 @@ String imgurl=securityQuestion.getImageUrl();
             <div class="modal-body">
 
                    <div class="text-center">
-                    <p>Do you want to delete this quetion now ?</p>
+                    <p>Do you want to delete this question now?</p>
                 </div>
             </div>
 

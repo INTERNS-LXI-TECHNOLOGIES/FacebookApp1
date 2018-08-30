@@ -1,65 +1,85 @@
-<html>
+<!DOCTYPE html>
 <head>
-<title>Edit user</title>
-	<link rel="stylesheet" type="text/css" href="Sample.css">
-</head>
-<div id="add">
+  <title>edit user</title>
+ 
+    <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.4/css/mdb.min.css" rel="stylesheet">
+  
+  <link rel="stylesheet" type="text/css" href="css/admin.css">
+  </head>
+  <body>
 
-<p align="left">
-<a href="AdminOptions.jsp"><img src="images/icons/home.jpg" width="50" height="50"></a></br></br>
-
-<style>
-.button{
-	background-color:cornflowerblue;
-	color:white;
-}
-.button:hover{
-	background-color:green;
-}
-
-input[type=text] {
-    width: 80%;
-    padding: 12px 20px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    background-color: #FFFFFF;
-    border-radius: 3px;
-    font-size: 15px;
-    color:black;
-    
-}
-
-</style>
-</p>
-<p align="right">
-<a href="AdminOptions.jsp"><img src="images/icons/profile.jpg" width="50" height="50"></a></br></br>
-
-</div>
-<body>
 <%@ page import= "com.lxisoft.wayout.domain.*,com.lxisoft.wayout.model.*,java.util.*"%>
 <%String username=request.getParameter("username");
 String password=request.getParameter("password");
 String oldUsername=username;
 %>
 
-<form action="editUser" method="post">
-    <center>
+<!-- Material form login -->
+<div class="row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6 text-centre"> 
+<div class="card">
+     
+           <h5 class="card-header info-color white-text text-center py-4">
+           <strong>Edit Account</strong>
+           </h5>
 
-    <label for="username"><b>username</b></label>
-    <input type="text" value="<%=username%>" name="username"  required></br></br>
+  <!--Card content-->
+  <div class="card-body px-lg-5 pt-0">
 
-    <label for="password"><b>password</b></label>
-    <input type="text" value="<%=password%>"  name="password"  required></br></br>
+    <!-- Form -->
+    <form class="text-center" style="color: #757575;" action="editUser" method="post">
 
-    <input type=hidden value="<%=oldUsername%>" name="oldUsername" required></br>
+      <div class="md-form">
 
-    <input type="submit" value="Submit" class="button">
-    <input type="Reset" value="Cancel" class="button">
-</center>
-</form>
+         Username</br></br>
+         <input type="text" id="materialLoginForm" class="form-control"  value="<%=username%>" name="question" required>
+        
+      </div>
 
+      <div class="md-form">
+
+         Password</br></br>
+         <input type="password" id="materialLoginForm" class="form-control"  value="<%=password%>" name="question" required>
+        
+      </div>
+
+      <input type=hidden value="<%=oldUsername%>" name="oldUsername" required></br>
+
+      <div class="d-flex justify-content-around">
+        <div>
+               
+
+      <div class="modal-footer justify-content-center">
+                <input type="submit" value="Save" class="btn btn-outline-primary waves-effect">
+                <a href='<%=request.getHeader("referer")%>' class="btn btn-outline-primary waves-effect">Cancel</a>
+            </div>
+         
+         </div>
+      
+    </form>
+    <!-- Form -->
+
+  </div>
+
+</div>
+</div>
+<!-- Material form login -->
 
 </body>
-</p>
-</div>
 </html>
+  
+
+
+   
+    
+
+  
+
