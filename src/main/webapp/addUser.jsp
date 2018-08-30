@@ -11,9 +11,6 @@
     <link rel="stylesheet" type="text/css" href="css/admin.css">
     <title>add user</title>
 </head>
-
-
-
 <body class="light-grey">
     <div class="container-fluid">
     <div class="row">
@@ -61,4 +58,3 @@
     </div>
     <script src="js/admin.js"></script>
 </body>
-

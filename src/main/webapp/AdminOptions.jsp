@@ -31,9 +31,7 @@
 		</div>
 		<%@ page import="java.util.*,com.lxisoft.wayout.web.*,com.lxisoft.wayout.model.*,com.lxisoft.wayout.domain.*,java.sql.*,java.util.*"%>
 		<%String username=request.getRemoteUser();	%>
-
 <!-- 		<p align="left">
-
 			<form action="addUser.jsp" method="post">
 				<input type="submit" value="Add new user">
 			</form> 

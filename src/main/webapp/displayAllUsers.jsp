@@ -87,21 +87,6 @@
                         <span class="table-remove"><input type="submit" value="<%=value%>" name="operation"></span>
                   </form></td>
 
-      
-      <!--      <form action="admin/secured/modify" method="post">
-                <input type="hidden" value="<%=user.getUsername()%>" name="username">
-                <input type="submit" value="<%=value%>" name="operation">
-            </form>-->
-
-            
-
-             <form action="admin/secured/modify" method="get">
-
-                <input type="hidden" value="<%=user.getUsername()%>" name="username">
-                <input type="submit" value="delete">
-            </form>
-        <%
-
 
                     <td class="pt-3-half" contenteditable="false"><form action="admin/secured/modify" method="get">
                       <input type="hidden" value="<%=user.getUsername()%>" name="username">

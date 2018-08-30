@@ -24,19 +24,6 @@
 </head>
 <%@ page import= "com.lxisoft.wayout.domain.*,com.lxisoft.wayout.model.*,java.util.*,java.sql.*"%>
 <%User user=(User)session.getAttribute("user");%>
-
- <!--<form action="userEdit.jsp" method="post">
-    <input type="hidden" value="<%=user.getUsername()%>" name="username">
-    <input type="hidden" value="<%=user.getPassword()%>" name="password">
-
-<input type="image" src="images/icons/edit1.jpg" width="80" height="80" title=editUser alt="Edit Form" />
-</form>
-
-
-
-<%out.println("username:"+user.getUsername());%></br></br>
-<%out.println("password:"+user.getPassword());%>-->
-
 <body class="light-grey">
   <div class="container-fluid">
   <div class="row">
@@ -84,7 +71,6 @@
     </div>
 </div>
 
-
 <!-- Central Modal Medium Info -->
 
   <div class="row">
@@ -127,9 +113,4 @@ $("#sideModalTLInfo").on('shown.bs.modal');
 
 
 </body>
-<<<<<<< HEAD
-</p>
-</div>
-=======
->>>>>>> eac88a323d5114290f6631f3dc9383b002c5cae4
 </html>
