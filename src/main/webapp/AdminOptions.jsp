@@ -19,26 +19,25 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-2"></div>
-			<div class="col-sm-8 text-centre">
+			<div class="col-sm-7 text-centre">
 				<form class="form-inline md-form form-sm active-cyan active-cyan-2" action="search" method="GET">
 				    <i class="fa fa-search" aria-hidden="true"></i>
 				    <input class="form-control form-control-sm ml-3 w-75" type="text" name="questionId" placeholder="Search by id" aria-label="Search">
 				</form>
 			</div>
+			<div class="col-sm-3">
+				<a href="addUser?username=<%=request.getRemoteUser()%>"><img src="images/dp.png" width="50" height="50"></a></br>
+			</div>
 		</div>
-		<p align="right">
 		<%@ page import="java.util.*,com.lxisoft.wayout.web.*,com.lxisoft.wayout.model.*,com.lxisoft.wayout.domain.*,java.sql.*,java.util.*"%>
 		<%String username=request.getRemoteUser();	%>
-		
 
-		<a href="admin/secure/addUser?username=<%=request.getRemoteUser()%>"><img src="images/icons/profile.jpg" width="50" height="50"></a></br></br>
-		</p>
-		<p align="left">
-			
+<!-- 		<p align="left">
+
 			<form action="addUser.jsp" method="post">
 				<input type="submit" value="Add new user">
 			</form> 
-	</p>
+	</p> -->
 		<div class="row">
 		<div class="col-lg-1"></div>
 			<div class="col-lg-5">
@@ -47,7 +46,7 @@
 
 				  <!-- Card image -->
 				  <div class="view overlay">
-				    <img class="card-img-top" src="images/question-view.jpg" alt="Card image cap">
+				    <img class="card-img-top" src="images/new-question.jpg" alt="Card image cap">
 				    <a href="AddQuestion.jsp">
 				      <div class="mask rgba-white-slight"></div>
 				    </a>
@@ -94,10 +93,65 @@
 
 				</div>
 		<!-- Card -->
-		<form action="admin" method="post">
-			<input type="submit" value="Users Configuration">
-		</form>
 		</div>
+		<div class="col-lg-1"></div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-1"></div>
+			<div class="col-lg-5">
+				<!-- Card -->
+				<div class="card">
+
+				  <!-- Card image -->
+				  <div class="view overlay">
+				    <img class="card-img-top" src="images/user-configuration.jpg" alt="Card image cap">
+				      <div class="mask rgba-white-slight"></div>
+				  </div>
+
+				  <!-- Card content -->
+				  <div class="card-body">
+
+				    <!-- Title -->
+				    <h4 class="card-title">What can users do?</h4>
+				    <!-- Text -->
+				    <p class="card-text">Check the roles of all the users</p>
+				    <!-- Button -->
+				    <form action="admin" method="post">
+						<input type="submit" class="btn btn-primary" value="Users Configuration">
+					</form>
+
+				  </div>
+
+				</div>
+		<!-- Card -->
+		</div>
+		<div class="col-lg-5">
+				<!-- Card -->
+				<div class="card">
+
+				  <!-- Card image -->
+				  <div class="view overlay">
+				    <img class="card-img-top" src="images/configuration.jpg" alt="Card image cap">
+				    <a href="#">
+				      <div class="mask rgba-white-slight"></div>
+				    </a>
+				  </div>
+
+				  <!-- Card content -->
+				  <div class="card-body">
+
+				    <!-- Title -->
+				    <h4 class="card-title">Change the mood of game</h4>
+				    <!-- Text -->
+				    <p class="card-text">Configure game settings</p>
+				    <!-- Button -->
+				    <a href="#" class="btn btn-primary">Game configuration</a>
+
+				  </div>
+
+				</div>
+		<!-- Card -->
 		<div class="col-lg-1"></div>
 	</div>
 	</div>

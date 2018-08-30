@@ -23,6 +23,6 @@
 				<p class="blue">INTELLIGENCE IS THE </p><span class="pink">KEY</span><p class="blue"> TO OPEN LOCKS</p>
 			</div>
 		</div>
-		<% response.setHeader("Refresh", "2;url=start.html");%>
+		<% response.setHeader("Refresh", "2;url=start.jsp");%>
 </body>
 </html>
